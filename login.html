@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>लॉगिन | PasandMatrimony</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 14px;
+      font-family: Arial, sans-serif;
+      background: #fff5f7; color: #35212b;
+    }
+    .card {
+      max-width: 450px; margin: 35px auto;
+      padding: 28px; background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px #761c4018;
+    }
+    h1 { text-align: center; color: #761c40; }
+    p { text-align: center; }
+    label { display: block; margin: 17px 0 6px; }
+    input {
+      width: 100%; padding: 13px;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%; margin-top: 22px; padding: 14px;
+      border: 0; border-radius: 8px;
+      background: #761c40; color: white;
+      font-size: 16px; cursor: pointer;
+    }
+    a { color: #761c40; }
+    #message { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>❤️ PasandMatrimony</h1>
+    <p>अपने अकाउंट में लॉगिन करें</p>
+
+    <form id="loginForm">
+      <label for="email">ईमेल</label>
+      <input id="email" type="email" autocomplete="email" required>
+
+      <label for="password">पासवर्ड</label>
+      <input id="password" type="password"
+             autocomplete="current-password" required>
+
+      <button type="submit">लॉगिन करें</button>
+      <p id="message" aria-live="polite"></p>
+    </form>
+
+    <p>नया अकाउंट बनाना है? <a href="register.html">रजिस्ट्रेशन करें</a></p>
+    <p><a href="index.html">होम पेज पर वापस जाएँ</a></p>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("message").textContent =
+        "वास्तविक लॉगिन सुविधा जोड़ने का अगला स्टेप बाकी है।";
+    });
+  </script>
+</body>
+</html>
