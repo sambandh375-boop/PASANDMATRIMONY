@@ -2,142 +2,172 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#79002f">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#a50045">
 <title>PasandMatrimony | आपकी पसंद, आपका जीवनसाथी</title>
 <meta name="description" content="PasandMatrimony पर अपना जीवनसाथी खोजें।">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --pink:#e83e83;
-  --dark:#650027;
-  --white:#fff;
+  --pink:#ec2674;
+  --dark:#79002f;
+  --light:#fff1f6;
+  --text:#39212d;
+  --muted:#766571;
+  --border:#f4d8e4;
 }
+html{scroll-behavior:smooth}
 body{
   font-family:Arial,"Noto Sans Devanagari",sans-serif;
-  color:#30202a;
-  background:#fff8fb;
+  color:var(--text);
+  background:#fffafd;
   line-height:1.6;
 }
 a{text-decoration:none}
 .topbar{
-  background:#650027;color:white;text-align:center;
-  padding:7px 12px;font-size:13px;
+  background:#79002f;color:white;
+  text-align:center;padding:7px 12px;font-size:13px;
 }
 header{
-  min-height:75px;background:#fff;
-  padding:14px 5%;display:flex;
-  justify-content:space-between;align-items:center;
-  gap:15px;flex-wrap:wrap;
+  background:white;padding:14px 5%;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
 }
-.logo{font-size:25px;font-weight:800;color:#650027}
-.logo span{color:#e83e83}
-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-nav a{color:#38202d;font-size:14px;font-weight:bold}
+.logo{font-size:25px;font-weight:800;color:var(--dark)}
+.logo span{color:var(--pink)}
+nav{display:flex;align-items:center;gap:17px;flex-wrap:wrap}
+nav a{color:var(--text);font-size:14px;font-weight:bold}
+nav a:hover{color:var(--pink)}
 nav .join{
-  background:#c20b50;color:#fff;
-  padding:10px 17px;border-radius:25px;
+  color:white;background:var(--pink);
+  padding:10px 18px;border-radius:25px;
 }
 .hero{
-  min-height:610px;
+  min-height:570px;
   display:flex;align-items:center;
   padding:65px 7%;
-  color:white;
-  background:
-    linear-gradient(90deg,rgba(48,0,28,.88),rgba(75,0,45,.45)),
-    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85");
-  background-position:center;
+  background-color:#fff0f5;
+  background-image:
+    linear-gradient(90deg,rgba(255,247,250,.96) 0%,rgba(255,244,248,.88) 40%,rgba(255,230,240,.18) 100%),
+    url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=2000&q=85");
   background-size:cover;
+  background-position:center;
   background-repeat:no-repeat;
 }
-.hero-content{max-width:700px}
+.hero-content{max-width:650px}
 .tag{
-  display:inline-block;background:#ffffff20;
-  border:1px solid #ffffff80;border-radius:25px;
-  padding:7px 15px;margin-bottom:20px;font-size:14px;
+  display:inline-block;padding:8px 15px;
+  border-radius:25px;background:#fff;
+  color:var(--dark);border:1px solid var(--border);
+  margin-bottom:18px;font-size:14px;
 }
-h1{font-size:clamp(38px,6vw,68px);line-height:1.2;margin-bottom:20px}
-h1 span{color:#ff8cba}
-.intro{font-size:18px;max-width:590px;margin-bottom:27px;color:#fff2f7}
-.buttons{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:20px}
+h1{
+  font-size:clamp(38px,5.5vw,66px);
+  line-height:1.2;color:var(--dark);margin-bottom:18px;
+}
+h1 span{color:var(--pink)}
+.intro{
+  max-width:570px;font-size:17px;
+  color:#55414c;margin-bottom:25px;
+}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
 .btn{
-  display:inline-block;padding:13px 23px;border-radius:9px;
-  font-size:15px;font-weight:bold;text-align:center;
+  display:inline-block;padding:13px 22px;
+  border-radius:10px;font-weight:bold;text-align:center;
 }
-.primary{background:#e83e83;color:white}
-.secondary{background:white;color:#79002f}
-.trust{font-size:14px;color:#ffe5ef}
-.search-wrap{padding:0 5%;margin-top:-42px;position:relative}
+.primary{background:var(--pink);color:white}
+.secondary{background:white;color:var(--dark);border:1px solid var(--pink)}
+.trust{font-size:13px;color:var(--dark)}
+.search-wrap{position:relative;padding:0 5%;margin-top:-35px}
 .search-box{
   max-width:1100px;margin:auto;background:white;
-  padding:28px;border-radius:18px;
-  box-shadow:0 12px 35px #65002720;
+  border:1px solid var(--border);border-radius:20px;
+  padding:25px;box-shadow:0 12px 35px #79002f18;
 }
-.search-box h2{text-align:center;color:#650027;font-size:27px}
-.search-box p{text-align:center;color:#77636e;margin:5px 0 22px}
+.search-box h2{text-align:center;color:var(--dark);font-size:28px}
+.search-box>p{text-align:center;color:var(--muted);margin:5px 0 20px}
 .search-form{
   display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;
 }
 select{
-  width:100%;padding:13px;border:1px solid #ead5df;
-  border-radius:9px;background:white;font-size:14px;
+  width:100%;min-width:0;padding:13px;
+  border:1px solid #e8d5df;border-radius:9px;
+  background:white;color:var(--text);font-size:14px;
 }
-button{cursor:pointer;font:inherit}
+button{font:inherit;cursor:pointer}
 .search-btn{
-  border:0;border-radius:9px;padding:12px 20px;
-  color:white;background:#c20b50;font-weight:bold;
+  background:var(--pink);color:white;border:0;
+  border-radius:9px;padding:12px 20px;font-weight:bold;
 }
-.section{padding:65px 5%;text-align:center}
-.section h2,.steps-section h2{font-size:32px;color:#650027}
-.subtitle{color:#77636e;margin:8px auto 30px}
+.section{padding:60px 5%;text-align:center}
+.section h2,.steps-section h2{font-size:32px;color:var(--dark)}
+.subtitle{color:var(--muted);margin:7px auto 28px}
 .features,.steps{
-  max-width:1100px;margin:auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  max-width:1150px;margin:auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:17px;
 }
 .card,.step{
-  background:white;border:1px solid #f0dce5;
-  padding:25px 18px;border-radius:15px;
-  box-shadow:0 5px 18px #65002708;
+  background:white;border:1px solid var(--border);
+  border-radius:16px;padding:25px 17px;
+  box-shadow:0 5px 20px #79002f08;
 }
 .icon{
-  width:58px;height:58px;margin:0 auto 13px;
-  border-radius:50%;display:grid;place-items:center;
-  background:#fff0f6;font-size:27px;
+  width:58px;height:58px;margin:0 auto 12px;
+  display:grid;place-items:center;
+  border-radius:50%;background:var(--light);
+  color:var(--pink);font-size:28px;
 }
-.card h3,.step h3{color:#79002f;margin-bottom:8px}
-.card p,.step p{font-size:14px;color:#77636e}
-.steps-section{padding:60px 5%;text-align:center;background:#fff0f6}
-.steps{grid-template-columns:repeat(3,1fr)}
-.number{font-size:32px;font-weight:bold;color:#e83e83}
+.card h3,.step h3{color:var(--dark);margin-bottom:8px}
+.card p,.step p{font-size:14px;color:var(--muted)}
+.steps-section{
+  background:linear-gradient(135deg,#fff0f6,#fffafc);
+  padding:58px 5%;text-align:center;
+}
+.steps{grid-template-columns:repeat(3,1fr);margin-top:25px}
+.number{font-size:31px;color:var(--pink);font-weight:800}
 .cta{
   text-align:center;padding:55px 5%;
-  background:linear-gradient(120deg,#c20b50,#650027);color:white;
+  color:white;background:linear-gradient(120deg,#d61c66,#79002f);
 }
-.cta h2{font-size:clamp(26px,4vw,38px);margin-bottom:10px}
-.cta p{margin-bottom:22px;color:#ffe5ef}
-.cta .btn{background:white;color:#79002f}
-footer{background:#28141f;color:white;text-align:center;padding:30px 5%}
+.cta h2{font-size:clamp(26px,4vw,36px);margin-bottom:9px}
+.cta p{margin-bottom:22px;color:#ffeaf2}
+.cta .btn{background:white;color:var(--dark)}
+footer{
+  background:#301b27;color:white;
+  text-align:center;padding:30px 5%;
+}
 footer .logo{color:white}
-footer .logo span{color:#ff8cba}
-footer p{font-size:13px;color:#eadce3;margin-top:8px}
-.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:18px 0}
+footer .logo span{color:#ff9bc2}
+footer p{font-size:13px;color:#eadce3;margin-top:7px}
+.footer-links{
+  display:flex;justify-content:center;gap:18px;
+  flex-wrap:wrap;margin:17px 0;
+}
 .footer-links a{font-size:13px;color:white}
-@media(max-width:800px){
-  .hero{min-height:560px;padding:55px 6%}
+@media(max-width:850px){
+  .hero{min-height:520px;padding:55px 6%;background-position:58% center}
   .search-form{grid-template-columns:1fr 1fr}
   .features{grid-template-columns:1fr 1fr}
 }
 @media(max-width:560px){
-  header{justify-content:center}
+  header{justify-content:center;text-align:center}
+  .logo{font-size:23px}
   nav{justify-content:center;gap:12px}
   nav a{font-size:13px}
-  .logo{font-size:23px}
-  .hero{min-height:540px;padding:45px 6%;background-position:center}
+  .hero{
+    min-height:560px;padding:40px 6%;
+    background-image:
+      linear-gradient(90deg,rgba(255,247,250,.95),rgba(255,240,247,.70)),
+      url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=85");
+    background-position:center;
+  }
+  h1{font-size:39px}
   .intro{font-size:16px}
-  .search-box{padding:22px 15px}
+  .search-box{padding:21px 14px}
   .search-form,.features,.steps{grid-template-columns:1fr}
-  .section,.steps-section{padding:45px 5%}
+  .section,.steps-section{padding:43px 5%}
   .section h2,.steps-section h2{font-size:27px}
 }
 </style>
@@ -148,7 +178,7 @@ footer p{font-size:13px;color:#eadce3;margin-top:8px}
 
 <header>
   <a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
-  <nav>
+  <nav aria-label="मुख्य मेन्यू">
     <a href="index.html">होम</a>
     <a href="#about">हमारे बारे में</a>
     <a href="#steps">शुरुआत कैसे करें</a>
@@ -180,19 +210,19 @@ footer p{font-size:13px;color:#eadce3;margin-top:8px}
     <h2>अपना जीवनसाथी खोजें</h2>
     <p>अपनी पसंद चुनकर रिश्तों की तलाश शुरू करें।</p>
     <form class="search-form" id="searchForm">
-      <select id="gender" aria-label="जीवनसाथी">
+      <select id="gender" aria-label="जीवनसाथी चुनें">
         <option value="">जीवनसाथी चुनें</option>
         <option value="woman">वधू खोजें</option>
         <option value="man">वर खोजें</option>
       </select>
-      <select id="age" aria-label="उम्र">
+      <select id="age" aria-label="उम्र चुनें">
         <option value="">उम्र चुनें</option>
         <option value="18-25">18–25 साल</option>
         <option value="26-35">26–35 साल</option>
         <option value="36-45">36–45 साल</option>
         <option value="46-60">46–60 साल</option>
       </select>
-      <select id="city" aria-label="शहर">
+      <select id="city" aria-label="शहर चुनें">
         <option value="">शहर चुनें</option>
         <option value="Lucknow">लखनऊ</option>
         <option value="Varanasi">वाराणसी</option>
@@ -257,7 +287,7 @@ footer p{font-size:13px;color:#eadce3;margin-top:8px}
 
 <section class="cta">
   <h2>एक खूबसूरत रिश्ते की शुरुआत करें</h2>
-  <p>आज ही अपनी प्रोफाइल बनाएँ।</p>
+  <p>आज ही अपनी प्रोफाइल बनाएँ और नए सफर की शुरुआत करें।</p>
   <a class="btn" href="register.html">अभी रजिस्ट्रेशन करें</a>
 </section>
 </main>
@@ -276,18 +306,16 @@ footer p{font-size:13px;color:#eadce3;margin-top:8px}
 </footer>
 
 <script>
-document.getElementById("searchForm").addEventListener("submit", function(e){
+document.getElementById("searchForm").addEventListener("submit",function(e){
   e.preventDefault();
-  const params = new URLSearchParams();
-  const gender = document.getElementById("gender").value;
-  const age = document.getElementById("age").value;
-  const city = document.getElementById("city").value;
-
-  if(gender) params.set("gender", gender);
-  if(age) params.set("age", age);
-  if(city) params.set("city", city);
-
-  window.location.href = "search.html?" + params.toString();
+  const params=new URLSearchParams();
+  const gender=document.getElementById("gender").value;
+  const age=document.getElementById("age").value;
+  const city=document.getElementById("city").value;
+  if(gender)params.set("gender",gender);
+  if(age)params.set("age",age);
+  if(city)params.set("city",city);
+  window.location.href="search.html?"+params.toString();
 });
 </script>
 </body>
