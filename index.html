@@ -155,6 +155,33 @@ footer p{font-size:13px;color:#e7d8e4}
     font-size: 38px;
   }
 }
+ /* पहली लेयर की अतिरिक्त खाली जगह ठीक करें */
+.hero {
+  padding-bottom: 45px !important;
+  min-height: 470px !important;
+}
+
+.hero-inner {
+  gap: 0 !important;
+}
+
+.hero-photo {
+  display: none !important;
+}
+
+.search-wrap {
+  margin-top: -25px !important;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 430px !important;
+    padding-top: 45px !important;
+    padding-bottom: 45px !important;
+  }
+}
 </style>
 </head>
 <body>
