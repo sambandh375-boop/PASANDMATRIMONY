@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6d174f">
+<meta name="description" content="PasandMatrimony पर अपनी पसंद का जीवनसाथी खोजें।">
+<title>PasandMatrimony | रिश्तों की नई शुरुआत</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#e83e8c;--purple:#6d174f;--cream:#fff8f5;--text:#302434;--muted:#786b7a}
+body{font-family:Arial,"Noto Sans Devanagari",sans-serif;color:var(--text);background:white;line-height:1.7}
+a{text-decoration:none}
+.top{background:var(--purple);color:white;text-align:center;padding:7px;font-size:13px}
+header{padding:17px 6%;display:flex;align-items:center;justify-content:space-between;gap:18px;background:white}
+.logo{font-size:25px;font-weight:800;color:var(--purple)}
+.logo span{color:var(--pink)}
+nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav a{font-size:14px;color:var(--text);font-weight:600}
+nav .join{background:var(--purple);color:white;padding:10px 17px;border-radius:25px}
+.hero{background:linear-gradient(120deg,#fff1f7,#f1e7ff);padding:65px 6%}
+.hero-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:center}
+.tag{display:inline-block;background:white;color:var(--purple);padding:7px 14px;border-radius:25px;margin-bottom:20px;font-size:13px}
+h1{font-size:clamp(36px,5vw,62px);line-height:1.2;margin-bottom:20px}
+h1 span{color:var(--pink)}
+.intro{color:var(--muted);font-size:17px;max-width:530px;margin-bottom:25px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.btn{display:inline-block;padding:13px 22px;border-radius:9px;font-weight:bold;font-size:14px}
+.primary{background:var(--purple);color:white}
+.secondary{border:1px solid var(--purple);color:var(--purple);background:white}
+.trust{font-size:13px;color:var(--muted)}
+.photo{height:410px;position:relative;border-radius:28px;overflow:hidden;box-shadow:0 20px 50px #6d174f20;background:#ead3e2}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.caption{position:absolute;bottom:15px;left:15px;right:15px;padding:12px;background:#ffffffed;text-align:center;border-radius:12px;color:var(--purple);font-weight:bold}
+.search-wrap{padding:0 6%;margin-top:-28px;position:relative}
+.search{max-width:1100px;margin:auto;background:white;border:1px solid #f0dce8;border-radius:18px;padding:25px;box-shadow:0 15px 40px #46203b13}
+.search h2{text-align:center;color:var(--purple);font-size:25px}
+.search p{text-align:center;color:var(--muted);margin:3px 0 20px}
+.form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
+select{min-width:0;width:100%;padding:13px;border:1px solid #e5d7e1;border-radius:9px;background:white;color:var(--text);font-size:14px}
+button{font:inherit;cursor:pointer}
+.form button{background:var(--pink);border:0;border-radius:9px;color:white;font-weight:bold;padding:12px 19px}
+.section{padding:70px 6%;text-align:center}
+.section h2{font-size:clamp(27px,3vw,36px);color:var(--purple)}
+.sub{color:var(--muted);margin:8px auto 32px}
+.cards{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border:1px solid #f0dce8;border-radius:18px;padding:28px 22px;background:white;box-shadow:0 8px 25px #6d174f08}
+.card .icon{font-size:34px;margin-bottom:8px}
+.card h3{color:var(--purple);margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.steps-section{background:var(--cream);padding:65px 6%;text-align:center}
+.steps{max-width:1050px;margin:28px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:white;padding:25px;border:1px solid #f0dce8;border-radius:16px}
+.num{font-size:30px;color:var(--pink);font-weight:800}
+.step p{font-size:14px;color:var(--muted)}
+.cta{padding:58px 6%;text-align:center;background:linear-gradient(120deg,#6d174f,#b32c78);color:white}
+.cta h2{font-size:clamp(27px,4vw,38px);margin-bottom:8px}
+.cta p{color:#ffe5f1;margin-bottom:20px}
+.cta .btn{background:white;color:var(--purple)}
+footer{background:#251724;color:white;text-align:center;padding:30px 6%}
+footer .logo{color:white}
+footer .logo span{color:#ff9ac7}
+footer p{font-size:13px;color:#e7d8e4}
+.links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:15px}
+.links a{color:white;font-size:13px}
+@media(max-width:850px){
+ .hero-inner{grid-template-columns:1fr}
+ .photo{height:350px}
+ .form{grid-template-columns:1fr 1fr}
+ .cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+ header{flex-direction:column;text-align:center}
+ nav{justify-content:center;gap:12px}
+ nav a{font-size:13px}
+ .hero{padding:40px 5% 55px}
+ .photo{height:280px}
+ .form,.cards,.steps{grid-template-columns:1fr}
+ .search{padding:20px 14px}
+ .section,.steps-section{padding:48px 5%}
+}
+</style>
+</head>
+<body>
+<div class="top">💗 सम्मान • विश्वास • जीवनभर के खूबसूरत रिश्ते</div>
+<header>
+<a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
+<nav>
+<a href="index.html">होम</a>
+<a href="#about">हमारे बारे में</a>
+<a href="#steps">कैसे शुरू करें</a>
+<a href="login.html">लॉगिन</a>
+<a class="join" href="register.html">रजिस्ट्रेशन</a>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div class="hero-inner">
+<div>
+<div class="tag">💞 आपके नए सफर की शुरुआत</div>
+<h1>रिश्ते दिल से,<br><span>साथ जीवनभर का</span></h1>
+<p class="intro">आपकी पसंद, आपके सपने और आपकी उम्मीदें — जीवनसाथी की तलाश शुरू करें। एक खूबसूरत रिश्ते की पहली शुरुआत आज ही करें।</p>
+<div class="actions">
+<a class="btn primary" href="register.html">अपनी प्रोफाइल बनाएँ →</a>
+<a class="btn secondary" href="login.html">लॉगिन करें</a>
+</div>
+<p class="trust">🔒 अकाउंट सुरक्षा &nbsp; • &nbsp; ♥ आसान रजिस्ट्रेशन</p>
+</div>
+<div class="photo">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85" alt="शादी के खूबसूरत पल">
+<div class="caption">आपकी पसंद, आपकी नई कहानी 💕</div>
+</div>
+</div>
+</section>
 
+<section class="search-wrap">
+<div class="search">
+<h2>अपना जीवनसाथी खोजें</h2>
+<p>अपनी पसंद चुनकर तलाश शुरू करें</p>
+<form class="form" id="searchForm">
+<select id="gender" aria-label="जीवनसाथी चुनें">
+<option value="">जीवनसाथी चुनें</option>
+<option value="woman">वधू खोजें</option>
+<option value="man">वर खोजें</option>
+</select>
+<select id="age" aria-label="उम्र चुनें">
+<option value="">उम्र चुनें</option>
+<option value="18-25">18–25 साल</option>
+<option value="26-35">26–35 साल</option>
+<option value="36-45">36–45 साल</option>
+<option value="46-60">46–60 साल</option>
+</select>
+<select id="city" aria-label="शहर चुनें">
+<option value="">शहर चुनें</option>
+<option value="Lucknow">लखनऊ</option>
+<option value="Varanasi">वाराणसी</option>
+<option value="Gorakhpur">गोरखपुर</option>
+<option value="Patna">पटना</option>
+<option value="Delhi">दिल्ली</option>
+<option value="Other">अन्य शहर</option>
+</select>
+<button type="submit">🔎 रिश्ते खोजें</button>
+</form>
+</div>
+</section>
+
+<section class="section" id="about">
+<h2>PasandMatrimony क्यों चुनें?</h2>
+<p class="sub">रिश्तों की तलाश को आसान और सुविधाजनक बनाएँ।</p>
+<div class="cards">
+<article class="card"><div class="icon">👤</div><h3>अपनी प्रोफाइल</h3><p>अपनी जानकारी भरें और अपनी प्रोफाइल तैयार करें।</p></article>
+<article class="card"><div class="icon">🔍</div><h3>आसान खोज</h3><p>अपनी पसंद के अनुसार उपलब्ध रिश्तों को तलाशें।</p></article>
+<article class="card"><div class="icon">🔐</div><h3>अकाउंट सुरक्षा</h3><p>लॉगिन करके अपनी प्रोफाइल का प्रबंधन करें।</p></article>
+</div>
+</section>
+
+<section class="steps-section" id="steps">
+<h2>शुरुआत कैसे करें?</h2>
+<p class="sub">तीन आसान चरणों में शुरुआत करें।</p>
+<div class="steps">
+<article class="step"><div class="num">01</div><h3>रजिस्ट्रेशन करें</h3><p>अपना अकाउंट बनाएँ और ईमेल की पुष्टि करें।</p></article>
+<article class="step"><div class="num">02</div><h3>प्रोफाइल पूरी करें</h3><p>अपनी सही जानकारी भरकर प्रोफाइल सेव करें।</p></article>
+<article class="step"><div class="num">03</div><h3>रिश्ते खोजें</h3><p>उपलब्ध प्रोफाइल देखकर उपयुक्त रिश्ता तलाशें।</p></article>
+</div>
+</section>
+
+<section class="cta">
+<h2>एक खूबसूरत रिश्ते की शुरुआत करें</h2>
+<p>आज ही अपनी प्रोफाइल बनाएँ और नया सफर शुरू करें।</p>
+<a class="btn" href="register.html">अभी रजिस्ट्रेशन करें</a>
+</section>
+</main>
+<footer>
+<div class="logo">♥ Pasand<span>Matrimony</span></div>
+<p>सम्मान, विश्वास और रिश्तों की नई शुरुआत।</p>
+<div class="links">
+<a href="index.html">होम</a>
+<a href="#about">हमारे बारे में</a>
+<a href="login.html">लॉगिन</a>
+<a href="register.html">रजिस्ट्रेशन</a>
+<a href="profile.html">मेरी प्रोफाइल</a>
+</div>
+<p>© 2026 PasandMatrimony. सर्वाधिकार सुरक्षित।</p>
+</footer>
+<script>
+document.getElementById("searchForm").addEventListener("submit",function(e){
+e.preventDefault();
+const params=new URLSearchParams();
+const gender=document.getElementById("gender").value;
+const age=document.getElementById("age").value;
+const city=document.getElementById("city").value;
+if(gender)params.set("gender",gender);
+if(age)params.set("age",age);
+if(city)params.set("city",city);
+window.location.href="search.html?"+params.toString();
+});
+</script>
+</body>
+</html>
