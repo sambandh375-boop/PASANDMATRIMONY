@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>रजिस्ट्रेशन | PasandMatrimony</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 14px;
+      font-family: Arial, sans-serif;
+      background: #fff5f7; color: #35212b;
+    }
+    .card {
+      max-width: 520px; margin: 20px auto;
+      padding: 26px; background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px #761c4018;
+    }
+    h1 { text-align: center; color: #761c40; }
+    p { text-align: center; }
+    label { display: block; margin: 15px 0 6px; }
+    input, select {
+      width: 100%; padding: 12px;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: 16px; background: white;
+    }
+    button {
+      width: 100%; margin-top: 22px; padding: 14px;
+      border: 0; border-radius: 8px;
+      background: #761c40; color: white;
+      font-size: 16px; cursor: pointer;
+    }
+    a { color: #761c40; }
+    .message { text-align: center; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>❤️ PasandMatrimony</h1>
+    <p>अपनी प्रोफाइल बनाने की शुरुआत करें</p>
+
+    <form id="registerForm">
+      <label for="fullName">पूरा नाम</label>
+      <input id="fullName" name="fullName" required>
+
+      <label for="email">ईमेल</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="password">पासवर्ड</label>
+      <input id="password" name="password" type="password"
+             minlength="8" autocomplete="new-password" required>
+
+      <label for="gender">आपकी प्रोफाइल</label>
+      <select id="gender" name="gender" required>
+        <option value="">चुनें</option>
+        <option value="male">वर</option>
+        <option value="female">वधू</option>
+        <option value="other">अन्य</option>
+      </select>
+
+      <button type="submit">रजिस्ट्रेशन करें</button>
+      <p class="message" id="message" aria-live="polite"></p>
+    </form>
+
+    <p>पहले से अकाउंट है? <a href="login.html">लॉगिन करें</a></p>
+    <p><a href="index.html">होम पेज पर वापस जाएँ</a></p>
+  </main>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("message").textContent =
+        "रजिस्ट्रेशन सुविधा जोड़ने का अगला स्टेप बाकी है। अभी अकाउंट नहीं बनाया गया है।";
+    });
+  </script>
+</body>
+</html>
