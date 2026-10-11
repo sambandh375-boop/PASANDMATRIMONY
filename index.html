@@ -3,153 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#a50045">
-<title>PasandMatrimony | आपकी पसंद, आपका जीवनसाथी</title>
+<meta name="theme-color" content="#a90046">
 <meta name="description" content="PasandMatrimony पर अपना जीवनसाथी खोजें।">
+<title>PasandMatrimony | रिश्ते दिल से</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --pink:#ec2674;
-  --dark:#79002f;
+  --pink:#f20d68;
+  --dark:#870039;
   --light:#fff1f6;
-  --text:#39212d;
-  --muted:#766571;
-  --border:#f4d8e4;
+  --text:#35212b;
+  --muted:#6d5c65;
 }
-html{scroll-behavior:smooth}
 body{
   font-family:Arial,"Noto Sans Devanagari",sans-serif;
   color:var(--text);
-  background:#fffafd;
+  background:#fff8fb;
   line-height:1.6;
 }
 a{text-decoration:none}
 .topbar{
-  background:#79002f;color:white;
-  text-align:center;padding:7px 12px;font-size:13px;
+  background:#870039;color:white;text-align:center;
+  padding:7px 12px;font-size:14px;
 }
 header{
-  background:white;padding:14px 5%;
-  display:flex;align-items:center;
-  justify-content:space-between;gap:16px;flex-wrap:wrap;
-  border-bottom:1px solid var(--border);
+  background:#fff;padding:14px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;border-bottom:1px solid #f5dce6;
 }
-.logo{font-size:25px;font-weight:800;color:var(--dark)}
+.logo{font-size:25px;font-weight:800;color:#870039}
 .logo span{color:var(--pink)}
-nav{display:flex;align-items:center;gap:17px;flex-wrap:wrap}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
 nav a{color:var(--text);font-size:14px;font-weight:bold}
 nav a:hover{color:var(--pink)}
-nav .join{
-  color:white;background:var(--pink);
-  padding:10px 18px;border-radius:25px;
-}
+.nav-btn{background:var(--pink);color:white;padding:10px 18px;border-radius:25px}
 .hero{
-  min-height:570px;
-  display:flex;align-items:center;
-  padding:65px 7%;
-  background-color:#fff0f5;
-  background-image:
-    linear-gradient(90deg,rgba(255,247,250,.96) 0%,rgba(255,244,248,.88) 40%,rgba(255,230,240,.18) 100%),
-    url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=2000&q=85");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  padding:55px 5% 100px;
+  background:
+    linear-gradient(90deg,#fff2f6 0%,#fff2f6ee 36%,#fff0f500 75%),
+    url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=2000&q=90");
+  background-size:cover;background-position:center;
+  min-height:530px;
 }
-.hero-content{max-width:650px}
+.hero-inner{max-width:1200px;margin:auto}
+.hero-content{max-width:550px;padding:15px 0}
 .tag{
-  display:inline-block;padding:8px 15px;
-  border-radius:25px;background:#fff;
-  color:var(--dark);border:1px solid var(--border);
-  margin-bottom:18px;font-size:14px;
+  display:inline-block;background:#fff;color:var(--dark);
+  border:1px solid #ffd0e0;padding:7px 14px;
+  border-radius:25px;margin-bottom:16px;font-size:14px;
 }
-h1{
-  font-size:clamp(38px,5.5vw,66px);
-  line-height:1.2;color:var(--dark);margin-bottom:18px;
-}
+h1{font-size:clamp(36px,5vw,60px);line-height:1.18;margin-bottom:18px;color:#76002f}
 h1 span{color:var(--pink)}
-.intro{
-  max-width:570px;font-size:17px;
-  color:#55414c;margin-bottom:25px;
-}
-.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.btn{
-  display:inline-block;padding:13px 22px;
-  border-radius:10px;font-weight:bold;text-align:center;
-}
+.intro{font-size:17px;color:#55434d;margin-bottom:23px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.btn{display:inline-block;padding:13px 21px;border-radius:12px;font-weight:bold;text-align:center}
 .primary{background:var(--pink);color:white}
 .secondary{background:white;color:var(--dark);border:1px solid var(--pink)}
-.trust{font-size:13px;color:var(--dark)}
-.search-wrap{position:relative;padding:0 5%;margin-top:-35px}
+.trust{font-size:14px;color:#6d344e}
+.search-wrap{padding:0 5%;margin:-65px auto 0;position:relative}
 .search-box{
-  max-width:1100px;margin:auto;background:white;
-  border:1px solid var(--border);border-radius:20px;
-  padding:25px;box-shadow:0 12px 35px #79002f18;
+  max-width:1100px;margin:auto;background:#fffffffa;
+  border:1px solid #ffd0e0;border-radius:22px;
+  padding:22px;box-shadow:0 12px 35px #b8004a20;
 }
 .search-box h2{text-align:center;color:var(--dark);font-size:28px}
-.search-box>p{text-align:center;color:var(--muted);margin:5px 0 20px}
-.search-form{
-  display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;
-}
+.search-box>p{text-align:center;color:var(--muted);margin:4px 0 18px}
+.search-form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
 select{
   width:100%;min-width:0;padding:13px;
-  border:1px solid #e8d5df;border-radius:9px;
+  border:1px solid #ead3de;border-radius:10px;
   background:white;color:var(--text);font-size:14px;
 }
 button{font:inherit;cursor:pointer}
 .search-btn{
   background:var(--pink);color:white;border:0;
-  border-radius:9px;padding:12px 20px;font-weight:bold;
+  border-radius:10px;padding:12px 20px;font-weight:bold;
 }
-.section{padding:60px 5%;text-align:center}
-.section h2,.steps-section h2{font-size:32px;color:var(--dark)}
-.subtitle{color:var(--muted);margin:7px auto 28px}
-.features,.steps{
+.section{padding:55px 5%;text-align:center}
+.section h2{font-size:clamp(26px,3vw,34px);color:var(--dark)}
+.subtitle{color:var(--muted);margin:7px auto 27px}
+.features{
   max-width:1150px;margin:auto;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:17px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
 }
-.card,.step{
-  background:white;border:1px solid var(--border);
-  border-radius:16px;padding:25px 17px;
-  box-shadow:0 5px 20px #79002f08;
+.card{
+  background:white;border:1px solid #f7dce7;
+  padding:25px 17px;border-radius:17px;
+  box-shadow:0 7px 22px #a9004610;
 }
 .icon{
-  width:58px;height:58px;margin:0 auto 12px;
-  display:grid;place-items:center;
-  border-radius:50%;background:var(--light);
-  color:var(--pink);font-size:28px;
+  width:60px;height:60px;margin:0 auto 12px;
+  display:grid;place-items:center;border-radius:50%;
+  background:#ffe0eb;color:var(--pink);font-size:29px;
 }
-.card h3,.step h3{color:var(--dark);margin-bottom:8px}
-.card p,.step p{font-size:14px;color:var(--muted)}
-.steps-section{
-  background:linear-gradient(135deg,#fff0f6,#fffafc);
-  padding:58px 5%;text-align:center;
+.card h3{color:var(--dark);font-size:19px;margin-bottom:6px}
+.card p{font-size:14px;color:var(--muted)}
+.steps-section{background:#fff0f5;padding:55px 5%;text-align:center}
+.steps{
+  max-width:1050px;margin:25px auto 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
 }
-.steps{grid-template-columns:repeat(3,1fr);margin-top:25px}
-.number{font-size:31px;color:var(--pink);font-weight:800}
+.step{background:white;border:1px solid #f5d8e4;border-radius:16px;padding:24px}
+.number{font-size:30px;font-weight:800;color:var(--pink)}
+.step h3{margin:7px 0;color:var(--dark)}
+.step p{font-size:14px;color:var(--muted)}
 .cta{
-  text-align:center;padding:55px 5%;
-  color:white;background:linear-gradient(120deg,#d61c66,#79002f);
+  text-align:center;padding:48px 5%;color:white;
+  background:linear-gradient(120deg,#f20d68,#870039);
 }
-.cta h2{font-size:clamp(26px,4vw,36px);margin-bottom:9px}
-.cta p{margin-bottom:22px;color:#ffeaf2}
+.cta h2{font-size:clamp(25px,3vw,35px);margin-bottom:8px}
+.cta p{margin-bottom:20px}
 .cta .btn{background:white;color:var(--dark)}
-footer{
-  background:#301b27;color:white;
-  text-align:center;padding:30px 5%;
-}
+footer{background:#321421;color:white;padding:28px 5%;text-align:center}
 footer .logo{color:white}
-footer .logo span{color:#ff9bc2}
-footer p{font-size:13px;color:#eadce3;margin-top:7px}
-.footer-links{
-  display:flex;justify-content:center;gap:18px;
-  flex-wrap:wrap;margin:17px 0;
-}
+footer .logo span{color:#ffb7d0}
+footer p{font-size:13px;color:#f1dce5;margin-top:6px}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin:17px 0}
 .footer-links a{font-size:13px;color:white}
 @media(max-width:850px){
-  .hero{min-height:520px;padding:55px 6%;background-position:58% center}
+  .hero{background-position:58% center}
   .search-form{grid-template-columns:1fr 1fr}
-  .features{grid-template-columns:1fr 1fr}
+  .features{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
   header{justify-content:center;text-align:center}
@@ -157,18 +132,19 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
   nav{justify-content:center;gap:12px}
   nav a{font-size:13px}
   .hero{
-    min-height:560px;padding:40px 6%;
-    background-image:
-      linear-gradient(90deg,rgba(255,247,250,.95),rgba(255,240,247,.70)),
+    padding:30px 5% 85px;min-height:560px;
+    background:
+      linear-gradient(90deg,#fff2f6f5,#fff2f6c9),
       url("https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1000&q=85");
-    background-position:center;
+    background-size:cover;background-position:center;
   }
+  .hero-content{padding-top:10px}
   h1{font-size:39px}
   .intro{font-size:16px}
-  .search-box{padding:21px 14px}
+  .search-box{padding:20px 14px}
   .search-form,.features,.steps{grid-template-columns:1fr}
-  .section,.steps-section{padding:43px 5%}
-  .section h2,.steps-section h2{font-size:27px}
+  .search-btn{width:100%}
+  .section,.steps-section{padding:42px 5%}
 }
 </style>
 </head>
@@ -178,30 +154,32 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
 
 <header>
   <a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
-  <nav aria-label="मुख्य मेन्यू">
+  <nav>
     <a href="index.html">होम</a>
     <a href="#about">हमारे बारे में</a>
     <a href="#steps">शुरुआत कैसे करें</a>
     <a href="login.html">लॉगिन</a>
-    <a class="join" href="register.html">रजिस्ट्रेशन</a>
+    <a class="nav-btn" href="register.html">रजिस्ट्रेशन</a>
   </nav>
 </header>
 
 <main>
 <section class="hero">
-  <div class="hero-content">
-    <div class="tag">♥ आपके नए सफर की शुरुआत</div>
-    <h1>रिश्ते दिल से,<br><span>साथ जीवनभर का</span></h1>
-    <p class="intro">
-      आपकी पसंद, आपके सपने और आपकी उम्मीदें —
-      जीवनसाथी की तलाश शुरू करें। एक खूबसूरत रिश्ते की
-      पहली शुरुआत आज ही करें।
-    </p>
-    <div class="buttons">
-      <a class="btn primary" href="register.html">अपनी प्रोफाइल बनाएँ →</a>
-      <a class="btn secondary" href="login.html">लॉगिन करें</a>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="tag">♥ आपके नए सफर की शुरुआत</div>
+      <h1>रिश्ते दिल से,<br><span>साथ जीवनभर का</span></h1>
+      <p class="intro">
+        आपकी पसंद, आपके सपने और आपकी उम्मीदें —
+        जीवनसाथी की तलाश शुरू करें। एक खूबसूरत रिश्ते की
+        पहली शुरुआत आज ही करें।
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="register.html">अपनी प्रोफाइल बनाएँ →</a>
+        <a class="btn secondary" href="login.html">लॉगिन करें</a>
+      </div>
+      <p class="trust">🔒 अकाउंट सुरक्षा &nbsp; • &nbsp; ♥ आसान रजिस्ट्रेशन</p>
     </div>
-    <p class="trust">🔒 अकाउंट सुरक्षा &nbsp; • &nbsp; ♥ आसान रजिस्ट्रेशन</p>
   </div>
 </section>
 
@@ -256,7 +234,7 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
       <p>लॉगिन करके अपनी प्रोफाइल सँभालें।</p>
     </article>
     <article class="card">
-      <div class="icon">💗</div>
+      <div class="icon">♥</div>
       <h3>नई शुरुआत</h3>
       <p>सम्मान और समझ के साथ रिश्ता तलाशें।</p>
     </article>
@@ -275,7 +253,7 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
     <article class="step">
       <div class="number">02</div>
       <h3>प्रोफाइल पूरी करें</h3>
-      <p>अपनी जानकारी भरकर प्रोफाइल सेव करें।</p>
+      <p>अपनी सही जानकारी भरकर प्रोफाइल सेव करें।</p>
     </article>
     <article class="step">
       <div class="number">03</div>
@@ -287,7 +265,7 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
 
 <section class="cta">
   <h2>एक खूबसूरत रिश्ते की शुरुआत करें</h2>
-  <p>आज ही अपनी प्रोफाइल बनाएँ और नए सफर की शुरुआत करें।</p>
+  <p>आज ही अपनी प्रोफाइल बनाएँ।</p>
   <a class="btn" href="register.html">अभी रजिस्ट्रेशन करें</a>
 </section>
 </main>
@@ -306,16 +284,18 @@ footer p{font-size:13px;color:#eadce3;margin-top:7px}
 </footer>
 
 <script>
-document.getElementById("searchForm").addEventListener("submit",function(e){
+document.getElementById("searchForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  const params=new URLSearchParams();
-  const gender=document.getElementById("gender").value;
-  const age=document.getElementById("age").value;
-  const city=document.getElementById("city").value;
-  if(gender)params.set("gender",gender);
-  if(age)params.set("age",age);
-  if(city)params.set("city",city);
-  window.location.href="search.html?"+params.toString();
+  const params = new URLSearchParams();
+  const gender = document.getElementById("gender").value;
+  const age = document.getElementById("age").value;
+  const city = document.getElementById("city").value;
+
+  if (gender) params.set("gender", gender);
+  if (age) params.set("age", age);
+  if (city) params.set("city", city);
+
+  window.location.href = "search.html?" + params.toString();
 });
 </script>
 </body>
