@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasandMatrimony - आपका पसंदीदा जीवनसाथी</title>
+  <meta name="description" content="PasandMatrimony पर अपने लिए उपयुक्त जीवनसाथी खोजें।">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff9f6;
+      color: #30202a;
+    }
+    header {
+      background: #761c40;
+      color: white;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .logo { font-size: 23px; font-weight: bold; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 14px;
+    }
+    .hero {
+      padding: 65px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff0e6, #f8dce6);
+    }
+    .hero h1 { font-size: clamp(30px, 5vw, 48px); }
+    .hero p { font-size: 18px; line-height: 1.7; }
+    .search {
+      max-width: 850px;
+      margin: 28px auto 0;
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      box-shadow: 0 5px 25px #761c4018;
+    }
+    select, button {
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+    select { border: 1px solid #ddd; flex: 1; min-width: 140px; }
+    button, .cta {
+      background: #761c40;
+      color: white;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .cta { display: inline-block; padding: 13px 22px; border-radius: 8px; }
+    .section { padding: 40px 20px; text-align: center; }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      max-width: 260px;
+      flex: 1 1 200px;
+      box-shadow: 0 4px 18px #0000000a;
+    }
+    footer { background: #321522; color: white; text-align: center; padding: 24px; }
+    @media(max-width: 500px) {
+      header { justify-content: center; }
+      nav a { margin: 0 6px; }
+      .hero { padding: 40px 15px; }
+      .search { padding: 15px; }
+      .search select, .search button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">❤️ PasandMatrimony</div>
+    <nav>
+      <a href="index.html">होम</a>
+      <a href="login.html">लॉगिन</a>
+      <a href="register.html">रजिस्ट्रेशन</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>आपकी पसंद, आपका जीवनसाथी</h1>
+      <p>एक खूबसूरत रिश्ते की शुरुआत आज से करें।</p>
+      <a class="cta" href="register.html">अपनी प्रोफाइल बनाएँ</a>
+
+      <form class="search" id="searchForm">
+        <select id="gender" aria-label="जीवनसाथी">
+          <option value="">जीवनसाथी चुनें</option>
+          <option value="woman">वधू खोजें</option>
+          <option value="man">वर खोजें</option>
+        </select>
+        <select id="age" aria-label="उम्र">
+          <option value="">उम्र चुनें</option>
+          <option value="18-25">18–25 साल</option>
+          <option value="26-35">26–35 साल</option>
+          <option value="36-45">36–45 साल</option>
+          <option value="46-60">46–60 साल</option>
+        </select>
+        <button type="submit">रिश्ते खोजें</button>
+      </form>
+    </section>
+
+    <section class="section">
+      <h2>PasandMatrimony क्यों चुनें?</h2>
+      <div class="features">
+        <div class="card">
+          <h3>👤 अपनी प्रोफाइल</h3>
+          <p>अपनी जानकारी देकर मैट्रिमोनी प्रोफाइल बनाएँ।</p>
+        </div>
+        <div class="card">
+          <h3>🔎 आसान खोज</h3>
+          <p>उपयुक्त जीवनसाथी की प्रोफाइल खोजें।</p>
+        </div>
+        <div class="card">
+          <h3>🔒 सुरक्षित अकाउंट</h3>
+          <p>अपने अकाउंट से लॉगिन करके सेवाओं का उपयोग करें।</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 PasandMatrimony</p>
+    <p>सम्मान, विश्वास और रिश्तों की नई शुरुआत।</p>
+  </footer>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const gender = document.getElementById("gender").value;
+      const age = document.getElementById("age").value;
+      const params = new URLSearchParams();
+      if (gender) params.set("gender", gender);
+      if (age) params.set("age", age);
+      window.location.href = "search.html?" + params.toString();
+    });
+  </script>
+</body>
+</html>
