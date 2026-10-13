@@ -3,79 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#c2185b">
+<meta name="theme-color" content="#e60063">
 <title>PasandMatrimony | आपकी पसंद, आपका जीवनसाथी</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--pink:#c2185b;--dark:#79002f;--light:#fff0f6;--text:#382431}
-body{font-family:Arial,"Noto Sans Devanagari",sans-serif;color:var(--text);background:#fffafd;line-height:1.6}
+:root{--pink:#e60063;--dark:#520d31;--pale:#fff0f6;--text:#391b2c;--muted:#796875;--border:#f0d6e3}
+body{font-family:Arial,"Noto Sans Devanagari",sans-serif;background:#fffafd;color:var(--text);line-height:1.6}
 a{text-decoration:none}
-.top{background:var(--dark);color:white;text-align:center;padding:7px;font-size:13px}
-header{background:white;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:1px solid #f1d5e1}
-.logo{font-size:25px;font-weight:bold;color:var(--pink)}
-.logo span{color:#382431}
-nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.topbar{background:#750039;color:white;text-align:center;padding:7px;font-size:13px}
+header{background:white;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 5%;border-bottom:1px solid var(--border)}
+.logo{font-size:27px;font-weight:800;color:var(--pink);white-space:nowrap}
+.logo span{color:var(--dark)}
+nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 nav a{color:var(--text);font-size:14px;font-weight:bold}
-.navbtn,.btn{display:inline-block;border-radius:10px;padding:12px 19px;font-weight:bold}
-.navbtn,.primary{background:var(--pink);color:white}
-.secondary{border:1px solid var(--pink);color:var(--pink);background:white}
-.hero{padding:55px 5%;background:linear-gradient(110deg,#fff7fa,#fce1ec)}
-.hero-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
-.tag{display:inline-block;padding:7px 14px;background:white;border-radius:25px;color:var(--pink);margin-bottom:15px}
-h1{font-size:clamp(35px,4.5vw,58px);line-height:1.2;color:var(--dark);margin-bottom:18px}
+nav a:hover{color:var(--pink)}
+nav .navbtn{background:var(--pink);color:white;padding:10px 19px;border-radius:25px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(110deg,#fff8fb,#ffe5ef);padding:55px 5% 105px}
+.hero:before{content:"♡";position:absolute;left:-45px;top:35px;font-size:340px;color:#fbd8e7;opacity:.42;line-height:1}
+.hero-inner{max-width:1400px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;position:relative}
+.hero-content{padding:15px 0;position:relative;z-index:2}
+.tag{display:inline-block;background:white;border:1px solid var(--border);padding:8px 15px;border-radius:25px;color:var(--pink);font-size:14px;margin-bottom:20px}
+h1{font-size:clamp(39px,5vw,68px);line-height:1.22;color:var(--dark);margin-bottom:22px;letter-spacing:-1px}
 h1 span{color:var(--pink)}
-.intro{font-size:17px;color:#71616b;margin-bottom:22px}
-.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}
-.trust{font-size:13px;color:#756471}
-.photo{position:relative;overflow:hidden;border-radius:22px;min-height:350px;background:#f4d4e1;box-shadow:0 12px 35px #79002f20}
-.photo img{width:100%;height:390px;display:block;object-fit:cover}
-.caption{position:absolute;bottom:13px;left:13px;right:13px;text-align:center;background:#ffffffed;color:var(--dark);padding:12px;border-radius:10px;font-weight:bold}
-.search{max-width:1050px;margin:-25px auto 0;position:relative;background:white;border:1px solid #f1d5e1;border-radius:18px;padding:24px;box-shadow:0 10px 30px #79002f12}
-.search h2,.section h2{text-align:center;color:var(--dark);font-size:28px}
-.sub{text-align:center;color:#796b74;margin:5px 0 20px}
-.search form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
-select{width:100%;padding:13px;border:1px solid #e7d5df;border-radius:9px;background:white}
-button{cursor:pointer;font:inherit}
-.search button{background:var(--pink);color:white;border:0;border-radius:9px;padding:12px 18px;font-weight:bold}
-.section{padding:55px 5%}
-.cards{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
-.card{background:white;border:1px solid #f1d5e1;border-radius:15px;padding:24px 17px;text-align:center}
-.icon{font-size:34px;margin-bottom:8px}
-.card h3{color:var(--dark);margin-bottom:7px}
-.card p,.step p{font-size:14px;color:#756873}
-.steps{background:var(--light);padding:50px 5%;text-align:center}
-.stepgrid{max-width:1000px;margin:25px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{background:white;border:1px solid #f1d5e1;border-radius:15px;padding:23px}
-.num{font-size:29px;font-weight:bold;color:var(--pink)}
-.cta{text-align:center;padding:45px 5%;background:linear-gradient(110deg,#c2185b,#79002f);color:white}
-.cta h2{font-size:30px;margin-bottom:8px}
-.cta p{margin-bottom:18px}
+.intro{font-size:17px;color:var(--muted);max-width:540px;margin-bottom:27px}
+.buttons{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 24px;border-radius:13px;font-weight:bold;font-size:16px;text-align:center}
+.primary{background:var(--pink);color:white;box-shadow:0 7px 18px #e6006324}
+.secondary{background:white;border:1.5px solid var(--pink);color:var(--pink)}
+.btn:hover,.navbtn:hover{opacity:.88}
+.trust{font-size:13px;color:var(--muted);margin-top:17px}
+.hero-photo{height:475px;position:relative;border-radius:35% 18px 35% 18px;overflow:hidden;background:#f6d4e3;box-shadow:0 15px 38px #8a214322}
+.hero-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.photo-caption{position:absolute;bottom:15px;left:15px;right:15px;background:#ffffffed;text-align:center;color:var(--dark);padding:12px;border-radius:12px;font-weight:bold}
+.search-wrap{position:relative;margin:-55px auto 0;padding:0 5%;z-index:3}
+.search-box{max-width:1250px;margin:auto;background:#fff;padding:25px 28px 28px;border:1px solid var(--border);border-radius:24px;box-shadow:0 12px 40px #7c164016}
+.search-box h2{text-align:center;color:var(--dark);font-size:28px}
+.subtitle{text-align:center;color:var(--muted);margin:5px 0 22px}
+.search-form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
+select{width:100%;min-width:0;padding:15px;border:1px solid var(--border);border-radius:12px;background:#fff;color:var(--text);font:inherit}
+.search-btn{padding:14px 22px;background:var(--pink);border:0;border-radius:12px;color:white;font-weight:bold;font-size:15px;cursor:pointer}
+.section{padding:65px 5%;text-align:center}
+.section h2,.steps h2{font-size:clamp(27px,3vw,36px);color:var(--dark)}
+.features{max-width:1150px;margin:30px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:white;border:1px solid var(--border);border-radius:18px;padding:27px 17px;box-shadow:0 5px 20px #6b103008}
+.icon{width:62px;height:62px;display:grid;place-items:center;background:var(--pale);border-radius:50%;margin:0 auto 14px;font-size:29px}
+.card h3{color:var(--dark);margin-bottom:8px}
+.card p{color:var(--muted);font-size:14px}
+.steps{background:#fff0f6;padding:58px 5%;text-align:center}
+.step-grid{max-width:1050px;margin:28px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:white;border:1px solid var(--border);border-radius:18px;padding:25px}
+.number{font-size:30px;font-weight:bold;color:var(--pink)}
+.step h3{margin:7px 0}
+.step p{font-size:14px;color:var(--muted)}
+.cta{background:linear-gradient(110deg,#e60063,#8c0644);color:white;text-align:center;padding:52px 5%}
+.cta h2{font-size:clamp(26px,3vw,36px);margin-bottom:9px}
+.cta p{margin-bottom:22px;color:#ffe5ef}
 .cta .btn{background:white;color:var(--pink)}
-footer{background:#28141f;color:white;text-align:center;padding:27px 5%}
-footer p{font-size:13px;color:#eadce3;margin-top:8px}
-.links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:15px}
-.links a{color:white;font-size:13px}
-@media(max-width:800px){
+footer{background:#321424;color:white;text-align:center;padding:30px 5%}
+footer .logo{color:white}
+footer .logo span{color:#ffb8d3}
+footer p{font-size:13px;color:#eadce4;margin-top:7px}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:18px 0}
+.footer-links a{color:white;font-size:13px}
+@media(max-width:850px){
+header{flex-wrap:wrap}
 .hero-inner{grid-template-columns:1fr}
-.photo img{height:330px}
-.search form{grid-template-columns:1fr 1fr}
-.search button{width:100%}
-.cards{grid-template-columns:repeat(2,1fr)}
+.hero{padding-top:38px}
+.hero-photo{height:390px}
+.search-form{grid-template-columns:1fr 1fr}
+.search-btn{width:100%}
+.features{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:550px){
-header{justify-content:center}
-nav{justify-content:center;gap:11px}
-.hero{padding:35px 5% 48px}
-.photo,.photo img{height:270px;min-height:270px}
-.search{margin:-20px 5% 0;padding:18px 13px}
-.search form,.cards,.stepgrid{grid-template-columns:1fr}
-.section,.steps{padding:38px 5%}
-h1{font-size:38px}
+@media(max-width:560px){
+header{justify-content:center;text-align:center;padding:13px 4%}
+.logo{font-size:23px}
+nav{justify-content:center;gap:12px}
+nav a{font-size:13px}
+.hero{padding:28px 5% 80px}
+h1{font-size:39px}
+.intro{font-size:16px}
+.hero-photo{height:290px;border-radius:22px}
+.search-wrap{padding:0 4%;margin-top:-45px}
+.search-box{padding:21px 14px;border-radius:18px}
+.search-box h2{font-size:24px}
+.search-form,.features,.step-grid{grid-template-columns:1fr}
+.search-btn{padding:14px}
+.section,.steps{padding:43px 5%}
+.card,.step{width:100%}
+.btn{padding:12px 17px;font-size:14px}
 }
 </style>
 </head>
 <body>
-<div class="top">♥ विश्वास • सम्मान • जीवनभर के खूबसूरत रिश्ते</div>
+
+<div class="topbar">♥ विश्वास • सम्मान • जीवनभर के खूबसूरत रिश्ते</div>
+
 <header>
 <a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
 <nav>
@@ -90,7 +112,7 @@ h1{font-size:38px}
 <main>
 <section class="hero">
 <div class="hero-inner">
-<div>
+<div class="hero-content">
 <div class="tag">♥ आपके नए सफर की शुरुआत</div>
 <h1>आपकी पसंद,<br><span>आपका जीवनसाथी</span></h1>
 <p class="intro">एक अच्छा रिश्ता विश्वास, सम्मान और समझ से शुरू होता है। अपनी पसंद के अनुसार जीवनसाथी की तलाश आज से शुरू करें।</p>
@@ -100,18 +122,22 @@ h1{font-size:38px}
 </div>
 <p class="trust">🔒 अकाउंट सुरक्षा &nbsp; • &nbsp; ♥ आसान रजिस्ट्रेशन</p>
 </div>
-<div class="photo">
-<img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=90" alt="शादी का खूबसूरत दृश्य" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90'">
-<div class="caption">💕 आपकी पसंद, आपकी नई कहानी</div>
+
+<div class="hero-photo">
+<img
+src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=90"
+alt="शादी का सुंदर दृश्य"
+onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90'">
+<div class="photo-caption">💕 आपकी पसंद, आपकी नई कहानी</div>
 </div>
 </div>
 </section>
 
-<section style="padding:0 5% 15px">
-<div class="search">
+<section class="search-wrap">
+<div class="search-box">
 <h2>अपना जीवनसाथी खोजें</h2>
-<p class="sub">अपनी पसंद चुनकर रिश्तों की तलाश शुरू करें।</p>
-<form id="searchForm">
+<p class="subtitle">अपनी पसंद चुनें और रिश्तों की तलाश शुरू करें।</p>
+<form class="search-form" id="searchForm">
 <select id="gender" aria-label="जीवनसाथी चुनें">
 <option value="">जीवनसाथी चुनें</option>
 <option value="woman">वधू खोजें</option>
@@ -133,29 +159,29 @@ h1{font-size:38px}
 <option value="Delhi">दिल्ली</option>
 <option value="Other">अन्य शहर</option>
 </select>
-<button type="submit">🔍 रिश्ते खोजें</button>
+<button class="search-btn" type="submit">⌕ रिश्ते खोजें</button>
 </form>
 </div>
 </section>
 
 <section class="section" id="about">
 <h2>PasandMatrimony क्यों चुनें?</h2>
-<p class="sub">अपने नए सफर की शुरुआत सरल तरीके से करें।</p>
-<div class="cards">
-<div class="card"><div class="icon">👤</div><h3>अपनी प्रोफाइल</h3><p>अपनी जानकारी भरकर प्रोफाइल बनाएँ।</p></div>
-<div class="card"><div class="icon">🔍</div><h3>आसान खोज</h3><p>अपनी पसंद के अनुसार रिश्ते तलाशें।</p></div>
-<div class="card"><div class="icon">🔒</div><h3>अकाउंट सुरक्षा</h3><p>लॉगिन करके अपनी प्रोफाइल सँभालें।</p></div>
-<div class="card"><div class="icon">💗</div><h3>नई शुरुआत</h3><p>सम्मान और समझ के साथ रिश्ता तलाशें।</p></div>
+<p class="subtitle">अपने नए सफर की शुरुआत सरल तरीके से करें।</p>
+<div class="features">
+<article class="card"><div class="icon">👤</div><h3>अपनी प्रोफाइल</h3><p>अपनी जानकारी भरकर प्रोफाइल बनाएँ।</p></article>
+<article class="card"><div class="icon">🔍</div><h3>आसान खोज</h3><p>अपनी पसंद के अनुसार रिश्ते तलाशें।</p></article>
+<article class="card"><div class="icon">🔒</div><h3>अकाउंट सुरक्षा</h3><p>लॉगिन करके अपनी प्रोफाइल सँभालें।</p></article>
+<article class="card"><div class="icon">💗</div><h3>नई शुरुआत</h3><p>सम्मान और समझ के साथ रिश्ता तलाशें।</p></article>
 </div>
 </section>
 
 <section class="steps" id="steps">
 <h2>शुरुआत कैसे करें?</h2>
-<p class="sub">तीन आसान चरणों में अपनी यात्रा शुरू करें।</p>
-<div class="stepgrid">
-<div class="step"><div class="num">01</div><h3>रजिस्ट्रेशन करें</h3><p>अपना अकाउंट बनाएँ और ईमेल की पुष्टि करें।</p></div>
-<div class="step"><div class="num">02</div><h3>प्रोफाइल पूरी करें</h3><p>अपनी जानकारी भरकर प्रोफाइल सेव करें।</p></div>
-<div class="step"><div class="num">03</div><h3>रिश्ते खोजें</h3><p>उपलब्ध प्रोफाइल देखकर उपयुक्त रिश्ता तलाशें।</p></div>
+<p class="subtitle">तीन आसान चरणों में अपनी यात्रा शुरू करें।</p>
+<div class="step-grid">
+<article class="step"><div class="number">01</div><h3>रजिस्ट्रेशन करें</h3><p>अपना अकाउंट बनाएँ और ईमेल की पुष्टि करें।</p></article>
+<article class="step"><div class="number">02</div><h3>प्रोफाइल पूरी करें</h3><p>अपनी सही जानकारी भरकर प्रोफाइल सेव करें।</p></article>
+<article class="step"><div class="number">03</div><h3>रिश्ते खोजें</h3><p>उपलब्ध प्रोफाइल देखकर उपयुक्त रिश्ता तलाशें।</p></article>
 </div>
 </section>
 
@@ -167,10 +193,14 @@ h1{font-size:38px}
 </main>
 
 <footer>
-<div class="logo" style="color:white">♥ Pasand<span style="color:#ffb9d1">Matrimony</span></div>
+<div class="logo">♥ Pasand<span>Matrimony</span></div>
 <p>सम्मान, विश्वास और रिश्तों की नई शुरुआत।</p>
-<div class="links">
-<a href="index.html">होम</a><a href="#about">हमारे बारे में</a><a href="login.html">लॉगिन</a><a href="register.html">रजिस्ट्रेशन</a><a href="profile.html">मेरी प्रोफाइल</a>
+<div class="footer-links">
+<a href="index.html">होम</a>
+<a href="#about">हमारे बारे में</a>
+<a href="login.html">लॉगिन</a>
+<a href="register.html">रजिस्ट्रेशन</a>
+<a href="profile.html">मेरी प्रोफाइल</a>
 </div>
 <p>© 2026 PasandMatrimony. सर्वाधिकार सुरक्षित।</p>
 </footer>
