@@ -3,560 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#a90046">
-<meta name="description" content="PasandMatrimony पर अपनी पसंद का जीवनसाथी खोजें।">
+<meta name="theme-color" content="#c2185b">
 <title>PasandMatrimony | आपकी पसंद, आपका जीवनसाथी</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --pink:#c20b50;
-  --dark:#79002f;
-  --light:#fff0f5;
-  --text:#281923;
-  --muted:#71636d;
-  --border:#f1dce5;
-}
-
-body{
-  font-family:Arial,"Noto Sans Devanagari",sans-serif;
-  color:var(--text);
-  background:#fffafb;
-  line-height:1.6;
-}
-
+:root{--pink:#c2185b;--dark:#79002f;--light:#fff0f6;--text:#382431}
+body{font-family:Arial,"Noto Sans Devanagari",sans-serif;color:var(--text);background:#fffafd;line-height:1.6}
 a{text-decoration:none}
-
-.topbar{
-  background:var(--dark);
-  color:white;
-  padding:7px 5%;
-  text-align:center;
-  font-size:13px;
-}
-
-header{
-  background:white;
-  padding:14px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  flex-wrap:wrap;
-  border-bottom:1px solid var(--border);
-}
-
-.logo{
-  color:var(--pink);
-  font-size:25px;
-  font-weight:800;
-}
-
-.logo span{color:#30232d}
-
-nav{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
-}
-
-nav a{
-  color:var(--text);
-  font-size:14px;
-  font-weight:600;
-}
-
-nav a:hover{color:var(--pink)}
-
-.nav-btn{
-  background:var(--pink);
-  color:white!important;
-  padding:10px 18px;
-  border-radius:25px;
-}
-
-.hero{
-  padding:48px 5% 65px;
-  background:linear-gradient(120deg,#fffafc,#ffeaf2);
-}
-
-.hero-inner{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:35px;
-  align-items:center;
-}
-
-.tag{
-  display:inline-block;
-  color:var(--pink);
-  background:white;
-  border:1px solid var(--border);
-  padding:7px 14px;
-  border-radius:25px;
-  margin-bottom:18px;
-  font-size:13px;
-}
-
-h1{
-  font-size:clamp(34px,4.5vw,56px);
-  line-height:1.2;
-  margin-bottom:18px;
-  color:var(--dark);
-}
-
+.top{background:var(--dark);color:white;text-align:center;padding:7px;font-size:13px}
+header{background:white;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:1px solid #f1d5e1}
+.logo{font-size:25px;font-weight:bold;color:var(--pink)}
+.logo span{color:#382431}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav a{color:var(--text);font-size:14px;font-weight:bold}
+.navbtn,.btn{display:inline-block;border-radius:10px;padding:12px 19px;font-weight:bold}
+.navbtn,.primary{background:var(--pink);color:white}
+.secondary{border:1px solid var(--pink);color:var(--pink);background:white}
+.hero{padding:55px 5%;background:linear-gradient(110deg,#fff7fa,#fce1ec)}
+.hero-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.tag{display:inline-block;padding:7px 14px;background:white;border-radius:25px;color:var(--pink);margin-bottom:15px}
+h1{font-size:clamp(35px,4.5vw,58px);line-height:1.2;color:var(--dark);margin-bottom:18px}
 h1 span{color:var(--pink)}
-
-.intro{
-  color:var(--muted);
-  font-size:17px;
-  margin-bottom:24px;
-  max-width:520px;
-}
-
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.btn{
-  display:inline-block;
-  padding:13px 21px;
-  border-radius:10px;
-  font-weight:700;
-  font-size:14px;
-  text-align:center;
-}
-
-.primary{background:var(--pink);color:white}
-.primary:hover{background:var(--dark)}
-
-.secondary{
-  background:white;
-  color:var(--pink);
-  border:1px solid var(--pink);
-}
-
-.trust{font-size:13px;color:var(--muted)}
-
-.hero-photo{
-  overflow:hidden;
-  background:white;
-  border:5px solid white;
-  border-radius:22px;
-  box-shadow:0 15px 40px #79002f18;
-}
-
-.hero-photo img{
-  display:block;
-  width:100%;
-  height:390px;
-  object-fit:cover;
-  object-position:center;
-  background:#ffeaf2;
-}
-
-.photo-caption{
-  background:white;
-  color:var(--dark);
-  text-align:center;
-  padding:12px;
-  font-weight:bold;
-}
-
-.search-wrap{
-  position:relative;
-  margin:-30px auto 0;
-  padding:0 5%;
-}
-
-.search-box{
-  max-width:1100px;
-  margin:auto;
-  padding:25px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  box-shadow:0 12px 35px #79002f14;
-}
-
-.search-box h2{
-  text-align:center;
-  color:var(--dark);
-  font-size:26px;
-}
-
-.search-box>p{
-  text-align:center;
-  color:var(--muted);
-  margin:5px 0 20px;
-}
-
-.search-form{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr auto;
-  gap:12px;
-}
-
-select{
-  width:100%;
-  min-width:0;
-  padding:13px;
-  border:1px solid #e6d4de;
-  border-radius:9px;
-  background:white;
-  color:var(--text);
-  font-size:14px;
-}
-
-button{font:inherit;cursor:pointer}
-
-.search-btn{
-  background:var(--pink);
-  color:white;
-  border:0;
-  border-radius:9px;
-  padding:12px 20px;
-  font-weight:bold;
-}
-
-.section{
-  padding:58px 5%;
-  text-align:center;
-}
-
-.section h2,
-.steps-section h2{
-  font-size:clamp(26px,3vw,34px);
-  color:var(--dark);
-}
-
-.subtitle{
-  color:var(--muted);
-  margin:7px auto 30px;
-}
-
-.features{
-  max-width:1150px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-
-.card{
-  background:white;
-  border:1px solid var(--border);
-  padding:25px 17px;
-  border-radius:16px;
-  box-shadow:0 5px 20px #79002f08;
-}
-
-.icon{
-  width:58px;
-  height:58px;
-  margin:0 auto 12px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:var(--light);
-  color:var(--pink);
-  font-size:27px;
-}
-
-.card h3{
-  color:var(--dark);
-  font-size:18px;
-  margin-bottom:7px;
-}
-
-.card p{font-size:14px;color:var(--muted)}
-
-.steps-section{
-  background:#fff0f5;
-  padding:58px 5%;
-  text-align:center;
-}
-
-.steps{
-  max-width:1050px;
-  margin:28px auto 0;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.step{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:25px 20px;
-}
-
-.number{
-  font-size:29px;
-  font-weight:800;
-  color:var(--pink);
-}
-
-.step h3{margin:7px 0;color:var(--dark)}
-.step p{font-size:14px;color:var(--muted)}
-
-.cta{
-  text-align:center;
-  padding:52px 5%;
-  color:white;
-  background:linear-gradient(120deg,#c20b50,#79002f);
-}
-
-.cta h2{font-size:clamp(25px,3vw,35px);margin-bottom:8px}
-.cta p{margin-bottom:22px;color:#ffe5ef}
+.intro{font-size:17px;color:#71616b;margin-bottom:22px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.trust{font-size:13px;color:#756471}
+.photo{position:relative;overflow:hidden;border-radius:22px;min-height:350px;background:#f4d4e1;box-shadow:0 12px 35px #79002f20}
+.photo img{width:100%;height:390px;display:block;object-fit:cover}
+.caption{position:absolute;bottom:13px;left:13px;right:13px;text-align:center;background:#ffffffed;color:var(--dark);padding:12px;border-radius:10px;font-weight:bold}
+.search{max-width:1050px;margin:-25px auto 0;position:relative;background:white;border:1px solid #f1d5e1;border-radius:18px;padding:24px;box-shadow:0 10px 30px #79002f12}
+.search h2,.section h2{text-align:center;color:var(--dark);font-size:28px}
+.sub{text-align:center;color:#796b74;margin:5px 0 20px}
+.search form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px}
+select{width:100%;padding:13px;border:1px solid #e7d5df;border-radius:9px;background:white}
+button{cursor:pointer;font:inherit}
+.search button{background:var(--pink);color:white;border:0;border-radius:9px;padding:12px 18px;font-weight:bold}
+.section{padding:55px 5%}
+.cards{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card{background:white;border:1px solid #f1d5e1;border-radius:15px;padding:24px 17px;text-align:center}
+.icon{font-size:34px;margin-bottom:8px}
+.card h3{color:var(--dark);margin-bottom:7px}
+.card p,.step p{font-size:14px;color:#756873}
+.steps{background:var(--light);padding:50px 5%;text-align:center}
+.stepgrid{max-width:1000px;margin:25px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{background:white;border:1px solid #f1d5e1;border-radius:15px;padding:23px}
+.num{font-size:29px;font-weight:bold;color:var(--pink)}
+.cta{text-align:center;padding:45px 5%;background:linear-gradient(110deg,#c2185b,#79002f);color:white}
+.cta h2{font-size:30px;margin-bottom:8px}
+.cta p{margin-bottom:18px}
 .cta .btn{background:white;color:var(--pink)}
-
-footer{
-  background:#28141f;
-  color:white;
-  padding:28px 5%;
-  text-align:center;
+footer{background:#28141f;color:white;text-align:center;padding:27px 5%}
+footer p{font-size:13px;color:#eadce3;margin-top:8px}
+.links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:15px}
+.links a{color:white;font-size:13px}
+@media(max-width:800px){
+.hero-inner{grid-template-columns:1fr}
+.photo img{height:330px}
+.search form{grid-template-columns:1fr 1fr}
+.search button{width:100%}
+.cards{grid-template-columns:repeat(2,1fr)}
 }
-
-footer .logo{color:white;font-size:23px}
-footer .logo span{color:#ffb9d1}
-
-footer p{
-  font-size:13px;
-  color:#eadce3;
-  margin-top:5px;
-}
-
-.footer-links{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:18px;
-  margin:17px 0;
-}
-
-.footer-links a{font-size:13px;color:white}
-
-@media(max-width:850px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-photo img{height:330px}
-  .search-form{grid-template-columns:1fr 1fr}
-  .search-btn{width:100%}
-  .features{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:560px){
-  header{justify-content:center;text-align:center}
-  .logo{font-size:23px}
-  nav{justify-content:center;gap:12px}
-  nav a{font-size:13px}
-  .hero{padding:35px 5% 50px}
-  .hero-photo img{height:270px}
-  .intro{font-size:16px}
-  .search-box{padding:20px 14px}
-  .search-form{grid-template-columns:1fr}
-  .features,.steps{grid-template-columns:1fr}
-  .section,.steps-section{padding:43px 5%}
+@media(max-width:550px){
+header{justify-content:center}
+nav{justify-content:center;gap:11px}
+.hero{padding:35px 5% 48px}
+.photo,.photo img{height:270px;min-height:270px}
+.search{margin:-20px 5% 0;padding:18px 13px}
+.search form,.cards,.stepgrid{grid-template-columns:1fr}
+.section,.steps{padding:38px 5%}
+h1{font-size:38px}
 }
 </style>
 </head>
-
 <body>
-
-<div class="topbar">
-  ♥ विश्वास, सम्मान और खूबसूरत रिश्तों की शुरुआत
-</div>
-
+<div class="top">♥ विश्वास • सम्मान • जीवनभर के खूबसूरत रिश्ते</div>
 <header>
-  <a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
-  <nav aria-label="मुख्य मेन्यू">
-    <a href="index.html">होम</a>
-    <a href="#about">हमारे बारे में</a>
-    <a href="#steps">शुरुआत कैसे करें</a>
-    <a href="login.html">लॉगिन</a>
-    <a class="nav-btn" href="register.html">रजिस्ट्रेशन</a>
-  </nav>
+<a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
+<nav>
+<a href="index.html">होम</a>
+<a href="#about">हमारे बारे में</a>
+<a href="#steps">शुरुआत कैसे करें</a>
+<a href="login.html">लॉगिन</a>
+<a class="navbtn" href="register.html">रजिस्ट्रेशन</a>
+</nav>
 </header>
 
 <main>
-
 <section class="hero">
-  <div class="hero-inner">
-
-    <div>
-      <div class="tag">♥ आपके नए सफर की शुरुआत</div>
-
-      <h1>
-        आपकी पसंद,<br>
-        <span>आपका जीवनसाथी</span>
-      </h1>
-
-      <p class="intro">
-        एक अच्छा रिश्ता विश्वास, सम्मान और समझ से शुरू होता है।
-        अपनी पसंद के अनुसार जीवनसाथी की तलाश आज से शुरू करें।
-      </p>
-
-      <div class="buttons">
-        <a class="btn primary" href="register.html">
-          अपनी प्रोफाइल बनाएँ →
-        </a>
-        <a class="btn secondary" href="login.html">लॉगिन करें</a>
-      </div>
-
-      <p class="trust">♥ सरल रजिस्ट्रेशन &nbsp; • &nbsp; 🔒 अकाउंट सुरक्षा</p>
-    </div>
-
-    <div class="hero-photo">
-      <img
-        src="https://images.unsplash.com/photo-1606800052052-a08af7464866?auto=format&fit=crop&w=1400&q=90"
-        alt="शादी की सुंदर और चमकदार तस्वीर"
-        fetchpriority="high">
-      <div class="photo-caption">
-        💕 हर रिश्ते की अपनी खूबसूरत कहानी
-      </div>
-    </div>
-
-  </div>
+<div class="hero-inner">
+<div>
+<div class="tag">♥ आपके नए सफर की शुरुआत</div>
+<h1>आपकी पसंद,<br><span>आपका जीवनसाथी</span></h1>
+<p class="intro">एक अच्छा रिश्ता विश्वास, सम्मान और समझ से शुरू होता है। अपनी पसंद के अनुसार जीवनसाथी की तलाश आज से शुरू करें।</p>
+<div class="buttons">
+<a class="btn primary" href="register.html">अपनी प्रोफाइल बनाएँ →</a>
+<a class="btn secondary" href="login.html">लॉगिन करें</a>
+</div>
+<p class="trust">🔒 अकाउंट सुरक्षा &nbsp; • &nbsp; ♥ आसान रजिस्ट्रेशन</p>
+</div>
+<div class="photo">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=90" alt="शादी का खूबसूरत दृश्य" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1400&q=90'">
+<div class="caption">💕 आपकी पसंद, आपकी नई कहानी</div>
+</div>
+</div>
 </section>
 
-<section class="search-wrap">
-  <div class="search-box">
-    <h2>अपना जीवनसाथी खोजें</h2>
-    <p>अपनी पसंद चुनें और रिश्तों की तलाश शुरू करें।</p>
-
-    <form class="search-form" id="searchForm">
-      <select id="gender" aria-label="जीवनसाथी चुनें">
-        <option value="">जीवनसाथी चुनें</option>
-        <option value="woman">वधू खोजें</option>
-        <option value="man">वर खोजें</option>
-      </select>
-
-      <select id="age" aria-label="उम्र चुनें">
-        <option value="">उम्र चुनें</option>
-        <option value="18-25">18–25 साल</option>
-        <option value="26-35">26–35 साल</option>
-        <option value="36-45">36–45 साल</option>
-        <option value="46-60">46–60 साल</option>
-      </select>
-
-      <select id="city" aria-label="शहर चुनें">
-        <option value="">शहर चुनें</option>
-        <option value="Lucknow">लखनऊ</option>
-        <option value="Varanasi">वाराणसी</option>
-        <option value="Gorakhpur">गोरखपुर</option>
-        <option value="Patna">पटना</option>
-        <option value="Delhi">दिल्ली</option>
-        <option value="Other">अन्य शहर</option>
-      </select>
-
-      <button class="search-btn" type="submit">🔍 रिश्ते खोजें</button>
-    </form>
-  </div>
+<section style="padding:0 5% 15px">
+<div class="search">
+<h2>अपना जीवनसाथी खोजें</h2>
+<p class="sub">अपनी पसंद चुनकर रिश्तों की तलाश शुरू करें।</p>
+<form id="searchForm">
+<select id="gender" aria-label="जीवनसाथी चुनें">
+<option value="">जीवनसाथी चुनें</option>
+<option value="woman">वधू खोजें</option>
+<option value="man">वर खोजें</option>
+</select>
+<select id="age" aria-label="उम्र चुनें">
+<option value="">उम्र चुनें</option>
+<option value="18-25">18–25 साल</option>
+<option value="26-35">26–35 साल</option>
+<option value="36-45">36–45 साल</option>
+<option value="46-60">46–60 साल</option>
+</select>
+<select id="city" aria-label="शहर चुनें">
+<option value="">शहर चुनें</option>
+<option value="Lucknow">लखनऊ</option>
+<option value="Varanasi">वाराणसी</option>
+<option value="Gorakhpur">गोरखपुर</option>
+<option value="Patna">पटना</option>
+<option value="Delhi">दिल्ली</option>
+<option value="Other">अन्य शहर</option>
+</select>
+<button type="submit">🔍 रिश्ते खोजें</button>
+</form>
+</div>
 </section>
 
 <section class="section" id="about">
-  <h2>PasandMatrimony क्यों चुनें?</h2>
-  <p class="subtitle">अपने नए सफर की शुरुआत सरल और सुविधाजनक तरीके से करें।</p>
-
-  <div class="features">
-    <article class="card">
-      <div class="icon">👤</div>
-      <h3>अपनी प्रोफाइल</h3>
-      <p>अपनी जानकारी भरें और मैट्रिमोनी प्रोफाइल बनाएँ।</p>
-    </article>
-
-    <article class="card">
-      <div class="icon">🔍</div>
-      <h3>आसान खोज</h3>
-      <p>अपनी पसंद के अनुसार उपलब्ध रिश्तों की तलाश करें।</p>
-    </article>
-
-    <article class="card">
-      <div class="icon">🔒</div>
-      <h3>अकाउंट सुरक्षा</h3>
-      <p>अपने अकाउंट से लॉगिन करके अपनी प्रोफाइल सँभालें।</p>
-    </article>
-
-    <article class="card">
-      <div class="icon">💗</div>
-      <h3>नई शुरुआत</h3>
-      <p>सम्मान और समझ के साथ रिश्ते की तलाश शुरू करें।</p>
-    </article>
-  </div>
+<h2>PasandMatrimony क्यों चुनें?</h2>
+<p class="sub">अपने नए सफर की शुरुआत सरल तरीके से करें।</p>
+<div class="cards">
+<div class="card"><div class="icon">👤</div><h3>अपनी प्रोफाइल</h3><p>अपनी जानकारी भरकर प्रोफाइल बनाएँ।</p></div>
+<div class="card"><div class="icon">🔍</div><h3>आसान खोज</h3><p>अपनी पसंद के अनुसार रिश्ते तलाशें।</p></div>
+<div class="card"><div class="icon">🔒</div><h3>अकाउंट सुरक्षा</h3><p>लॉगिन करके अपनी प्रोफाइल सँभालें।</p></div>
+<div class="card"><div class="icon">💗</div><h3>नई शुरुआत</h3><p>सम्मान और समझ के साथ रिश्ता तलाशें।</p></div>
+</div>
 </section>
 
-<section class="steps-section" id="steps">
-  <h2>शुरुआत कैसे करें?</h2>
-  <p class="subtitle">तीन आसान चरणों में अपनी यात्रा शुरू करें।</p>
-
-  <div class="steps">
-    <article class="step">
-      <div class="number">01</div>
-      <h3>रजिस्ट्रेशन करें</h3>
-      <p>अपना अकाउंट बनाएँ और ईमेल की पुष्टि करें।</p>
-    </article>
-
-    <article class="step">
-      <div class="number">02</div>
-      <h3>प्रोफाइल पूरी करें</h3>
-      <p>अपनी सही जानकारी भरकर प्रोफाइल सेव करें।</p>
-    </article>
-
-    <article class="step">
-      <div class="number">03</div>
-      <h3>रिश्ते खोजें</h3>
-      <p>उपलब्ध प्रोफाइल देखकर उपयुक्त रिश्ता तलाशें।</p>
-    </article>
-  </div>
+<section class="steps" id="steps">
+<h2>शुरुआत कैसे करें?</h2>
+<p class="sub">तीन आसान चरणों में अपनी यात्रा शुरू करें।</p>
+<div class="stepgrid">
+<div class="step"><div class="num">01</div><h3>रजिस्ट्रेशन करें</h3><p>अपना अकाउंट बनाएँ और ईमेल की पुष्टि करें।</p></div>
+<div class="step"><div class="num">02</div><h3>प्रोफाइल पूरी करें</h3><p>अपनी जानकारी भरकर प्रोफाइल सेव करें।</p></div>
+<div class="step"><div class="num">03</div><h3>रिश्ते खोजें</h3><p>उपलब्ध प्रोफाइल देखकर उपयुक्त रिश्ता तलाशें।</p></div>
+</div>
 </section>
 
 <section class="cta">
-  <h2>एक खूबसूरत रिश्ते की शुरुआत करें</h2>
-  <p>अपनी प्रोफाइल बनाएँ और अपने नए सफर की शुरुआत करें।</p>
-  <a class="btn" href="register.html">अभी रजिस्ट्रेशन करें</a>
+<h2>एक खूबसूरत रिश्ते की शुरुआत करें</h2>
+<p>अपनी प्रोफाइल बनाएँ और नए सफर की शुरुआत करें।</p>
+<a class="btn" href="register.html">अभी रजिस्ट्रेशन करें</a>
 </section>
-
 </main>
 
 <footer>
-  <div class="logo">♥ Pasand<span>Matrimony</span></div>
-  <p>सम्मान, विश्वास और रिश्तों की नई शुरुआत।</p>
-
-  <div class="footer-links">
-    <a href="index.html">होम</a>
-    <a href="#about">हमारे बारे में</a>
-    <a href="login.html">लॉगिन</a>
-    <a href="register.html">रजिस्ट्रेशन</a>
-    <a href="profile.html">मेरी प्रोफाइल</a>
-  </div>
-
-  <p>© 2026 PasandMatrimony. सर्वाधिकार सुरक्षित।</p>
+<div class="logo" style="color:white">♥ Pasand<span style="color:#ffb9d1">Matrimony</span></div>
+<p>सम्मान, विश्वास और रिश्तों की नई शुरुआत।</p>
+<div class="links">
+<a href="index.html">होम</a><a href="#about">हमारे बारे में</a><a href="login.html">लॉगिन</a><a href="register.html">रजिस्ट्रेशन</a><a href="profile.html">मेरी प्रोफाइल</a>
+</div>
+<p>© 2026 PasandMatrimony. सर्वाधिकार सुरक्षित।</p>
 </footer>
 
 <script>
-document.getElementById("searchForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const gender = document.getElementById("gender").value;
-  const age = document.getElementById("age").value;
-  const city = document.getElementById("city").value;
-  const params = new URLSearchParams();
-
-  if (gender) params.set("gender", gender);
-  if (age) params.set("age", age);
-  if (city) params.set("city", city);
-
-  window.location.href = "search.html?" + params.toString();
+document.getElementById("searchForm").addEventListener("submit",function(e){
+e.preventDefault();
+const params=new URLSearchParams();
+const gender=document.getElementById("gender").value;
+const age=document.getElementById("age").value;
+const city=document.getElementById("city").value;
+if(gender)params.set("gender",gender);
+if(age)params.set("age",age);
+if(city)params.set("city",city);
+window.location.href="search.html?"+params.toString();
 });
 </script>
-
 </body>
 </html>
