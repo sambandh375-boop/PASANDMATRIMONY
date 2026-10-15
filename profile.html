@@ -6,13 +6,11 @@
   <title>My Profile | PasandMatrimony</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     :root {
-      --primary: #8e245d;
-      --secondary: #c04483;
+      --primary: #872354;
+      --accent: #c34484;
       --background: #fff5fa;
       --text: #352334;
       --muted: #786879;
@@ -23,7 +21,7 @@
       margin: 0;
       padding: 20px 14px 40px;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fff5fa, #f5e8f6);
+      background: linear-gradient(135deg, #fff5fa, #f2e8f7);
       color: var(--text);
     }
 
@@ -43,29 +41,22 @@
       text-decoration: none;
     }
 
-    .brand span {
-      color: var(--secondary);
-    }
+    .brand span { color: var(--accent); }
 
-    .nav-link {
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-    }
+    a { color: var(--primary); }
 
     .card {
       max-width: 760px;
       margin: auto;
-      background: #fff;
+      background: white;
       border: 1px solid #f0e2eb;
       border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 15px 45px rgba(105, 34, 77, 0.10);
+      box-shadow: 0 15px 45px rgba(105, 34, 77, .10);
     }
 
     .hero {
-      padding: 30px 24px;
+      padding: 30px 22px;
       text-align: center;
       color: white;
       background: linear-gradient(120deg, #761c50, #bd4a87);
@@ -79,26 +70,15 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.18);
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255,255,255,.18);
+      border: 2px solid rgba(255,255,255,.5);
       font-size: 30px;
     }
 
-    .hero h1 {
-      margin: 0 0 9px;
-      font-size: 27px;
-    }
+    .hero h1 { margin: 0 0 9px; font-size: 27px; }
+    .hero p { margin: 0; line-height: 1.6; font-size: 14px; color: #fff0f7; }
 
-    .hero p {
-      margin: 0;
-      line-height: 1.6;
-      font-size: 14px;
-      color: #fff0f7;
-    }
-
-    .content {
-      padding: 28px;
-    }
+    .content { padding: 28px; }
 
     .account {
       padding: 12px 14px;
@@ -111,18 +91,59 @@
       margin-bottom: 24px;
     }
 
-    .section-title {
-      margin: 0 0 7px;
-      font-size: 19px;
-      color: var(--primary);
+    .section-title { margin: 0 0 7px; font-size: 19px; color: var(--primary); }
+    .section-description { margin: 0 0 23px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+    .photo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px dashed #d9b5ca;
+      border-radius: 15px;
+      background: #fff9fc;
+      text-align: center;
     }
 
-    .section-description {
-      margin: 0 0 23px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+    .photo-preview {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #f1d7e5;
+      background: #f5e6ef;
+      margin-bottom: 14px;
     }
+
+    .photo-placeholder {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      color: var(--primary);
+      background: #f5e6ef;
+      border: 4px solid #f1d7e5;
+      margin-bottom: 14px;
+    }
+
+    .photo-area p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    .upload-button {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 9px;
+      background: #f3e1ec;
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #photoInput { display: none; }
 
     .form-grid {
       display: grid;
@@ -130,13 +151,8 @@
       gap: 20px;
     }
 
-    .field {
-      min-width: 0;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
 
     label {
       display: block;
@@ -153,23 +169,18 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       outline: none;
-      background: #fff;
+      background: white;
       color: var(--text);
       font-size: 15px;
       font-family: inherit;
-      transition: border-color .2s, box-shadow .2s;
     }
 
     input:focus, select:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 3px rgba(192, 68, 131, .12);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,68,131,.12);
     }
 
-    .hint {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+    .hint { margin-top: 6px; color: var(--muted); font-size: 12px; }
 
     .save-button {
       width: 100%;
@@ -182,17 +193,10 @@
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 7px 18px rgba(142, 36, 93, .20);
+      box-shadow: 0 7px 18px rgba(142,36,93,.20);
     }
 
-    .save-button:hover {
-      filter: brightness(1.05);
-    }
-
-    button:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+    button:disabled { opacity: .6; cursor: wait; }
 
     #message {
       display: none;
@@ -204,21 +208,9 @@
       overflow-wrap: anywhere;
     }
 
-    #message.visible {
-      display: block;
-    }
-
-    #message.success {
-      color: #17633b;
-      background: #eaf8ef;
-      border: 1px solid #c9ebd5;
-    }
-
-    #message.error {
-      color: #9b2538;
-      background: #fff0f1;
-      border: 1px solid #f3cbd0;
-    }
+    #message.visible { display: block; }
+    #message.success { color: #17633b; background: #eaf8ef; border: 1px solid #c9ebd5; }
+    #message.error { color: #9b2538; background: #fff0f1; border: 1px solid #f3cbd0; }
 
     .footer-actions {
       display: flex;
@@ -230,12 +222,7 @@
       border-top: 1px solid #f0e5ec;
     }
 
-    .footer-actions a {
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-    }
+    .footer-actions a { text-decoration: none; font-size: 14px; font-weight: 700; }
 
     .logout-button {
       padding: 10px 14px;
@@ -248,48 +235,22 @@
     }
 
     @media (max-width: 520px) {
-      body {
-        padding: 12px 10px 28px;
-      }
-
-      .brand {
-        font-size: 18px;
-      }
-
-      .hero {
-        padding: 25px 16px;
-      }
-
-      .hero h1 {
-        font-size: 23px;
-      }
-
-      .content {
-        padding: 21px 17px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 17px;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .footer-actions {
-        flex-wrap: wrap;
-      }
+      body { padding: 12px 10px 28px; }
+      .brand { font-size: 18px; }
+      .hero { padding: 25px 16px; }
+      .hero h1 { font-size: 23px; }
+      .content { padding: 21px 17px; }
+      .form-grid { grid-template-columns: 1fr; gap: 17px; }
+      .field.full { grid-column: auto; }
+      .footer-actions { flex-wrap: wrap; }
     }
   </style>
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand" href="index.html">
-      Pasand<span>Matrimony</span>
-    </a>
-    <a class="nav-link" href="index.html">Home</a>
+    <a class="brand" href="index.html">Pasand<span>Matrimony</span></a>
+    <a href="index.html">Home</a>
   </header>
 
   <main class="card">
@@ -302,35 +263,47 @@
     <div class="content">
       <div id="account" class="account">Checking your account...</div>
 
+      <h2 class="section-title">Profile Photo</h2>
+      <p class="section-description">Add a clear photo so other members can recognize you.</p>
+
+      <div class="photo-area">
+        <div id="photoPlaceholder" class="photo-placeholder">♥</div>
+        <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
+        <label class="upload-button" for="photoInput">Choose Profile Photo</label>
+        <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
+        <p>JPG, PNG or WebP. Maximum file size: 3 MB.</p>
+      </div>
+
       <h2 class="section-title">Personal Details</h2>
-      <p class="section-description">
-        Please enter accurate information so other members can get to know you better.
-      </p>
+      <p class="section-description">Enter accurate information to complete your profile.</p>
 
       <form id="profileForm" hidden>
         <div class="form-grid">
           <div class="field full">
             <label for="fullName">Full Name *</label>
-            <input id="fullName" type="text" maxlength="100"
-                   placeholder="Enter your full name" autocomplete="name" required>
+            <input id="fullName" type="text" maxlength="100" placeholder="Enter your full name" required>
           </div>
 
           <div class="field">
             <label for="age">Age *</label>
-            <input id="age" type="number" min="18" max="100"
-                   placeholder="Enter your age" required>
+            <input id="age" type="number" min="18" max="100" placeholder="Enter your age" required>
           </div>
 
           <div class="field">
             <label for="city">City *</label>
-            <input id="city" type="text" maxlength="100"
-                   placeholder="Enter your city" autocomplete="address-level2" required>
+            <input id="city" type="text" maxlength="100" placeholder="Enter your city" required>
+          </div>
+
+          <div class="field full">
+            <label for="mobile">Mobile Number *</label>
+            <input id="mobile" type="tel" maxlength="20" autocomplete="tel"
+                   placeholder="Enter your mobile number" required>
+            <div class="hint">Include your country code if needed.</div>
           </div>
 
           <div class="field full">
             <label for="education">Education</label>
-            <input id="education" type="text" maxlength="150"
-                   placeholder="Enter your education">
+            <input id="education" type="text" maxlength="150" placeholder="Enter your education">
           </div>
 
           <div class="field full">
@@ -345,18 +318,14 @@
           </div>
         </div>
 
-        <button id="saveButton" class="save-button" type="submit">
-          Save Profile
-        </button>
+        <button id="saveButton" class="save-button" type="submit">Save Profile</button>
       </form>
 
       <p id="message" role="status" aria-live="polite"></p>
 
       <div class="footer-actions">
         <a href="index.html">← Back to Home</a>
-        <button id="logoutButton" class="logout-button" type="button" hidden>
-          Log Out
-        </button>
+        <button id="logoutButton" class="logout-button" type="button" hidden>Log Out</button>
       </div>
     </div>
   </main>
@@ -370,13 +339,53 @@
     const account = document.getElementById("account");
     const saveButton = document.getElementById("saveButton");
     const logoutButton = document.getElementById("logoutButton");
+    const photoInput = document.getElementById("photoInput");
+    const photoPreview = document.getElementById("photoPreview");
+    const photoPlaceholder = document.getElementById("photoPlaceholder");
 
     let currentUser = null;
+    let selectedPhoto = null;
+    let existingPhotoUrl = null;
 
     function showMessage(text, type) {
       message.textContent = text;
       message.className = "visible " + type;
     }
+
+    function showPhoto(url) {
+      if (!url) {
+        photoPreview.hidden = true;
+        photoPreview.removeAttribute("src");
+        photoPlaceholder.hidden = false;
+        return;
+      }
+      photoPreview.src = url;
+      photoPreview.hidden = false;
+      photoPlaceholder.hidden = true;
+    }
+
+    photoInput.addEventListener("change", () => {
+      const file = photoInput.files[0];
+      if (!file) return;
+
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+      if (!allowedTypes.includes(file.type)) {
+        photoInput.value = "";
+        showMessage("Please choose a JPG, PNG or WebP image.", "error");
+        return;
+      }
+
+      if (file.size > 3 * 1024 * 1024) {
+        photoInput.value = "";
+        showMessage("The image must be 3 MB or smaller.", "error");
+        return;
+      }
+
+      selectedPhoto = file;
+      showPhoto(URL.createObjectURL(file));
+      message.className = "";
+      message.textContent = "";
+    });
 
     async function initialize() {
       try {
@@ -384,7 +393,6 @@
         if (error) throw error;
 
         currentUser = data.user;
-
         if (!currentUser) {
           account.textContent = "Please log in to create your profile.";
           return;
@@ -393,22 +401,40 @@
         account.textContent = "Signed in as: " + currentUser.email;
         logoutButton.hidden = false;
 
-        const { data: profile, error: profileError } =
-          await supabaseClient
-            .from("profiles")
-            .select("full_name, age, city, education, marital_status")
-            .eq("id", currentUser.id)
-            .maybeSingle();
+        const { data: profile, error: profileError } = await supabaseClient
+          .from("profiles")
+          .select("full_name, age, city, education, marital_status, mobile, photo_url")
+          .eq("id", currentUser.id)
+          .maybeSingle();
 
-        if (profileError) throw profileError;
+        if (profileError) {
+          if (profileError.message.includes("photo_url")) {
+            throw new Error("The photo_url database column is not ready yet. Please tell me this message.");
+          }
+          if (profileError.message.includes("mobile")) {
+            throw new Error("The mobile database column could not be found. Please check the profiles table.");
+          }
+          throw profileError;
+        }
 
         document.getElementById("fullName").value =
           profile?.full_name || currentUser.user_metadata?.full_name || "";
         document.getElementById("age").value = profile?.age ?? "";
         document.getElementById("city").value = profile?.city || "";
         document.getElementById("education").value = profile?.education || "";
-        document.getElementById("maritalStatus").value =
-          profile?.marital_status || "";
+        document.getElementById("mobile").value = profile?.mobile || "";
+
+        const status = profile?.marital_status || "";
+        const statusMap = {
+          "अविवाहित": "Never Married",
+          "तलाकशुदा": "Divorced",
+          "विधवा": "Widowed",
+          "विधुर": "Widower"
+        };
+        document.getElementById("maritalStatus").value = statusMap[status] || status;
+
+        existingPhotoUrl = profile?.photo_url || null;
+        if (existingPhotoUrl) showPhoto(existingPhotoUrl);
 
         form.hidden = false;
       } catch (error) {
@@ -430,13 +456,37 @@
       message.textContent = "";
 
       try {
+        let photoUrl = existingPhotoUrl;
+
+        if (selectedPhoto) {
+          const extension = selectedPhoto.name.split(".").pop().toLowerCase();
+          const filePath = currentUser.id + "/profile-" + Date.now() + "." + extension;
+
+          const { data: uploadData, error: uploadError } = await supabaseClient.storage
+            .from("profile-photos")
+            .upload(filePath, selectedPhoto, {
+              upsert: true,
+              contentType: selectedPhoto.type
+            });
+
+          if (uploadError) throw uploadError;
+
+          const { data: publicData } = supabaseClient.storage
+            .from("profile-photos")
+            .getPublicUrl(uploadData.path);
+
+          photoUrl = publicData.publicUrl;
+        }
+
         const profile = {
           id: currentUser.id,
           full_name: document.getElementById("fullName").value.trim(),
           age: Number(document.getElementById("age").value),
           city: document.getElementById("city").value.trim(),
+          mobile: document.getElementById("mobile").value.trim(),
           education: document.getElementById("education").value.trim() || null,
           marital_status: document.getElementById("maritalStatus").value,
+          photo_url: photoUrl,
           updated_at: new Date().toISOString()
         };
 
@@ -446,6 +496,9 @@
 
         if (error) throw error;
 
+        existingPhotoUrl = photoUrl;
+        selectedPhoto = null;
+        photoInput.value = "";
         showMessage("Your profile has been saved successfully!", "success");
       } catch (error) {
         showMessage("Unable to save your profile: " + error.message, "error");
@@ -457,11 +510,9 @@
 
     logoutButton.addEventListener("click", async () => {
       logoutButton.disabled = true;
-
       try {
         const { error } = await supabaseClient.auth.signOut();
         if (error) throw error;
-
         window.location.href = "login.html";
       } catch (error) {
         showMessage("Unable to log out: " + error.message, "error");
