@@ -1,70 +1,828 @@
-/* Featured Profile Cards */
-.featured-profiles {
-  padding: 60px 5%;
-  background: linear-gradient(135deg, #fff7fb, #f9edf3);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasandMatrimony | Find Your Perfect Match</title>
+  <meta name="description" content="Discover meaningful connections and find your perfect life partner with PasandMatrimony.">
 
-.profile-grid {
-  max-width: 1150px;
-  margin: 30px auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
+  <style>
+    :root {
+      --burgundy: #651b35;
+      --dark: #35101f;
+      --rose: #b76e79;
+      --gold: #d9b778;
+      --cream: #fff9f5;
+      --text: #392b30;
+      --muted: #786b70;
+      --white: #ffffff;
+    }
 
-.profile-card {
-  background: white;
-  border: 1px solid #f0d6e3;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 28px #54102f12;
-  text-align: left;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.profile-photo {
-  width: 100%;
-  height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5dce8, #ead8e8);
-  color: #750039;
-  font-size: 55px;
-  object-fit: cover;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.profile-info {
-  padding: 20px;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+    }
 
-.profile-info h3 {
-  color: #54102f;
-  font-size: 19px;
-  margin-bottom: 9px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.profile-info p {
-  color: #806b79;
-  font-size: 14px;
-  margin: 5px 0;
-}
+    button, input, select {
+      font: inherit;
+    }
 
-.view-profile-btn {
-  display: block;
-  text-align: center;
-  margin-top: 17px;
-  padding: 12px;
-  background: #e60063;
-  color: white;
-  border-radius: 9px;
-  font-weight: bold;
-}
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
 
-@media(max-width:850px) {
-  .profile-grid { grid-template-columns: repeat(2, 1fr); }
-}
+    header {
+      background: var(--white);
+      border-bottom: 1px solid #f0dfe4;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
 
-@media(max-width:560px) {
-  .profile-grid { grid-template-columns: 1fr; }
-  .profile-photo { height: 250px; }
-}
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--burgundy);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--rose);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--rose);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--burgundy);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--burgundy);
+      color: var(--burgundy);
+      background: white;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #fff3f0, #f7e5e8 55%, #f1dce2);
+      padding: 76px 0;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--burgundy);
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: var(--dark);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: var(--rose);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 560px;
+      margin-bottom: 27px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      min-height: 360px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #7d304a, #3e1225);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 20px 50px #651b3525;
+    }
+
+    .hero-art {
+      text-align: center;
+      color: white;
+      max-width: 330px;
+    }
+
+    .hero-symbol {
+      font-size: 100px;
+      line-height: 1.3;
+    }
+
+    .hero-art h2 {
+      color: var(--gold);
+      font-size: 29px;
+      margin-bottom: 8px;
+    }
+
+    .hero-art p {
+      color: #fff0f2;
+      font-size: 15px;
+      margin: auto;
+    }
+
+    .trust-strip {
+      background: white;
+      border-bottom: 1px solid #f2e3e7;
+      padding: 20px 0;
+    }
+
+    .trust-items {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--burgundy);
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 35px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .search-section {
+      background: white;
+    }
+
+    .search-box {
+      background: #fff9f7;
+      border: 1px solid #f0dce2;
+      border-radius: 16px;
+      padding: 25px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 14px;
+      box-shadow: 0 8px 28px #651b3508;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #e5d2d9;
+      border-radius: 8px;
+      background: white;
+      outline-color: var(--rose);
+    }
+
+    .search-box .btn {
+      align-self: end;
+      min-height: 46px;
+    }
+
+    .profiles-section {
+      background: linear-gradient(135deg, #fff7f5, #f9edf0);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .profile-card {
+      background: white;
+      border: 1px solid #f0dce2;
+      border-radius: 17px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px #4513290c;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px #45132918;
+    }
+
+    .profile-photo {
+      min-height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f2d9df, #fff0e7);
+      font-size: 76px;
+    }
+
+    .profile-info {
+      padding: 21px;
+    }
+
+    .profile-info h3 {
+      color: var(--dark);
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .profile-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .profile-tag {
+      display: inline-block;
+      color: var(--burgundy);
+      background: #f9e8ed;
+      border-radius: 20px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .view-profile {
+      display: flex;
+      width: 100%;
+      padding: 11px;
+      text-align: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--burgundy);
+      color: white;
+      font-weight: 700;
+    }
+
+    .view-profile:hover {
+      background: var(--dark);
+    }
+
+    .demo-note {
+      margin-top: 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .about-art {
+      background: linear-gradient(145deg, #681c38, #3a1022);
+      border-radius: 20px;
+      min-height: 270px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 95px;
+    }
+
+    .about-copy h2 {
+      font-size: 34px;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 17px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .steps-section {
+      background: white;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step-card {
+      border: 1px solid #f0dce2;
+      border-radius: 15px;
+      padding: 26px;
+      background: #fffaf8;
+    }
+
+    .step-number {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--burgundy);
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .step-card h3 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta-section {
+      background: linear-gradient(120deg, #651b35, #35101f);
+      padding: 60px 0;
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: #f5dfe6;
+      margin-bottom: 24px;
+    }
+
+    .cta-section .btn {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    footer {
+      background: #250b17;
+      color: #f6e9ee;
+      padding: 38px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 35px;
+      margin-bottom: 30px;
+    }
+
+    .footer-brand {
+      color: var(--gold);
+      font-size: 23px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    footer p, footer a {
+      color: #d9c4cc;
+      font-size: 14px;
+    }
+
+    footer h3 {
+      color: white;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .copyright {
+      border-top: 1px solid #563142;
+      padding-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: #c9b1bb;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .search-box {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .profile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 48px 0;
+      }
+
+      .hero-grid, .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .hero-visual {
+        min-height: 270px;
+      }
+
+      .hero-symbol {
+        font-size: 75px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .search-box, .profile-grid, .steps-grid, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        min-height: 180px;
+      }
+
+      .trust-items {
+        justify-content: center;
+      }
+
+      .about-copy h2 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="index.html">Pasand<span>Matrimony</span></a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#search">Search</a>
+        <a href="#featured">Profiles</a>
+        <a href="#about">About Us</a>
+        <a href="login.html">Login</a>
+        <a class="btn btn-primary" href="register.html">Register Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Your Journey, Your Choice</div>
+          <h1>Find Your <span>Perfect Life Partner</span></h1>
+          <p>
+            Every beautiful relationship begins with a meaningful connection.
+            Discover compatible profiles and take the first step toward your future together.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="register.html">Create Your Profile</a>
+            <a class="btn btn-outline" href="#featured">Explore Profiles</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-art">
+            <div class="hero-symbol" aria-hidden="true">♡</div>
+            <h2>Made for Each Other</h2>
+            <p>Real connections. Meaningful relationships. A beautiful new beginning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-items">
+        <span>♥ Meaningful Connections</span>
+        <span>✦ Personalized Profiles</span>
+        <span>♡ Your Journey, Your Choice</span>
+      </div>
+    </div>
+
+    <section class="section search-section" id="search">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Start Your Search</div>
+          <h2>Find Someone Who Matches You</h2>
+          <p>Choose your preferences to begin discovering compatible profiles.</p>
+        </div>
+
+        <form class="search-box" id="searchForm">
+          <div class="field">
+            <label for="lookingFor">I'm Looking For</label>
+            <select id="lookingFor">
+              <option value="">Select</option>
+              <option value="Bride">Bride</option>
+              <option value="Groom">Groom</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ageFrom">Age From</label>
+            <select id="ageFrom">
+              <option value="">Any Age</option>
+              <option>18</option><option>21</option><option>25</option>
+              <option>28</option><option>30</option><option>35</option>
+              <option>40</option><option>45</option><option>50</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ageTo">Age To</label>
+            <select id="ageTo">
+              <option value="">Any Age</option>
+              <option>25</option><option>30</option><option>35</option>
+              <option>40</option><option>45</option><option>50</option>
+              <option>55</option><option>60</option><option>70</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <input id="city" type="text" placeholder="Enter city">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section profiles-section" id="featured">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Featured Profiles</div>
+          <h2>Your New Beginning Starts Here</h2>
+          <p>Explore the possibilities and create your own profile to get started.</p>
+        </div>
+
+        <div class="profile-grid">
+          <article class="profile-card">
+            <div class="profile-photo" aria-label="Decorative profile placeholder">♡</div>
+            <div class="profile-info">
+              <span class="profile-tag">Bride Profiles</span>
+              <h3>Discover a Bride</h3>
+              <p class="profile-meta">Explore compatible bride profiles.</p>
+              <a class="view-profile" href="login.html?next=profile.html">View Profile</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-photo" aria-label="Decorative profile placeholder">♡</div>
+            <div class="profile-info">
+              <span class="profile-tag">Groom Profiles</span>
+              <h3>Discover a Groom</h3>
+              <p class="profile-meta">Explore compatible groom profiles.</p>
+              <a class="view-profile" href="login.html?next=profile.html">View Profile</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-photo" aria-label="Decorative profile placeholder">♡</div>
+            <div class="profile-info">
+              <span class="profile-tag">Your Match Awaits</span>
+              <h3>Your Future Partner</h3>
+              <p class="profile-meta">Create a profile to begin your journey.</p>
+              <a class="view-profile" href="login.html?next=profile.html">View Profile</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="demo-note">
+          These are sample cards. Member profiles will appear here when the profile listing feature is connected.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-art" aria-hidden="true">♡</div>
+        <div class="about-copy">
+          <div class="eyebrow">About PasandMatrimony</div>
+          <h2>A Meaningful Way to Meet Your Life Partner</h2>
+          <p>
+            PasandMatrimony is designed to help people begin their search for a compatible life partner.
+            We believe that every person deserves the opportunity to build a relationship based on respect,
+            understanding, and shared values.
+          </p>
+          <p>
+            Create your profile, share your preferences, and take the next step in your personal journey.
+          </p>
+          <a class="btn btn-primary" href="register.html">Join PasandMatrimony</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section steps-section" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">How It Works</div>
+          <h2>Three Simple Steps</h2>
+          <p>Getting started with your partner search is simple.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h3>Create Your Profile</h3>
+            <p>Register and add your basic details to introduce yourself.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h3>Explore Profiles</h3>
+            <p>Discover potential matches and learn about compatible members.</p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h3>Connect and Begin</h3>
+            <p>Sign in and continue your journey toward a meaningful relationship.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Your Perfect Match Could Be One Step Away</h2>
+        <p>Start building your profile and begin your journey today.</p>
+        <a class="btn" href="register.html">Get Started Free</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">PasandMatrimony</div>
+          <p>Helping you take the first step toward meaningful connections and a happier future.</p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#featured">Featured Profiles</a>
+            <a href="#about">About Us</a>
+            <a href="#how-it-works">How It Works</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Your Account</h3>
+          <div class="footer-links">
+            <a href="register.html">Create Account</a>
+            <a href="login.html">Login</a>
+            <a href="profile.html">My Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © <span id="currentYear"></span> PasandMatrimony. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const lookingFor = document.getElementById("lookingFor").value;
+      const ageFrom = document.getElementById("ageFrom").value;
+      const ageTo = document.getElementById("ageTo").value;
+      const city = document.getElementById("city").value.trim();
+
+      const params = new URLSearchParams();
+
+      if (lookingFor) params.set("lookingFor", lookingFor);
+      if (ageFrom) params.set("ageFrom", ageFrom);
+      if (ageTo) params.set("ageTo", ageTo);
+      if (city) params.set("city", city);
+
+      window.location.href =
+        "login.html?next=profile.html&" + params.toString();
+    });
+  </script>
+</body>
+</html>
