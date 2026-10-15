@@ -1,110 +1,280 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>रजिस्ट्रेशन | PasandMatrimony</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | PasandMatrimony</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      margin: 0; padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #fff5f7; color: #35212b;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #fff6f4, #f2e1e8);
+      color: #35101f;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
     }
-    .card {
-      max-width: 500px; margin: 20px auto;
-      padding: 25px; background: white;
-      border-radius: 16px; box-shadow: 0 6px 24px #761c4018;
+
+    .register-card {
+      width: 100%;
+      max-width: 460px;
+      background: #ffffff;
+      border: 1px solid #f0dce2;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 15px 45px rgba(70, 15, 38, 0.12);
     }
-    h1 { text-align: center; color: #761c40; }
-    label { display: block; margin: 15px 0 6px; }
+
+    .brand {
+      text-align: center;
+      color: #651b35;
+      font-size: 27px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .brand span {
+      color: #b76e79;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #786b70;
+      margin-bottom: 26px;
+      font-size: 14px;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
     input, select {
-      width: 100%; padding: 12px;
-      border: 1px solid #ddd; border-radius: 8px;
+      width: 100%;
+      padding: 13px 12px;
+      border: 1px solid #e5d2d9;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 15px;
+      outline-color: #b76e79;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #651b35;
+      color: white;
+      padding: 14px;
       font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 5px;
     }
-    button {
-      width: 100%; padding: 13px; margin-top: 20px;
-      background: #761c40; color: white;
-      border: 0; border-radius: 8px;
-      font-size: 16px; cursor: pointer;
+
+    .submit-btn:hover {
+      background: #35101f;
     }
-    p { text-align: center; }
-    a { color: #761c40; }
-    #message { overflow-wrap: anywhere; }
+
+    .submit-btn:disabled {
+      opacity: .65;
+      cursor: wait;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #a21d2d;
+    }
+
+    .message.success {
+      display: block;
+      background: #eefaf1;
+      color: #176534;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 19px;
+      font-size: 14px;
+      color: #786b70;
+    }
+
+    .links a {
+      color: #651b35;
+      font-weight: 700;
+    }
+
+    .home-link {
+      display: block;
+      margin-top: 12px;
+      text-align: center;
+      color: #786b70;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .register-card {
+        padding: 25px 20px;
+      }
+
+      .brand {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <h1>❤️ PasandMatrimony</h1>
-    <p>अपना नया अकाउंट बनाएँ</p>
+  <main class="register-card">
+    <div class="brand">♥ Pasand<span>Matrimony</span></div>
+    <p class="subtitle">Create your new account</p>
+
+    <div id="registerMessage" class="message" role="status" aria-live="polite"></div>
 
     <form id="registerForm">
-      <label for="fullName">पूरा नाम</label>
-      <input id="fullName" required maxlength="100">
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" placeholder="Enter your full name" autocomplete="name" required>
+      </div>
 
-      <label for="email">ईमेल</label>
-      <input id="email" type="email" required autocomplete="email">
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input id="email" type="email" placeholder="Enter your email address" autocomplete="email" required>
+      </div>
 
-      <label for="password">पासवर्ड (कम से कम 8 अक्षर)</label>
-      <input id="password" type="password" minlength="8"
-             required autocomplete="new-password">
+      <div class="field">
+        <label for="password">Password (Minimum 8 Characters)</label>
+        <input id="password" type="password" placeholder="Create a password" minlength="8" autocomplete="new-password" required>
+      </div>
 
-      <label for="gender">प्रोफाइल</label>
-      <select id="gender" required>
-        <option value="">चुनें</option>
-        <option value="male">वर</option>
-        <option value="female">वधू</option>
-        <option value="other">अन्य</option>
-      </select>
+      <div class="field">
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" type="tel" placeholder="Enter your mobile number" autocomplete="tel" required>
+      </div>
 
-      <button id="submitButton" type="submit">रजिस्ट्रेशन करें</button>
-      <p id="message" role="status" aria-live="polite"></p>
+      <div class="field">
+        <label for="profileType">Profile Type</label>
+        <select id="profileType" required>
+          <option value="">Select Profile Type</option>
+          <option value="Bride">Bride</option>
+          <option value="Groom">Groom</option>
+          <option value="Parent or Guardian">Parent or Guardian</option>
+        </select>
+      </div>
+
+      <button class="submit-btn" id="registerButton" type="submit">
+        Create Account
+      </button>
     </form>
 
-    <p>पहले से अकाउंट है? <a href="login.html">लॉगिन करें</a></p>
-    <p><a href="index.html">होम पेज</a></p>
+    <div class="links">
+      Already have an account? <a href="login.html">Login Here</a>
+    </div>
+
+    <a class="home-link" href="index.html">Back to Home</a>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
-  <script>
-    const form = document.getElementById("registerForm");
-    const message = document.getElementById("message");
-    const button = document.getElementById("submitButton");
 
-    form.addEventListener("submit", async function(event) {
+  <script>
+    const registerForm = document.getElementById("registerForm");
+    const registerMessage = document.getElementById("registerMessage");
+    const registerButton = document.getElementById("registerButton");
+
+    function showMessage(message, type) {
+      registerMessage.textContent = message;
+      registerMessage.className = "message " + type;
+    }
+
+    registerForm.addEventListener("submit", async function(event) {
       event.preventDefault();
-      button.disabled = true;
-      message.textContent = "रजिस्ट्रेशन हो रहा है...";
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const mobile = document.getElementById("mobile").value.trim();
+      const profileType = document.getElementById("profileType").value;
+
+      if (!fullName || !email || !password || !mobile || !profileType) {
+        showMessage("Please complete all fields.", "error");
+        return;
+      }
+
+      if (password.length < 8) {
+        showMessage("Password must contain at least 8 characters.", "error");
+        return;
+      }
+
+      const client = window.supabaseClient;
+
+      if (!client) {
+        showMessage(
+          "Connection could not be initialized. Please check the existing Supabase configuration.",
+          "error"
+        );
+        return;
+      }
+
+      registerButton.disabled = true;
+      registerButton.textContent = "Creating Account...";
 
       try {
-        const fullName = document.getElementById("fullName").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const gender = document.getElementById("gender").value;
-
-        const { data, error } = await supabaseClient.auth.signUp({
-          email,
-          password,
+        const { data, error } = await client.auth.signUp({
+          email: email,
+          password: password,
           options: {
-            data: { full_name: fullName, gender }
+            data: {
+              full_name: fullName,
+              mobile: mobile,
+              profile_type: profileType
+            }
           }
         });
 
         if (error) throw error;
 
         if (data.session) {
-          message.textContent =
-            "अकाउंट बन गया! अब लॉगिन/प्रोफाइल की सुविधा आगे जोड़ेंगे।";
+          showMessage("Account created successfully! Redirecting to your profile...", "success");
+          setTimeout(function() {
+            window.location.href = "profile.html";
+          }, 1200);
         } else {
-          message.textContent =
-            "रजिस्ट्रेशन अनुरोध सफल है। यदि ईमेल पुष्टि चालू है, तो अपना ईमेल खोलकर अकाउंट सत्यापित करें।";
+          showMessage(
+            "Registration submitted. Please check your email if confirmation is required, then log in.",
+            "success"
+          );
+          registerButton.disabled = false;
+          registerButton.textContent = "Create Account";
         }
       } catch (error) {
-        message.textContent = "त्रुटि: " + error.message;
-      } finally {
-        button.disabled = false;
+        showMessage(error.message || "Registration failed. Please try again.", "error");
+        registerButton.disabled = false;
+        registerButton.textContent = "Create Account";
       }
     });
   </script>
