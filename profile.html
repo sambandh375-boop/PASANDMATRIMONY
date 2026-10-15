@@ -4,103 +4,453 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Profile | PasandMatrimony</title>
+
   <style>
-    *{box-sizing:border-box}
-    :root{--primary:#872354;--accent:#c34484;--text:#352334;--muted:#786879;--border:#eadce6}
-    body{margin:0;padding:18px 12px 40px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff5fa,#eee5f8);color:var(--text)}
-    .topbar{max-width:760px;margin:0 auto 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{font-size:21px;font-weight:800;color:var(--primary);text-decoration:none}
-    .brand span{color:var(--accent)}
-    a{color:var(--primary)}
-    .card{max-width:760px;margin:auto;background:white;border:1px solid #f0e2eb;border-radius:24px;overflow:hidden;box-shadow:0 16px 48px #69224d18}
-    .hero{position:relative;padding:32px 20px;text-align:center;color:white;background:linear-gradient(125deg,#681742,#a32d6a,#d05a99)}
-    .hero-icon{width:68px;height:68px;margin:0 auto 13px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#ffffff24;border:2px solid #ffffff80;font-size:30px}
-    .hero h1{margin:0 0 9px;font-size:28px}
-    .hero p{margin:0;color:#fff0f7;font-size:14px;line-height:1.6}
-    .content{padding:26px}
-    .account{padding:13px 15px;background:#fff5fa;border:1px solid #f0d9e7;border-radius:12px;color:var(--primary);font-size:13px;overflow-wrap:anywhere;margin-bottom:25px}
-    .section-title{margin:0 0 7px;font-size:20px;color:var(--primary)}
-    .section-description{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.6}
-    .photo-area{display:flex;flex-direction:column;align-items:center;padding:23px 15px;margin-bottom:27px;border:1px dashed #d9b5ca;border-radius:18px;background:#fff9fc;text-align:center}
-    .photo-preview,.photo-placeholder{width:126px;height:126px;border-radius:50%;object-fit:cover;border:4px solid #f1d7e5;background:#f5e6ef;margin-bottom:14px}
-    .photo-placeholder{display:flex;align-items:center;justify-content:center;font-size:42px;color:var(--primary)}
-    .photo-area p{color:var(--muted);font-size:13px;line-height:1.5}
-    .upload-button{display:inline-block;padding:12px 18px;border-radius:10px;background:#f3e1ec;color:var(--primary);font-size:14px;font-weight:700;cursor:pointer}
-    #photoInput{display:none}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px}
-    .field{min-width:0}
-    .field.full{grid-column:1/-1}
-    label{display:block;margin-bottom:8px;font-size:14px;font-weight:700;color:#493348}
-    input,select{width:100%;min-height:49px;padding:12px 13px;border:1px solid var(--border);border-radius:11px;outline:none;background:white;color:var(--text);font-size:15px;font-family:inherit}
-    input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #c044831f}
-    .hint{margin-top:6px;color:var(--muted);font-size:12px}
-    .save-button{width:100%;min-height:52px;margin-top:25px;border:0;border-radius:12px;background:linear-gradient(100deg,#861d58,#bd4382);color:white;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 7px 18px #8e245d33}
-    button:disabled{opacity:.6;cursor:wait}
-    #message{display:none;padding:13px 14px;border-radius:10px;margin:18px 0 0;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
-    #message.visible{display:block}
-    #message.success{color:#17633b;background:#eaf8ef;border:1px solid #c9ebd5}
-    #message.error{color:#9b2538;background:#fff0f1;border:1px solid #f3cbd0}
-    .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:25px;padding-top:20px;border-top:1px solid #f0e5ec}
-    .footer-actions a{text-decoration:none;font-size:14px;font-weight:700}
-    .logout-button{padding:11px 15px;border:1px solid #e5c6d7;border-radius:10px;background:white;color:var(--primary);font-weight:700;cursor:pointer}
-    [hidden]{display:none!important}
-    @media(max-width:520px){body{padding:12px 9px 28px}.brand{font-size:18px}.hero{padding:27px 15px}.hero h1{font-size:24px}.content{padding:20px 16px}.form-grid{grid-template-columns:1fr;gap:17px}.field.full{grid-column:auto}.footer-actions{flex-wrap:wrap}}
+    * { box-sizing: border-box; }
+
+    :root {
+      --wine: #581b32;
+      --wine-dark: #35101f;
+      --rose: #b76e79;
+      --gold: #d6b47a;
+      --cream: #faf6f2;
+      --ink: #35242b;
+      --muted: #81727a;
+      --line: #eadfe2;
+      --white: #ffffff;
+    }
+
+    [hidden] { display: none !important; }
+
+    body {
+      margin: 0;
+      padding: 22px 14px 45px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+    }
+
+    a { color: inherit; }
+
+    .topbar {
+      max-width: 850px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--wine);
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+
+    .brand span { color: var(--rose); }
+
+    .home-link {
+      text-decoration: none;
+      color: var(--wine);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 15px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: white;
+    }
+
+    .card {
+      max-width: 850px;
+      margin: auto;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 50px rgba(53, 16, 31, .08);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 38px 24px 35px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(125deg, var(--wine-dark), var(--wine) 65%, #8c425b);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border: 1px solid rgba(214, 180, 122, .22);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before { left: -90px; top: -100px; }
+    .hero::after { right: -95px; bottom: -125px; }
+
+    .hero-icon {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 15px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-size: 29px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 10px;
+      font-family: Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 470px;
+      margin: auto;
+      color: #f3e7e9;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .content { padding: 30px; }
+
+    .account {
+      margin-bottom: 28px;
+      padding: 14px 16px;
+      border: 1px solid #ead9dc;
+      border-radius: 12px;
+      background: #fcf7f7;
+      color: var(--wine);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #f5e8e9;
+      color: var(--wine);
+      font-weight: 800;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--wine);
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .section-description {
+      margin: 0 0 22px 50px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .photo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 18px 22px;
+      margin-bottom: 32px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #fffdfc, #fbf3f3);
+      text-align: center;
+    }
+
+    .photo-frame {
+      width: 148px;
+      height: 148px;
+      padding: 5px;
+      margin-bottom: 17px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: white;
+      box-shadow: 0 8px 25px rgba(88, 27, 50, .12);
+    }
+
+    .photo-preview,
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wine);
+      background: #f5e8e9;
+      font-size: 48px;
+    }
+
+    .photo-title {
+      margin: 0 0 7px;
+      color: var(--wine);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .photo-description {
+      max-width: 320px;
+      margin: 0 0 17px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .upload-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 45px;
+      padding: 12px 22px;
+      border-radius: 9px;
+      background: var(--wine);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .upload-button:hover { background: var(--wine-dark); }
+
+    #photoInput { display: none; }
+
+    .photo-note {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 21px;
+    }
+
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+
+    label.field-label {
+      display: block;
+      margin-bottom: 9px;
+      color: #49323d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input, select {
+      width: 100%;
+      min-height: 50px;
+      padding: 13px 14px;
+      border: 1px solid #e5d8dd;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    input::placeholder { color: #aa9ca3; }
+
+    input:focus, select:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(183, 110, 121, .12);
+    }
+
+    .hint {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .save-button {
+      width: 100%;
+      min-height: 53px;
+      margin-top: 28px;
+      border: 0;
+      border-radius: 11px;
+      background: linear-gradient(100deg, var(--wine-dark), var(--wine), #874058);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 7px 20px rgba(88, 27, 50, .16);
+      transition: transform .2s, opacity .2s;
+    }
+
+    .save-button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: .6; cursor: wait; }
+
+    #message {
+      display: none;
+      padding: 13px 15px;
+      margin: 18px 0 0;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    #message.visible { display: block; }
+    #message.success { color: #17633b; background: #eaf8ef; border: 1px solid #c9ebd5; }
+    #message.error { color: #9b2538; background: #fff0f1; border: 1px solid #f3cbd0; }
+
+    .footer-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid #eee4e7;
+    }
+
+    .footer-actions a {
+      text-decoration: none;
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .logout-button {
+      min-height: 40px;
+      padding: 10px 15px;
+      border: 1px solid #e4cdd4;
+      border-radius: 9px;
+      background: white;
+      color: var(--wine);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 12px 9px 28px; }
+      .brand { font-size: 19px; }
+      .home-link { padding: 9px 12px; }
+      .hero { padding: 30px 16px; }
+      .hero h1 { font-size: 27px; }
+      .content { padding: 21px 16px; }
+      .section-title { font-size: 20px; }
+      .section-description { margin-left: 0; }
+      .form-grid { grid-template-columns: 1fr; gap: 18px; }
+      .field.full { grid-column: auto; }
+      .photo-frame { width: 136px; height: 136px; }
+      .footer-actions { flex-wrap: wrap; }
+    }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <a class="brand" href="index.html">Pasand<span>Matrimony</span></a>
-    <a href="index.html">Home</a>
+    <a class="home-link" href="index.html">Home</a>
   </header>
 
   <main class="card">
     <section class="hero">
       <div class="hero-icon">♥</div>
       <h1>My Profile</h1>
-      <p>Make your profile special and take the next step toward finding your life partner.</p>
+      <p>Every great relationship begins with a beautiful introduction. Complete your profile to begin your journey.</p>
     </section>
 
     <div class="content">
       <div id="account" class="account">Checking your account...</div>
 
       <div id="profileContent" hidden>
-        <h2 class="section-title">Profile Photo</h2>
-        <p class="section-description">Add a clear photo so other members can recognize you.</p>
+        <div class="section-heading">
+          <div class="section-number">01</div>
+          <h2 class="section-title">Profile Photo</h2>
+        </div>
+        <p class="section-description">Let your profile make a memorable first impression.</p>
+
         <div class="photo-area">
-          <div id="photoPlaceholder" class="photo-placeholder">♥</div>
-          <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
+          <div class="photo-frame">
+            <div id="photoPlaceholder" class="photo-placeholder">♥</div>
+            <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
+          </div>
+          <h3 class="photo-title">Your Best Picture</h3>
+          <p class="photo-description">Choose a clear and recent photo so other members can recognize you.</p>
           <label class="upload-button" for="photoInput">Choose Profile Photo</label>
           <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
-          <p>JPG, PNG or WebP. Maximum file size: 3 MB.</p>
+          <p class="photo-note">JPG, PNG or WebP · Maximum file size: 3 MB</p>
         </div>
 
-        <h2 class="section-title">Personal Details</h2>
-        <p class="section-description">Enter accurate information to complete your profile.</p>
+        <div class="section-heading">
+          <div class="section-number">02</div>
+          <h2 class="section-title">Personal Details</h2>
+        </div>
+        <p class="section-description">Share accurate details to help you find a compatible life partner.</p>
+
         <form id="profileForm">
           <div class="form-grid">
             <div class="field full">
-              <label for="fullName">Full Name *</label>
+              <label class="field-label" for="fullName">Full Name *</label>
               <input id="fullName" type="text" maxlength="100" placeholder="Enter your full name" required>
             </div>
+
             <div class="field">
-              <label for="age">Age *</label>
+              <label class="field-label" for="age">Age *</label>
               <input id="age" type="number" min="18" max="100" placeholder="Enter your age" required>
             </div>
+
             <div class="field">
-              <label for="city">City *</label>
+              <label class="field-label" for="city">City *</label>
               <input id="city" type="text" maxlength="100" placeholder="Enter your city" required>
             </div>
+
             <div class="field full">
-              <label for="mobile">Mobile Number *</label>
+              <label class="field-label" for="mobile">Mobile Number *</label>
               <input id="mobile" type="tel" maxlength="20" autocomplete="tel" placeholder="Enter your mobile number" required>
               <div class="hint">Include your country code if needed.</div>
             </div>
+
             <div class="field full">
-              <label for="education">Education</label>
+              <label class="field-label" for="education">Education</label>
               <input id="education" type="text" maxlength="150" placeholder="Enter your education">
             </div>
+
             <div class="field full">
-              <label for="maritalStatus">Marital Status *</label>
+              <label class="field-label" for="maritalStatus">Marital Status *</label>
               <select id="maritalStatus" required>
                 <option value="">Select marital status</option>
                 <option value="Never Married">Never Married</option>
@@ -110,11 +460,13 @@
               </select>
             </div>
           </div>
+
           <button id="saveButton" class="save-button" type="submit">Save Profile</button>
         </form>
       </div>
 
       <p id="message" role="status" aria-live="polite"></p>
+
       <div class="footer-actions">
         <a href="index.html">← Back to Home</a>
         <button id="logoutButton" class="logout-button" type="button" hidden>Log Out</button>
@@ -124,6 +476,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
+
   <script>
     const form = document.getElementById("profileForm");
     const message = document.getElementById("message");
