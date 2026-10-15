@@ -1,1081 +1,677 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#581b32">
-  <meta name="description" content="PasandMatrimony helps you discover meaningful matrimonial connections. Create your profile and begin your search.">
-  <title>PasandMatrimony | Find Your Perfect Match</title>
-
-  <style>
-    :root {
-      --burgundy: #581b32;
-      --burgundy-dark: #35101f;
-      --rose-gold: #c99a78;
-      --cream: #fffaf6;
-      --text: #34232b;
-      --muted: #786b71;
-      --white: #ffffff;
-      --border: #eadde1;
-      --shadow: 0 12px 35px rgba(65, 20, 39, 0.09);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--cream);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button,
-    .btn {
-      cursor: pointer;
-    }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: auto;
-    }
-
-    .navbar {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .logo {
-      color: var(--burgundy);
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: -0.7px;
-    }
-
-    .logo span {
-      color: var(--rose-gold);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 22px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover {
-      color: var(--rose-gold);
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border: 1px solid var(--burgundy);
-      border-radius: 7px;
-      background: var(--burgundy);
-      color: var(--white);
-      font-weight: 700;
-      text-align: center;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      background: var(--burgundy-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--burgundy);
-    }
-
-    .btn-outline:hover {
-      color: var(--white);
-    }
-
-    .hero {
-      min-height: 540px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background-color: var(--burgundy-dark);
-      background-image:
-        linear-gradient(
-          90deg,
-          rgba(37, 9, 22, 0.88) 0%,
-          rgba(55, 13, 31, 0.70) 48%,
-          rgba(55, 13, 31, 0.22) 100%
-        ),
-        url("wedding-hero.png");
-      background-size: cover;
-      background-position: center;
-      color: var(--white);
-    }
-
-    .hero-content {
-      max-width: 650px;
-      padding: 80px 0;
-    }
-
-    .eyebrow {
-      color: var(--rose-gold);
-      font-weight: 800;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 5.5vw, 66px);
-      line-height: 1.13;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      max-width: 560px;
-      font-size: 17px;
-      color: #fff1f3;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .hero .btn {
-      border-color: var(--rose-gold);
-      background: var(--rose-gold);
-      color: var(--burgundy-dark);
-    }
-
-    .hero .btn-outline {
-      color: var(--white);
-      background: transparent;
-      border-color: rgba(255,255,255,0.7);
-    }
-
-    .section {
-      padding: 76px 0;
-    }
-
-    .section-heading {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 35px;
-    }
-
-    .section-heading .eyebrow {
-      margin-bottom: 8px;
-    }
-
-    .section-heading h2 {
-      color: var(--burgundy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(29px, 4vw, 40px);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-    }
-
-    .search-section {
-      margin-top: -35px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .search-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 25px;
-      box-shadow: var(--shadow);
-    }
-
-    .search-box h2 {
-      font-size: 20px;
-      color: var(--burgundy);
-      margin-bottom: 16px;
-    }
-
-    .search-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr auto;
-      gap: 14px;
-      align-items: end;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-      min-height: 46px;
-      padding: 11px 12px;
-      background: var(--white);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      outline: none;
-    }
-
-    .field input:focus,
-    .field select:focus {
-      border-color: var(--rose-gold);
-      box-shadow: 0 0 0 3px rgba(201,154,120,0.15);
-    }
-
-    .section-soft {
-      background: #f8eef1;
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .profile-card {
-      min-width: 0;
-      overflow: hidden;
-      border-radius: 12px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      box-shadow: 0 6px 22px rgba(65,20,39,0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .profile-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .profile-card img,
-    .profile-photo-placeholder {
-      display: block;
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-      background: #f1e3e8;
-    }
-
-    .profile-photo-placeholder {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--burgundy);
-      font-weight: 700;
-    }
-
-    .profile-card-content {
-      padding: 20px;
-    }
-
-    .profile-card h3 {
-      color: var(--burgundy);
-      font-size: 20px;
-      margin-bottom: 9px;
-      overflow-wrap: anywhere;
-    }
-
-    .profile-card p {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 5px;
-      overflow-wrap: anywhere;
-    }
-
-    .profile-card .btn {
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    .status-message {
-      grid-column: 1 / -1;
-      padding: 24px;
-      text-align: center;
-      color: var(--muted);
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 42px;
-    }
-
-    .about-copy h2 {
-      color: var(--burgundy);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(30px, 4vw, 42px);
-      line-height: 1.2;
-      margin-bottom: 18px;
-    }
-
-    .about-copy p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .about-panel {
-      padding: 32px;
-      border-radius: 14px;
-      background: var(--burgundy);
-      color: var(--white);
-    }
-
-    .about-panel h3 {
-      color: var(--rose-gold);
-      font-size: 23px;
-      margin-bottom: 12px;
-    }
-
-    .about-panel p {
-      color: #f9eaf0;
-      margin-bottom: 12px;
-    }
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .step-card {
-      padding: 28px 22px;
-      text-align: center;
-      border: 1px solid var(--border);
-      background: var(--white);
-      border-radius: 12px;
-    }
-
-    .step-number {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 52px;
-      height: 52px;
-      margin: 0 auto 17px;
-      border-radius: 50%;
-      color: var(--white);
-      background: var(--burgundy);
-      font-size: 21px;
-      font-weight: 800;
-    }
-
-    .step-card h3 {
-      color: var(--burgundy);
-      margin-bottom: 8px;
-    }
-
-    .step-card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .register-section {
-      background: var(--burgundy-dark);
-      color: var(--white);
-    }
-
-    .register-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 38px;
-      align-items: start;
-    }
-
-    .register-copy h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(30px, 4vw, 42px);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .register-copy p {
-      color: #f2dfe6;
-      margin-bottom: 18px;
-    }
-
-    .register-card {
-      padding: 28px;
-      background: var(--white);
-      color: var(--text);
-      border-radius: 12px;
-    }
-
-    .register-card h3 {
-      color: var(--burgundy);
-      font-size: 23px;
-      margin-bottom: 18px;
-    }
-
-    .register-form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .register-form .btn {
-      width: 100%;
-      min-height: 48px;
-    }
-
-    .form-message {
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
-
-    .login-note {
-      font-size: 14px;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    .login-note a {
-      color: var(--burgundy);
-      font-weight: 700;
-      text-decoration: underline;
-    }
-
-    .footer {
-      background: #250b16;
-      color: #f8eaf0;
-      padding: 35px 0 20px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding-bottom: 22px;
-    }
-
-    .footer .logo {
-      color: var(--white);
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 14px;
-    }
-
-    .footer-links a:hover {
-      color: var(--rose-gold);
-    }
-
-    .copyright {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 18px;
-      color: #d9c2cb;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    @media (max-width: 800px) {
-      .nav-inner {
-        padding: 15px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
-      .hero {
-        min-height: 480px;
-        background-position: center;
-      }
-
-      .search-form {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .search-form .btn {
-        grid-column: 1 / -1;
-      }
-
-      .profile-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .about-grid,
-      .register-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        font-size: 23px;
-      }
-
-      .nav-links {
-        font-size: 13px;
-        gap: 12px;
-      }
-
-      .hero-content {
-        padding: 65px 0;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .section {
-        padding: 55px 0;
-      }
-
-      .search-box {
-        padding: 18px;
-      }
-
-      .search-form,
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-card img,
-      .profile-photo-placeholder {
-        height: 250px;
-      }
-
-      .register-card,
-      .about-panel {
-        padding: 22px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#581b32">
+<meta name="description" content="Discover meaningful matrimonial connections with PasandMatrimony.">
+<title>PasandMatrimony | Find Your Perfect Match</title>
+
+<style>
+:root {
+  --wine: #581b32;
+  --dark: #35101f;
+  --gold: #c99a78;
+  --cream: #fffaf6;
+  --muted: #786b71;
+  --border: #eadde1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: #34232b;
+  line-height: 1.55;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container { width: min(1150px, 94%); margin: auto; }
+
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-inner {
+  min-height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  color: var(--wine);
+  font-size: 24px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.logo span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.btn {
+  display: inline-block;
+  padding: 10px 17px;
+  border: 1px solid var(--wine);
+  border-radius: 6px;
+  background: var(--wine);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--dark); }
+
+.btn-outline { background: transparent; color: var(--wine); }
+
+.hero {
+  min-height: 440px;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark);
+  background-image:
+    linear-gradient(90deg, rgba(35,7,19,.88), rgba(45,9,24,.30)),
+    url("wedding-hero.png");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.hero-content { max-width: 620px; padding: 65px 0; }
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+
+.hero p { max-width: 540px; margin-bottom: 24px; color: #fff0f3; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.hero .btn { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+.hero .btn-outline { background: transparent; color: #fff; border-color: #fff; }
+
+.section { padding: 55px 0; }
+
+.section-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 28px;
+}
+
+.section-heading h2 {
+  font-family: Georgia, serif;
+  color: var(--wine);
+  font-size: clamp(27px, 3.5vw, 36px);
+  margin-bottom: 8px;
+}
+
+.section-heading p { color: var(--muted); font-size: 14px; }
+
+.search-area {
+  position: relative;
+  margin-top: -25px;
+}
+
+.search-box {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(65,20,39,.09);
+}
+
+.search-box h2 { color: var(--wine); font-size: 19px; margin-bottom: 12px; }
+
+.search-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+
+.field input, .field select {
+  width: 100%;
+  min-height: 43px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: #34232b;
+  font: inherit;
+}
+
+.section-soft { background: #f8eef1; }
+
+/* Compact profile cards */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.profile-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  box-shadow: 0 3px 12px rgba(65,20,39,.06);
+}
+
+.profile-card img, .profile-photo-placeholder {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  background: #f1e3e8;
+}
+
+.profile-photo-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--wine);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-card-content { padding: 12px; }
+
+.profile-card h3 {
+  color: var(--wine);
+  font-size: 16px;
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.profile-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 3px;
+  overflow-wrap: anywhere;
+}
+
+.profile-card .btn {
+  display: block;
+  width: 100%;
+  padding: 8px 4px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.status-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: #fff;
+  color: var(--muted);
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.about-grid, .join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.about-copy h2, .join-copy h2 {
+  color: var(--wine);
+  font-family: Georgia, serif;
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.about-copy p, .join-copy p { color: var(--muted); margin-bottom: 14px; }
+
+.about-panel {
+  padding: 28px;
+  border-radius: 10px;
+  background: var(--wine);
+  color: #fff;
+}
+
+.about-panel h3 { color: var(--gold); font-size: 23px; margin-bottom: 12px; }
+.about-panel p { margin-bottom: 10px; color: #f8eaf0; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.step-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: #fff;
+  font-weight: 800;
+  font-size: 19px;
+}
+
+.step-card h3 { color: var(--wine); margin-bottom: 7px; font-size: 17px; }
+.step-card p { color: var(--muted); font-size: 13px; }
+
+.join-section { background: var(--dark); color: #fff; }
+.join-copy h2 { color: #fff; }
+.join-copy p { color: #f2dfe6; }
+.join-copy .eyebrow { color: var(--gold); }
+
+.register-card { background: #fff; color: #34232b; padding: 24px; border-radius: 10px; }
+.register-card h3 { color: var(--wine); font-size: 22px; margin-bottom: 15px; }
+.register-form { display: grid; gap: 12px; }
+.register-form .btn { width: 100%; min-height: 44px; }
+.form-message { font-size: 13px; overflow-wrap: anywhere; }
+.login-note { text-align: center; font-size: 13px; color: var(--muted); }
+.login-note a { color: var(--wine); text-decoration: underline; font-weight: 700; }
+
+.footer { background: #250b16; color: #f8eaf0; padding: 28px 0 16px; }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; padding-bottom: 18px; }
+.footer .logo { color: #fff; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 15px; font-size: 13px; }
+.copyright { border-top: 1px solid #63404d; padding-top: 15px; text-align: center; color: #d9c2cb; font-size: 12px; }
+
+@media (max-width: 800px) {
+  .nav-inner { align-items: flex-start; flex-direction: column; padding: 12px 0; }
+  .nav-links { gap: 12px; }
+  .hero { min-height: 400px; }
+  .search-form { grid-template-columns: 1fr 1fr; }
+  .search-form button { grid-column: 1 / -1; }
+  .profile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .profile-card img, .profile-photo-placeholder { height: 125px; }
+  .about-grid, .join-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .logo { font-size: 22px; }
+  .nav-links { font-size: 12px; gap: 10px; }
+  .hero { min-height: 390px; }
+  .hero-content { padding: 48px 0; }
+  .section { padding: 42px 0; }
+  .profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .profile-card img, .profile-photo-placeholder { height: 125px; }
+  .profile-card-content { padding: 9px; }
+  .profile-card h3 { font-size: 14px; }
+  .profile-card p { font-size: 11px; }
+  .search-form { grid-template-columns: 1fr; }
+  .search-form button { grid-column: auto; }
+  .register-card, .about-panel { padding: 20px; }
+}
+</style>
 </head>
 
 <body>
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="index.html" class="logo">Pasand<span>Matrimony</span></a>
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">Pasand<span>Matrimony</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#featuredProfiles">Profiles</a>
+      <a href="#about">About Us</a>
+      <a href="#steps">How It Works</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn">Register</a>
+    </nav>
+  </div>
+</header>
 
-      <nav class="nav-links" aria-label="Main navigation">
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <div class="eyebrow">Your Journey Begins Here</div>
+      <h1>Find Your Perfect Life Partner</h1>
+      <p>Discover meaningful connections, meet compatible people, and take the first step toward a beautiful future together.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn">Create Free Account</a>
+        <a href="#featuredProfiles" class="btn btn-outline">Explore Profiles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="search-area">
+  <div class="container">
+    <div class="search-box">
+      <h2>Start Your Partner Search</h2>
+      <form class="search-form" id="searchForm">
+        <div class="field">
+          <label for="searchAge">Preferred Age</label>
+          <select id="searchAge">
+            <option value="">Any Age</option>
+            <option value="18-25">18–25 Years</option>
+            <option value="26-30">26–30 Years</option>
+            <option value="31-35">31–35 Years</option>
+            <option value="36-40">36–40 Years</option>
+            <option value="41-50">41–50 Years</option>
+            <option value="51+">51+ Years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="searchCity">Preferred City</label>
+          <input id="searchCity" type="text" maxlength="100" placeholder="Enter city">
+        </div>
+        <button class="btn" type="submit">Search Matches</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft" id="featuredProfiles">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Discover Connections</div>
+      <h2>Featured Profiles</h2>
+      <p>Explore member profiles and find someone who shares your values and hopes for the future.</p>
+    </div>
+    <div class="profile-grid" id="profileGrid">
+      <p class="status-message">Loading profiles...</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <div class="eyebrow">About PasandMatrimony</div>
+      <h2>Helping You Find a Meaningful Connection</h2>
+      <p>PasandMatrimony helps people discover matrimonial connections in a simple and convenient way.</p>
+      <p>Create your account, complete your profile, and begin exploring potential matches.</p>
+      <a href="register.html" class="btn">Join PasandMatrimony</a>
+    </div>
+    <div class="about-panel">
+      <h3>A Better Way to Begin</h3>
+      <p>Create a profile that represents you and what you are looking for in a life partner.</p>
+      <p>Browse available profiles and sign in to access member features.</p>
+      <p>Protect your personal information and communicate respectfully with other members.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft" id="steps">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Simple and Convenient</div>
+      <h2>How It Works</h2>
+      <p>Three simple steps to begin your matrimonial journey.</p>
+    </div>
+    <div class="steps-grid">
+      <article class="step-card">
+        <div class="step-number">1</div>
+        <h3>Create Your Account</h3>
+        <p>Register with your details and confirm your email if required.</p>
+      </article>
+      <article class="step-card">
+        <div class="step-number">2</div>
+        <h3>Complete Your Profile</h3>
+        <p>Add your details so potential matches can learn more about you.</p>
+      </article>
+      <article class="step-card">
+        <div class="step-number">3</div>
+        <h3>Explore Matches</h3>
+        <p>Discover profiles and sign in to access member features.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section join-section" id="join">
+  <div class="container join-grid">
+    <div class="join-copy">
+      <div class="eyebrow">Take the First Step</div>
+      <h2>Your New Beginning Could Start Today</h2>
+      <p>Join PasandMatrimony and start building your matrimonial profile.</p>
+      <a href="login.html" class="btn btn-outline">Already a Member? Login</a>
+    </div>
+    <div class="register-card">
+      <h3>Create Your Account</h3>
+      <form id="homeRegisterForm" class="register-form">
+        <div class="field">
+          <label for="homeName">Full Name</label>
+          <input id="homeName" type="text" autocomplete="name" maxlength="100" placeholder="Enter your full name" required>
+        </div>
+        <div class="field">
+          <label for="homeEmail">Email Address</label>
+          <input id="homeEmail" type="email" autocomplete="email" maxlength="254" placeholder="Enter your email" required>
+        </div>
+        <div class="field">
+          <label for="homeMobile">Mobile Number</label>
+          <input id="homeMobile" type="tel" autocomplete="tel" maxlength="20" placeholder="Enter your mobile number" required>
+        </div>
+        <div class="field">
+          <label for="homePassword">Password</label>
+          <input id="homePassword" type="password" autocomplete="new-password" minlength="6" placeholder="Create a password" required>
+        </div>
+        <button type="submit" class="btn" id="registerButton">Create Account</button>
+        <p id="registerMessage" class="form-message" role="status" aria-live="polite"></p>
+        <p class="login-note">Already have an account? <a href="login.html">Login here</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="logo">Pasand<span>Matrimony</span></a>
+      <nav class="footer-links" aria-label="Footer navigation">
         <a href="#home">Home</a>
-        <a href="#featuredProfiles">Profiles</a>
         <a href="#about">About Us</a>
         <a href="#steps">How It Works</a>
         <a href="login.html">Login</a>
-        <a href="register.html" class="btn">Register</a>
+        <a href="register.html">Register</a>
       </nav>
     </div>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="eyebrow">Your Journey Begins Here</div>
-          <h1>Find Your Perfect Life Partner</h1>
-          <p>
-            Discover meaningful connections, meet compatible people,
-            and take the first step toward a beautiful future together.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#homeRegisterForm" class="btn">Create Free Account</a>
-            <a href="#featuredProfiles" class="btn btn-outline">Explore Profiles</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="search-section">
-      <div class="container">
-        <div class="search-box">
-          <h2>Start Your Partner Search</h2>
-
-          <form class="search-form" id="searchForm">
-            <div class="field">
-              <label for="searchAge">Preferred Age</label>
-              <select id="searchAge" name="age">
-                <option value="">Any Age</option>
-                <option value="18-25">18–25 Years</option>
-                <option value="26-30">26–30 Years</option>
-                <option value="31-35">31–35 Years</option>
-                <option value="36-40">36–40 Years</option>
-                <option value="41-50">41–50 Years</option>
-                <option value="51+">51+ Years</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="searchCity">Preferred City</label>
-              <input
-                type="text"
-                id="searchCity"
-                name="city"
-                placeholder="Enter city"
-                maxlength="100"
-              >
-            </div>
-
-            <button type="submit" class="btn">Search Matches</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="featuredProfiles">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Discover Connections</div>
-          <h2>Featured Profiles</h2>
-          <p>
-            Explore member profiles and find someone who shares
-            your values and hopes for the future.
-          </p>
-        </div>
-
-        <div class="profile-grid" id="profileGrid">
-          <div class="status-message">Loading profiles...</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-copy">
-          <div class="eyebrow">About PasandMatrimony</div>
-          <h2>Helping You Find a Meaningful Connection</h2>
-          <p>
-            PasandMatrimony is designed to help people discover
-            matrimonial connections in a simple and convenient way.
-          </p>
-          <p>
-            Create your account, complete your profile, and begin
-            exploring potential matches. Your journey starts with
-            getting to know one another.
-          </p>
-          <a href="register.html" class="btn">Join PasandMatrimony</a>
-        </div>
-
-        <div class="about-panel">
-          <h3>A Better Way to Begin</h3>
-          <p>
-            Create a profile that represents you and what you are
-            looking for in a life partner.
-          </p>
-          <p>
-            Browse available profiles and use your account to access
-            member features.
-          </p>
-          <p>
-            Always protect your personal information and communicate
-            respectfully with other members.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="steps">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Simple and Convenient</div>
-          <h2>How It Works</h2>
-          <p>Three simple steps to begin your matrimonial journey.</p>
-        </div>
-
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-number">1</div>
-            <h3>Create Your Account</h3>
-            <p>
-              Register with your details and verify your email
-              if email confirmation is enabled.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-number">2</div>
-            <h3>Complete Your Profile</h3>
-            <p>
-              Add your personal details so potential matches
-              can learn more about you.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-number">3</div>
-            <h3>Explore Matches</h3>
-            <p>
-              Discover profiles and sign in to access
-              member-only features.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section register-section" id="join">
-      <div class="container register-grid">
-        <div class="register-copy">
-          <div class="eyebrow">Take the First Step</div>
-          <h2>Your New Beginning Could Start Today</h2>
-          <p>
-            Join PasandMatrimony and start building your matrimonial
-            profile. It only takes a few details to get started.
-          </p>
-          <a href="login.html" class="btn btn-outline">Already a Member? Login</a>
-        </div>
-
-        <div class="register-card">
-          <h3>Create Your Account</h3>
-
-          <form id="homeRegisterForm" class="register-form">
-            <div class="field">
-              <label for="homeName">Full Name</label>
-              <input
-                type="text"
-                id="homeName"
-                name="full_name"
-                placeholder="Enter your full name"
-                autocomplete="name"
-                maxlength="100"
-                required
-              >
-            </div>
-
-            <div class="field">
-              <label for="homeEmail">Email Address</label>
-              <input
-                type="email"
-                id="homeEmail"
-                name="email"
-                placeholder="Enter your email"
-                autocomplete="email"
-                maxlength="254"
-                required
-              >
-            </div>
-
-            <div class="field">
-              <label for="homeMobile">Mobile Number</label>
-              <input
-                type="tel"
-                id="homeMobile"
-                name="mobile"
-                placeholder="Enter your mobile number"
-                autocomplete="tel"
-                maxlength="20"
-                required
-              >
-            </div>
-
-            <div class="field">
-              <label for="homePassword">Password</label>
-              <input
-                type="password"
-                id="homePassword"
-                name="password"
-                placeholder="Create a password"
-                autocomplete="new-password"
-                minlength="6"
-                required
-              >
-            </div>
-
-            <button type="submit" class="btn" id="createAccountButton">
-              Create Account
-            </button>
-
-            <p class="form-message" id="registerMessage" role="status" aria-live="polite"></p>
-
-            <p class="login-note">
-              Already have an account?
-              <a href="login.html">Login here</a>
-            </p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <a href="index.html" class="logo">Pasand<span>Matrimony</span></a>
-
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#home">Home</a>
-          <a href="#about">About Us</a>
-          <a href="#steps">How It Works</a>
-          <a href="login.html">Login</a>
-          <a href="register.html">Register</a>
-        </nav>
-      </div>
-
-      <div class="copyright">
-        &copy; <span id="year"></span> PasandMatrimony. All rights reserved.
-      </div>
+    <div class="copyright">
+      &copy; <span id="year"></span> PasandMatrimony. All rights reserved.
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 
-  <script>
-    "use strict";
+<script>
+"use strict";
 
-    const yearElement = document.getElementById("year");
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function getClient() {
+  if (typeof supabaseClient !== "undefined") return supabaseClient;
+  if (window.supabaseClient) return window.supabaseClient;
+  return null;
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, function (c) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[c];
+  });
+}
+
+function photoURL(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return url.protocol === "https:" ? url.href : "";
+  } catch {
+    return "";
+  }
+}
+
+async function loadProfiles() {
+  const grid = document.getElementById("profileGrid");
+  const client = getClient();
+
+  if (!client) {
+    grid.innerHTML = '<p class="status-message">Profiles are temporarily unavailable. Please try again later.</p>';
+    console.error("Supabase client not found. Check supabase-config.js.");
+    return;
+  }
+
+  try {
+    const { data, error } = await client.rpc("get_public_profiles");
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      grid.innerHTML = '<p class="status-message">No profiles are available yet.</p>';
+      return;
     }
 
-    function getSupabaseClient() {
-      if (typeof supabaseClient !== "undefined") {
-        return supabaseClient;
-      }
+    grid.innerHTML = data.map(function (p) {
+      const name = escapeHTML(p.full_name || "Member");
+      const age = p.age ? escapeHTML(p.age) + " years" : "Not specified";
+      const city = escapeHTML(p.city || "Not specified");
+      const education = escapeHTML(p.education || "Not specified");
+      const status = escapeHTML(p.marital_status || "Not specified");
+      const image = photoURL(p.photo_url);
 
-      if (window.supabaseClient) {
-        return window.supabaseClient;
-      }
+      const picture = image
+        ? '<img src="' + escapeHTML(image) + '" alt="Profile photo" loading="lazy">'
+        : '<div class="profile-photo-placeholder">Profile Photo</div>';
 
-      return null;
-    }
+      return `
+        <article class="profile-card">
+          ${picture}
+          <div class="profile-card-content">
+            <h3>${name}</h3>
+            <p><strong>Age:</strong> ${age}</p>
+            <p><strong>City:</strong> ${city}</p>
+            <p><strong>Education:</strong> ${education}</p>
+            <p><strong>Marital Status:</strong> ${status}</p>
+            <a class="btn" href="login.html?next=profile.html">View Profile</a>
+          </div>
+        </article>`;
+    }).join("");
+  } catch (error) {
+    console.error("Profile loading error:", error);
+    grid.innerHTML = '<p class="status-message">Profiles are temporarily unavailable. Please try again later.</p>';
+  }
+}
 
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, function (char) {
-        const entities = {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;"
-        };
+document.getElementById("searchForm").addEventListener("submit", function (event) {
+  event.preventDefault();
 
-        return entities[char];
-      });
-    }
+  const params = new URLSearchParams();
+  const age = document.getElementById("searchAge").value;
+  const city = document.getElementById("searchCity").value.trim();
 
-    function safePhotoURL(value) {
-      if (!value) return "";
+  if (age) params.set("age", age);
+  if (city) params.set("city", city);
 
-      try {
-        const url = new URL(String(value));
+  const query = params.toString();
+  window.location.href = "login.html?next=profile.html" + (query ? "&" + query : "");
+});
 
-        if (url.protocol === "https:") {
-          return url.href;
-        }
-      } catch (error) {
-        return "";
-      }
+document.getElementById("homeRegisterForm").addEventListener("submit", async function (event) {
+  event.preventDefault();
 
-      return "";
-    }
+  const form = event.currentTarget;
+  const message = document.getElementById("registerMessage");
+  const button = document.getElementById("registerButton");
+  const client = getClient();
 
-    async function loadPublicProfiles() {
-      const grid = document.getElementById("profileGrid");
-      if (!grid) return;
+  if (!client) {
+    message.textContent = "Registration is temporarily unavailable. Please try again later.";
+    return;
+  }
 
-      const client = getSupabaseClient();
+  const fullName = document.getElementById("homeName").value.trim();
+  const email = document.getElementById("homeEmail").value.trim();
+  const mobile = document.getElementById("homeMobile").value.trim();
+  const password = document.getElementById("homePassword").value;
 
-      if (!client) {
-        grid.innerHTML =
-          '<p class="status-message">Profiles are temporarily unavailable. Please try again later.</p>';
-        console.error("Supabase client was not found. Check supabase-config.js.");
-        return;
-      }
+  button.disabled = true;
+  button.textContent = "Creating Account...";
+  message.textContent = "";
 
-      try {
-        const result = await client.rpc("get_public_profiles");
-
-        if (result.error) {
-          throw result.error;
-        }
-
-        const profiles = result.data || [];
-
-        if (profiles.length === 0) {
-          grid.innerHTML =
-            '<p class="status-message">No profiles are available yet. Please check again later.</p>';
-          return;
-        }
-
-        grid.innerHTML = profiles.map(function (profile) {
-          const name = escapeHTML(profile.full_name || "Member");
-          const age = profile.age
-            ? escapeHTML(profile.age) + " years"
-            : "Not specified";
-          const city = escapeHTML(profile.city || "Not specified");
-          const education = escapeHTML(profile.education || "Not specified");
-          const maritalStatus = escapeHTML(
-            profile.marital_status || "Not specified"
-          );
-          const photoURL = safePhotoURL(profile.photo_url);
-
-          const photoHTML = photoURL
-            ? '<img src="' + escapeHTML(photoURL) +
-              '" alt="Profile photo" loading="lazy">'
-            : '<div class="profile-photo-placeholder">Profile Photo</div>';
-
-          return `
-            <article class="profile-card">
-              ${photoHTML}
-              <div class="profile-card-content">
-                <h3>${name}</h3>
-                <p><strong>Age:</strong> ${age}</p>
-                <p><strong>City:</strong> ${city}</p>
-                <p><strong>Education:</strong> ${education}</p>
-                <p><strong>Marital Status:</strong> ${maritalStatus}</p>
-                <a class="btn" href="login.html?next=profile.html">
-                  View Profile
-                </a>
-              </div>
-            </article>
-          `;
-        }).join("");
-      } catch (error) {
-        console.error("Could not load public profiles:", error);
-
-        grid.innerHTML =
-          '<p class="status-message">Profiles are temporarily unavailable. Please try again later.</p>';
-      }
-    }
-
-    document.getElementById("searchForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const params = new URLSearchParams();
-      const age = document.getElementById("searchAge").value;
-      const city = document.getElementById("searchCity").value.trim();
-
-      if (age) params.set("age", age);
-      if (city) params.set("city", city);
-
-      const query = params.toString();
-      window.location.href = "login.html?next=profile.html" +
-        (query ? "&" + query : "");
-    });
-
-    document.getElementById("homeRegisterForm").addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const form = event.currentTarget;
-      const message = document.getElementById("registerMessage");
-      const button = document.getElementById("createAccountButton");
-      const client = getSupabaseClient();
-
-      if (!client) {
-        message.textContent =
-          "Registration is temporarily unavailable. Please try again later.";
-        return;
-      }
-
-      const fullName = document.getElementById("homeName").value.trim();
-      const email = document.getElementById("homeEmail").value.trim();
-      const mobile = document.getElementById("homeMobile").value.trim();
-      const password = document.getElementById("homePassword").value;
-
-      if (!fullName || !email || !mobile || !password) {
-        message.textContent = "Please complete all fields.";
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = "Creating Account...";
-      message.textContent = "";
-
-      try {
-        const { data, error } = await client.auth.signUp({
-          email: email,
-          password: password,
-          options: {
-            data: {
-              full_name: fullName,
-              mobile: mobile
-            },
-            emailRedirectTo: window.location.origin + "/profile.html"
-          }
-        });
-
-        if (error) throw error;
-
-        if (data.user && data.session) {
-          message.textContent =
-            "Your account has been created. Opening your profile...";
-          form.reset();
-
-          window.setTimeout(function () {
-            window.location.href = "profile.html";
-          }, 1000);
-        } else {
-          message.textContent =
-            "Registration submitted. Please check your email for a confirmation link before logging in.";
-          form.reset();
-        }
-      } catch (error) {
-        console.error("Registration error:", error);
-        message.textContent =
-          error.message || "Registration failed. Please try again.";
-      } finally {
-        button.disabled = false;
-        button.textContent = "Create Account";
+  try {
+    const { data, error } = await client.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: fullName, mobile },
+        emailRedirectTo: window.location.origin + "/profile.html"
       }
     });
 
-    loadPublicProfiles();
-  </script>
+    if (error) throw error;
+
+    if (data.user && data.session) {
+      message.textContent = "Account created. Opening your profile...";
+      form.reset();
+      window.setTimeout(function () {
+        window.location.href = "profile.html";
+      }, 1000);
+    } else {
+      message.textContent = "Registration submitted. Please check your email for a confirmation link.";
+      form.reset();
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    message.textContent = error.message || "Registration failed. Please try again.";
+  } finally {
+    button.disabled = false;
+    button.textContent = "Create Account";
+  }
+});
+
+loadProfiles();
+</script>
 </body>
 </html>
