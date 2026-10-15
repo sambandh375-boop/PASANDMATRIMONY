@@ -5,325 +5,170 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#e60063">
 <title>PasandMatrimony | Find Your Life Partner</title>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--pink:#e60063;--dark:#54102f}
-body{
-  font-family:Arial,sans-serif;
-  color:var(--dark);
-  background:#fff7fb;
-  line-height:1.5;
-}
+body{font-family:Arial,sans-serif;color:var(--dark);background:#fff7fb;line-height:1.5}
 a{text-decoration:none}
-.topbar{
-  background:#750039;color:white;text-align:center;
-  padding:7px;font-size:13px;
-}
-header{
-  background:white;display:flex;justify-content:space-between;
-  align-items:center;gap:15px;padding:15px 5%;
-  border-bottom:1px solid #f3d8e5;
-}
+.topbar{background:#750039;color:white;text-align:center;padding:7px;font-size:13px}
+header{background:white;display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 5%;border-bottom:1px solid #f3d8e5}
 .logo{font-size:25px;font-weight:800;color:var(--pink)}
 .logo span{color:var(--dark)}
 nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 nav a{color:var(--dark);font-size:14px;font-weight:bold}
-nav .navbtn{
-  background:var(--pink);color:white;padding:10px 17px;
-  border-radius:25px;
-}
-.hero{
-  min-height:650px;padding:45px 5%;
-  display:flex;align-items:center;
-  background:
-    linear-gradient(90deg,rgba(255,245,250,.65),rgba(255,238,246,.12)),
-    url("wedding-hero.png") center center/cover no-repeat;
-}
+nav .navbtn{background:var(--pink);color:white;padding:10px 17px;border-radius:25px}
+.hero{min-height:650px;padding:45px 5%;display:flex;align-items:center;background:linear-gradient(90deg,rgba(255,245,250,.65),rgba(255,238,246,.12)),url("wedding-hero.png") center/cover no-repeat}
 .hero-inner{width:100%;max-width:1250px;margin:auto}
-.registration-card{
-  width:100%;max-width:440px;
-  padding:28px;background:rgba(255,255,255,.96);
-  border:1px solid #f4c7dc;border-radius:20px;
-  box-shadow:0 12px 40px #54102f25;
-}
+.registration-card{width:100%;max-width:440px;padding:28px;background:rgba(255,255,255,.96);border:1px solid #f4c7dc;border-radius:20px;box-shadow:0 12px 40px #54102f25}
 .registration-card h1{font-size:30px;line-height:1.25;margin-bottom:8px}
 .subtitle{font-size:14px;color:#806b79;margin-bottom:20px}
 .form-fields{display:grid;gap:12px}
 .form-fields label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}
-.form-fields input{
-  width:100%;padding:12px;border:1px solid #e9cfdd;
-  border-radius:9px;font-size:15px;
-}
-.form-fields input:focus{outline:2px solid #f3a5c7}
-.primary-btn{
-  width:100%;padding:13px;margin-top:8px;border:0;
-  border-radius:10px;background:var(--pink);color:white;
-  font-size:16px;font-weight:bold;cursor:pointer;
-}
+.form-fields input{width:100%;padding:12px;border:1px solid #e9cfdd;border-radius:9px;font-size:15px}
+.primary-btn{width:100%;padding:13px;margin-top:8px;border:0;border-radius:10px;background:var(--pink);color:white;font-size:16px;font-weight:bold;cursor:pointer}
 .primary-btn:disabled{opacity:.65;cursor:wait}
 .login-note{text-align:center;font-size:13px;margin-top:15px}
 .login-note a{color:var(--pink);font-weight:bold}
 .privacy-note{text-align:center;font-size:11px;color:#806b79;margin-top:10px}
 #registerMessage{font-size:13px;overflow-wrap:anywhere;margin-top:10px}
 .search-wrap{position:relative;margin:-40px auto 0;padding:0 5%}
-.search-box{
-  max-width:1150px;margin:auto;background:white;padding:25px;
-  border-radius:18px;box-shadow:0 10px 35px #64113b18;
-}
+.search-box{max-width:1150px;margin:auto;background:white;padding:25px;border-radius:18px;box-shadow:0 10px 35px #64113b18}
 .section-title{text-align:center;font-size:27px}
 .section-subtitle{text-align:center;color:#806b79;margin:7px 0 20px}
-.search-form{
-  display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;
-}
-.search-form select{
-  width:100%;min-width:0;padding:13px;
-  border:1px solid #e9cfdd;border-radius:9px;font-size:14px;
-}
-.search-btn{
-  padding:13px 18px;background:var(--pink);color:white;
-  border:0;border-radius:9px;font-weight:bold;cursor:pointer;
-}
+.search-form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px}
+.search-form select{width:100%;min-width:0;padding:13px;border:1px solid #e9cfdd;border-radius:9px;font-size:14px}
+.search-btn{padding:13px 18px;background:var(--pink);color:white;border:0;border-radius:9px;font-weight:bold;cursor:pointer}
 .section{padding:65px 5%;text-align:center}
 .section h2,.steps h2{font-size:clamp(27px,3vw,36px)}
-.features,.step-grid{
-  max-width:1100px;margin:28px auto 0;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-}
-.card,.step{
-  background:white;border:1px solid #f0d6e3;
-  border-radius:16px;padding:23px 15px;
-}
+.features,.step-grid{max-width:1100px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card,.step{background:white;border:1px solid #f0d6e3;border-radius:16px;padding:23px 15px}
 .icon{font-size:30px;margin-bottom:10px}
 .card p,.step p{font-size:14px;color:#806b79;margin-top:7px}
 .steps{background:#fff0f6;padding:55px 5%;text-align:center}
 .step-grid{grid-template-columns:repeat(3,1fr)}
 .number{font-size:28px;font-weight:bold;color:var(--pink)}
 .step h3{margin:7px 0}
-.cta{
-  background:linear-gradient(110deg,#e60063,#8c0644);
-  color:white;text-align:center;padding:45px 5%;
-}
+.cta{background:linear-gradient(110deg,#e60063,#8c0644);color:white;text-align:center;padding:45px 5%}
 .cta h2{font-size:clamp(26px,3vw,36px)}
 .cta p{margin:10px 0 20px}
-.cta .btn{
-  display:inline-block;background:white;color:var(--pink);
-  padding:12px 22px;border-radius:10px;font-weight:bold;
-}
+.cta .btn{display:inline-block;background:white;color:var(--pink);padding:12px 22px;border-radius:10px;font-weight:bold}
 footer{background:#321424;color:white;text-align:center;padding:28px 5%}
 footer .logo{color:white}
 footer .logo span{color:#ffb8d3}
 footer p{font-size:13px;color:#eadce4;margin-top:8px}
 .footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:16px 0}
 .footer-links a{color:white;font-size:13px}
-
-@media(max-width:850px){
-  header{flex-direction:column}
-  nav{justify-content:center}
-  .hero{background-position:60% center}
-  .search-form{grid-template-columns:1fr 1fr}
-  .features{grid-template-columns:1fr 1fr}
-}
-@media(max-width:560px){
-  header{padding:13px 4%}
-  .logo{font-size:22px}
-  nav{gap:12px}
-  nav a{font-size:12px}
-  .hero{min-height:650px;padding:30px 4%;background-position:60% center}
-  .registration-card{margin:auto;padding:22px 18px}
-  .registration-card h1{font-size:26px}
-  .search-wrap{padding:0 4%;margin-top:-28px}
-  .search-box{padding:20px 14px}
-  .section{padding:45px 5%}
-  .search-form,.features,.step-grid{grid-template-columns:1fr}
-}
+@media(max-width:850px){header{flex-direction:column}nav{justify-content:center}.hero{background-position:60% center}.search-form{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){header{padding:13px 4%}.logo{font-size:22px}nav{gap:12px}nav a{font-size:12px}.hero{min-height:650px;padding:30px 4%;background-position:60% center}.registration-card{margin:auto;padding:22px 18px}.registration-card h1{font-size:26px}.search-wrap{padding:0 4%;margin-top:-28px}.search-box{padding:20px 14px}.section{padding:45px 5%}.search-form,.features,.step-grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
 <div class="topbar">♥ Trust • Respect • Beautiful Relationships</div>
-
 <header>
-  <a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#steps">How It Works</a>
-    <a href="login.html">Login</a>
-    <a class="navbtn" href="register.html">Register</a>
-  </nav>
+<a class="logo" href="index.html">♥ Pasand<span>Matrimony</span></a>
+<nav>
+<a href="index.html">Home</a>
+<a href="#about">About Us</a>
+<a href="#steps">How It Works</a>
+<a href="login.html">Login</a>
+<a class="navbtn" href="register.html">Register</a>
+<a href="profile.html">Your Profile</a>
+</nav>
 </header>
-
 <main>
 <section class="hero">
-  <div class="hero-inner">
-    <div class="registration-card">
-      <h1>Create Your Account</h1>
-      <p class="subtitle">Find your perfect life partner and begin a beautiful journey.</p>
-
-      <form class="form-fields" id="homeRegisterForm">
-        <div>
-          <label for="homeName">Full Name</label>
-          <input id="homeName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required>
-        </div>
-        <div>
-          <label for="homeEmail">Email Address</label>
-          <input id="homeEmail" type="email" placeholder="Enter your email address" autocomplete="email" required>
-        </div>
-        <div>
-          <label for="homeMobile">Mobile Number</label>
-          <input id="homeMobile" type="tel" placeholder="Enter your mobile number" autocomplete="tel" required>
-        </div>
-        <div>
-          <label for="homePassword">Password (minimum 8 characters)</label>
-          <input id="homePassword" type="password" placeholder="Create a password" minlength="8" autocomplete="new-password" required>
-        </div>
-        <button class="primary-btn" id="createAccountButton" type="submit">Create Account →</button>
-        <p id="registerMessage" role="status" aria-live="polite"></p>
-      </form>
-
-      <p class="login-note">Already have an account? <a href="login.html">Login</a></p>
-      <p class="privacy-note">🔒 Your information should be kept secure.</p>
-    </div>
-  </div>
+<div class="hero-inner">
+<div class="registration-card">
+<h1>Create Your Account</h1>
+<p class="subtitle">Find your perfect life partner and begin a beautiful journey.</p>
+<form class="form-fields" id="homeRegisterForm">
+<div><label for="homeName">Full Name</label><input id="homeName" type="text" placeholder="Enter your full name" autocomplete="name" maxlength="100" required></div>
+<div><label for="homeEmail">Email Address</label><input id="homeEmail" type="email" placeholder="Enter your email address" autocomplete="email" required></div>
+<div><label for="homeMobile">Mobile Number</label><input id="homeMobile" type="tel" placeholder="Enter your mobile number" autocomplete="tel" required></div>
+<div><label for="homePassword">Password (minimum 8 characters)</label><input id="homePassword" type="password" placeholder="Create a password" minlength="8" autocomplete="new-password" required></div>
+<button class="primary-btn" id="createAccountButton" type="submit">Create Account →</button>
+<p id="registerMessage" role="status" aria-live="polite"></p>
+</form>
+<p class="login-note">Already have an account? <a href="login.html">Login</a></p>
+<p class="privacy-note">🔒 Keep your account details secure.</p>
+</div>
+</div>
 </section>
-
 <section class="search-wrap">
-  <div class="search-box">
-    <h2 class="section-title">Find Your Life Partner</h2>
-    <p class="section-subtitle">Choose your preferences to start your search.</p>
-    <form class="search-form" id="searchForm">
-      <select id="gender" aria-label="Select partner">
-        <option value="">Select Partner</option>
-        <option value="woman">Find a Bride</option>
-        <option value="man">Find a Groom</option>
-      </select>
-      <select id="age" aria-label="Select age">
-        <option value="">Select Age</option>
-        <option value="18-25">18–25 years</option>
-        <option value="26-35">26–35 years</option>
-        <option value="36-45">36–45 years</option>
-        <option value="46-60">46–60 years</option>
-      </select>
-      <select id="city" aria-label="Select city">
-        <option value="">Select City</option>
-        <option value="Lucknow">Lucknow</option>
-        <option value="Varanasi">Varanasi</option>
-        <option value="Gorakhpur">Gorakhpur</option>
-        <option value="Patna">Patna</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Other">Other City</option>
-      </select>
-      <button class="search-btn" type="submit">⌕ Search Matches</button>
-    </form>
-  </div>
+<div class="search-box">
+<h2 class="section-title">Find Your Life Partner</h2>
+<p class="section-subtitle">Choose your preferences to start your search.</p>
+<form class="search-form" id="searchForm">
+<select id="gender" aria-label="Select partner"><option value="">Select Partner</option><option value="woman">Find a Bride</option><option value="man">Find a Groom</option></select>
+<select id="age" aria-label="Select age"><option value="">Select Age</option><option value="18-25">18–25 years</option><option value="26-35">26–35 years</option><option value="36-45">36–45 years</option><option value="46-60">46–60 years</option></select>
+<select id="city" aria-label="Select city"><option value="">Select City</option><option value="Lucknow">Lucknow</option><option value="Varanasi">Varanasi</option><option value="Gorakhpur">Gorakhpur</option><option value="Patna">Patna</option><option value="Delhi">Delhi</option><option value="Other">Other City</option></select>
+<button class="search-btn" type="submit">⌕ Search Matches</button>
+</form>
+</div>
 </section>
-
 <section class="section" id="about">
-  <h2>Why Choose PasandMatrimony?</h2>
-  <p class="section-subtitle">Begin your journey to a meaningful relationship.</p>
-  <div class="features">
-    <article class="card"><div class="icon">👤</div><h3>Your Profile</h3><p>Create your profile with your personal details.</p></article>
-    <article class="card"><div class="icon">🔍</div><h3>Easy Search</h3><p>Explore matches based on your preferences.</p></article>
-    <article class="card"><div class="icon">🔒</div><h3>Account Security</h3><p>Log in to manage your profile.</p></article>
-    <article class="card"><div class="icon">💗</div><h3>New Beginnings</h3><p>Build relationships with trust and respect.</p></article>
-  </div>
+<h2>Why Choose PasandMatrimony?</h2>
+<p class="section-subtitle">Begin your journey to a meaningful relationship.</p>
+<div class="features">
+<article class="card"><div class="icon">👤</div><h3>Your Profile</h3><p>Create your profile with your personal details.</p></article>
+<article class="card"><div class="icon">🔍</div><h3>Easy Search</h3><p>Explore matches based on your preferences.</p></article>
+<article class="card"><div class="icon">🔒</div><h3>Account Security</h3><p>Log in to manage your profile.</p></article>
+<article class="card"><div class="icon">💗</div><h3>New Beginnings</h3><p>Build relationships with trust and respect.</p></article>
+</div>
 </section>
-
 <section class="steps" id="steps">
-  <h2>How It Works</h2>
-  <p class="section-subtitle">Start your journey in three simple steps.</p>
-  <div class="step-grid">
-    <article class="step"><div class="number">01</div><h3>Create an Account</h3><p>Register and verify your email address.</p></article>
-    <article class="step"><div class="number">02</div><h3>Complete Your Profile</h3><p>Add your details and save your profile.</p></article>
-    <article class="step"><div class="number">03</div><h3>Find Matches</h3><p>Explore available profiles and find a match.</p></article>
-  </div>
+<h2>How It Works</h2><p class="section-subtitle">Start your journey in three simple steps.</p>
+<div class="step-grid">
+<article class="step"><div class="number">01</div><h3>Create an Account</h3><p>Register and verify your email address.</p></article>
+<article class="step"><div class="number">02</div><h3>Complete Your Profile</h3><p>Add your details and save your profile.</p></article>
+<article class="step"><div class="number">03</div><h3>Find Matches</h3><p>Log in to search available profiles.</p></article>
+</div>
 </section>
-
-<section class="cta">
-  <h2>Start Your Beautiful Journey Today</h2>
-  <p>Create your profile and take the first step.</p>
-  <a class="btn" href="register.html">Register Now</a>
-</section>
+<section class="cta"><h2>Start Your Beautiful Journey Today</h2><p>Create your profile and take the first step.</p><a class="btn" href="register.html">Register Now</a></section>
 </main>
-
 <footer>
-  <div class="logo">♥ Pasand<span>Matrimony</span></div>
-  <p>Trust, respect, and the beginning of beautiful relationships.</p>
-  <div class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="#about">About Us</a>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-    <a href="profile.html">My Profile</a>
-  </div>
-  <p>© 2026 PasandMatrimony. All rights reserved.</p>
+<div class="logo">♥ Pasand<span>Matrimony</span></div>
+<p>Trust, respect, and the beginning of beautiful relationships.</p>
+<div class="footer-links"><a href="index.html">Home</a><a href="#about">About Us</a><a href="login.html">Login</a><a href="register.html">Register</a><a href="profile.html">My Profile</a></div>
+<p>© 2026 PasandMatrimony. All rights reserved.</p>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
-
 <script>
-const homeRegisterForm = document.getElementById("homeRegisterForm");
-const registerMessage = document.getElementById("registerMessage");
-const createAccountButton = document.getElementById("createAccountButton");
+const homeRegisterForm=document.getElementById("homeRegisterForm");
+const registerMessage=document.getElementById("registerMessage");
+const createAccountButton=document.getElementById("createAccountButton");
 
-homeRegisterForm.addEventListener("submit", async function(event) {
-  event.preventDefault();
-
-  const name = document.getElementById("homeName").value.trim();
-  const email = document.getElementById("homeEmail").value.trim();
-  const mobile = document.getElementById("homeMobile").value.trim();
-  const password = document.getElementById("homePassword").value;
-
-  createAccountButton.disabled = true;
-  createAccountButton.textContent = "Creating Account...";
-  registerMessage.textContent = "Please wait...";
-
-  try {
-    if (typeof supabaseClient === "undefined") {
-      throw new Error("Supabase connection not found. Check supabase-config.js.");
-    }
-
-    const { data, error } = await supabaseClient.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          full_name: name,
-          mobile: mobile
-        }
-      }
-    });
-
-    if (error) throw error;
-
-    if (data.session) {
-      registerMessage.textContent = "Account created successfully! Opening your profile...";
-      window.location.href = "profile.html";
-    } else {
-      registerMessage.textContent = "Registration submitted! Please check your email to verify your account, then log in.";
-    }
-  } catch (error) {
-    registerMessage.textContent = "Registration failed: " + error.message;
-  } finally {
-    createAccountButton.disabled = false;
-    createAccountButton.textContent = "Create Account →";
-  }
+homeRegisterForm.addEventListener("submit",async function(event){
+event.preventDefault();
+const name=document.getElementById("homeName").value.trim();
+const email=document.getElementById("homeEmail").value.trim();
+const mobile=document.getElementById("homeMobile").value.trim();
+const password=document.getElementById("homePassword").value;
+createAccountButton.disabled=true;
+createAccountButton.textContent="Creating Account...";
+registerMessage.textContent="Please wait...";
+try{
+if(typeof supabaseClient==="undefined")throw new Error("Supabase connection not found. Check supabase-config.js.");
+const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name:name,mobile}}});
+if(error)throw error;
+if(data.session){
+registerMessage.textContent="Account created! Opening your profile...";
+window.location.href="profile.html";
+}else{
+registerMessage.textContent="Registration submitted. Check your email for verification, then log in.";
+}
+}catch(error){
+registerMessage.textContent="Registration failed: "+error.message;
+}finally{
+createAccountButton.disabled=false;
+createAccountButton.textContent="Create Account →";
+}
 });
 
-document.getElementById("searchForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const params = new URLSearchParams();
-  const gender = document.getElementById("gender").value;
-  const age = document.getElementById("age").value;
-  const city = document.getElementById("city").value;
-
-  if (gender) params.set("gender", gender);
-  if (age) params.set("age", age);
-  if (city) params.set("city", city);
-
-  window.location.href = "search.html?" + params.toString();
+document.getElementById("searchForm").addEventListener("submit",function(event){
+event.preventDefault();
+window.location.href="login.html";
 });
 </script>
 </body>
