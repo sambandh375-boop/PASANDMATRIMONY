@@ -253,6 +253,14 @@ document.getElementById("searchForm").addEventListener("submit",function(e){
   if(city)params.set("city",city);
   window.location.href="search.html?"+params.toString();
 });
+  const homeRegisterForm = document.querySelector(".registration-card form");
+
+if (homeRegisterForm) {
+  homeRegisterForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    window.location.href = "register.html";
+  });
+}
 </script>
 </body>
 </html>
