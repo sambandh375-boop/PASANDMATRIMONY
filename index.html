@@ -26,7 +26,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 95px;
+      scroll-padding-top: 90px;
     }
 
     body {
@@ -37,8 +37,8 @@
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
     button, input, select {
@@ -80,7 +80,8 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 18px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -120,73 +121,81 @@
       border-color: var(--burgundy);
     }
 
-    /* Hero */
+    /* Full-width wedding photo hero */
 
     .hero {
-      padding: 65px 0;
-      background: linear-gradient(120deg, #fff4f0, #f5e2e8);
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      padding: 90px 0;
+      color: white;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(45, 9, 25, .82),
+          rgba(65, 15, 36, .56),
+          rgba(45, 9, 25, .25)
+        ),
+        url("wedding-hero.png") center center / cover no-repeat;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      align-items: center;
-      gap: 42px;
+    .hero-content {
+      width: 100%;
+      max-width: 800px;
     }
 
     .eyebrow {
-      color: var(--burgundy);
+      color: var(--gold);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     h1 {
-      color: var(--dark);
-      font-size: clamp(36px, 4.5vw, 57px);
-      line-height: 1.12;
-      margin-bottom: 20px;
+      color: white;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.1;
+      margin-bottom: 22px;
     }
 
     h1 span {
-      color: var(--rose);
+      color: #f2d39a;
     }
 
     .hero-copy {
-      color: var(--muted);
-      font-size: 17px;
-      margin-bottom: 25px;
-      max-width: 550px;
+      max-width: 650px;
+      color: #fff5f7;
+      font-size: 18px;
+      margin-bottom: 28px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 13px;
       flex-wrap: wrap;
     }
 
-    .hero-visual {
-      height: 380px;
-      overflow: hidden;
-      border-radius: 24px;
-      background: #ead4dc;
-      box-shadow: 0 18px 45px #651b3520;
+    .hero .btn-primary {
+      background: var(--gold);
+      color: var(--dark);
     }
 
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+    .hero .btn-primary:hover {
+      background: #ebcb8d;
+    }
+
+    .hero .btn-outline {
+      color: white;
+      background: rgba(255,255,255,.10);
+      border-color: white;
     }
 
     .trust-strip {
       background: white;
       border-bottom: 1px solid var(--border);
-      padding: 19px 0;
+      padding: 20px 0;
     }
 
     .trust-items {
@@ -200,8 +209,6 @@
       font-size: 14px;
       text-align: center;
     }
-
-    /* Sections */
 
     .section {
       padding: 70px 0;
@@ -225,7 +232,7 @@
       color: var(--muted);
     }
 
-    /* Search */
+    /* Search form */
 
     .search-section {
       background: white;
@@ -347,7 +354,7 @@
       margin-top: 20px;
     }
 
-    /* About */
+    /* About section */
 
     .about-grid {
       display: grid;
@@ -357,17 +364,11 @@
     }
 
     .about-visual {
-      height: 290px;
-      overflow: hidden;
+      min-height: 290px;
       border-radius: 20px;
-      background: #ead4dc;
-    }
-
-    .about-visual img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
+      background:
+        linear-gradient(rgba(45,9,25,.25), rgba(45,9,25,.25)),
+        url("wedding-hero.png") center / cover no-repeat;
     }
 
     .about-copy h2 {
@@ -494,10 +495,6 @@
     }
 
     @media (max-width: 900px) {
-      .nav-links {
-        gap: 12px;
-      }
-
       .search-box {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -506,8 +503,8 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .hero-visual {
-        height: 320px;
+      .hero {
+        min-height: 540px;
       }
     }
 
@@ -521,7 +518,6 @@
       .nav-links {
         width: 100%;
         gap: 12px;
-        flex-wrap: wrap;
         font-size: 13px;
       }
 
@@ -530,17 +526,13 @@
       }
 
       .hero {
-        padding: 42px 0;
+        min-height: 520px;
+        padding: 65px 0;
+        background-position: 62% center;
       }
 
-      .hero-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .hero-visual {
-        height: 300px;
+      .hero-copy {
+        font-size: 16px;
       }
 
       .section {
@@ -550,7 +542,8 @@
       .search-box,
       .profile-grid,
       .steps-grid,
-      .footer-grid {
+      .footer-grid,
+      .about-grid {
         grid-template-columns: 1fr;
       }
 
@@ -587,8 +580,8 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
+      <div class="container">
+        <div class="hero-content">
           <div class="eyebrow">Your Journey, Your Choice</div>
           <h1>Find Your <span>Perfect Life Partner</span></h1>
           <p class="hero-copy">
@@ -600,14 +593,6 @@
             <a class="btn btn-primary" href="register.html">Create Your Profile</a>
             <a class="btn btn-outline" href="#featured">Explore Profiles</a>
           </div>
-        </div>
-
-        <div class="hero-visual">
-          <img
-            src="wedding-hero.png"
-            alt="Wedding celebration"
-            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#651b35,#b76e79)';"
-          >
         </div>
       </div>
     </section>
@@ -728,14 +713,7 @@
 
     <section class="section" id="about">
       <div class="container about-grid">
-        <div class="about-visual">
-          <img
-            src="wedding-hero.png"
-            alt="Wedding celebration"
-            loading="lazy"
-            onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#651b35,#b76e79)';"
-          >
-        </div>
+        <div class="about-visual" role="img" aria-label="Wedding celebration"></div>
 
         <div class="about-copy">
           <div class="eyebrow">About PasandMatrimony</div>
