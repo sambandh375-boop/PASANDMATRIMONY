@@ -42,7 +42,6 @@
     }
 
     .brand span { color: var(--accent); }
-
     a { color: var(--primary); }
 
     .card {
@@ -77,7 +76,6 @@
 
     .hero h1 { margin: 0 0 9px; font-size: 27px; }
     .hero p { margin: 0; line-height: 1.6; font-size: 14px; color: #fff0f7; }
-
     .content { padding: 28px; }
 
     .account {
@@ -256,70 +254,72 @@
   <main class="card">
     <section class="hero">
       <div class="hero-icon">♥</div>
-      <h1>Create Your Profile</h1>
+      <h1>My Profile</h1>
       <p>Share your details and take the next step toward finding your life partner.</p>
     </section>
 
     <div class="content">
       <div id="account" class="account">Checking your account...</div>
 
-      <h2 class="section-title">Profile Photo</h2>
-      <p class="section-description">Add a clear photo so other members can recognize you.</p>
+      <div id="profileContent" hidden>
+        <h2 class="section-title">Profile Photo</h2>
+        <p class="section-description">Add a clear photo so other members can recognize you.</p>
 
-      <div class="photo-area">
-        <div id="photoPlaceholder" class="photo-placeholder">♥</div>
-        <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
-        <label class="upload-button" for="photoInput">Choose Profile Photo</label>
-        <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
-        <p>JPG, PNG or WebP. Maximum file size: 3 MB.</p>
-      </div>
-
-      <h2 class="section-title">Personal Details</h2>
-      <p class="section-description">Enter accurate information to complete your profile.</p>
-
-      <form id="profileForm" hidden>
-        <div class="form-grid">
-          <div class="field full">
-            <label for="fullName">Full Name *</label>
-            <input id="fullName" type="text" maxlength="100" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="field">
-            <label for="age">Age *</label>
-            <input id="age" type="number" min="18" max="100" placeholder="Enter your age" required>
-          </div>
-
-          <div class="field">
-            <label for="city">City *</label>
-            <input id="city" type="text" maxlength="100" placeholder="Enter your city" required>
-          </div>
-
-          <div class="field full">
-            <label for="mobile">Mobile Number *</label>
-            <input id="mobile" type="tel" maxlength="20" autocomplete="tel"
-                   placeholder="Enter your mobile number" required>
-            <div class="hint">Include your country code if needed.</div>
-          </div>
-
-          <div class="field full">
-            <label for="education">Education</label>
-            <input id="education" type="text" maxlength="150" placeholder="Enter your education">
-          </div>
-
-          <div class="field full">
-            <label for="maritalStatus">Marital Status *</label>
-            <select id="maritalStatus" required>
-              <option value="">Select marital status</option>
-              <option value="Never Married">Never Married</option>
-              <option value="Divorced">Divorced</option>
-              <option value="Widowed">Widowed</option>
-              <option value="Widower">Widower</option>
-            </select>
-          </div>
+        <div class="photo-area">
+          <div id="photoPlaceholder" class="photo-placeholder">♥</div>
+          <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
+          <label class="upload-button" for="photoInput">Choose Profile Photo</label>
+          <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
+          <p>JPG, PNG or WebP. Maximum file size: 3 MB.</p>
         </div>
 
-        <button id="saveButton" class="save-button" type="submit">Save Profile</button>
-      </form>
+        <h2 class="section-title">Personal Details</h2>
+        <p class="section-description">Enter accurate information to complete your profile.</p>
+
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="fullName">Full Name *</label>
+              <input id="fullName" type="text" maxlength="100" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="field">
+              <label for="age">Age *</label>
+              <input id="age" type="number" min="18" max="100" placeholder="Enter your age" required>
+            </div>
+
+            <div class="field">
+              <label for="city">City *</label>
+              <input id="city" type="text" maxlength="100" placeholder="Enter your city" required>
+            </div>
+
+            <div class="field full">
+              <label for="mobile">Mobile Number *</label>
+              <input id="mobile" type="tel" maxlength="20" autocomplete="tel"
+                     placeholder="Enter your mobile number" required>
+              <div class="hint">Include your country code if needed.</div>
+            </div>
+
+            <div class="field full">
+              <label for="education">Education</label>
+              <input id="education" type="text" maxlength="150" placeholder="Enter your education">
+            </div>
+
+            <div class="field full">
+              <label for="maritalStatus">Marital Status *</label>
+              <select id="maritalStatus" required>
+                <option value="">Select marital status</option>
+                <option value="Never Married">Never Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Widower">Widower</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="saveButton" class="save-button" type="submit">Save Profile</button>
+        </form>
+      </div>
 
       <p id="message" role="status" aria-live="polite"></p>
 
@@ -342,6 +342,7 @@
     const photoInput = document.getElementById("photoInput");
     const photoPreview = document.getElementById("photoPreview");
     const photoPlaceholder = document.getElementById("photoPlaceholder");
+    const profileContent = document.getElementById("profileContent");
 
     let currentUser = null;
     let selectedPhoto = null;
@@ -359,9 +360,22 @@
         photoPlaceholder.hidden = false;
         return;
       }
+
+      photoPreview.onerror = () => {
+        photoPreview.hidden = true;
+        photoPlaceholder.hidden = false;
+        showMessage(
+          "Your profile photo could not be loaded. Please upload the photo again.",
+          "error"
+        );
+      };
+
+      photoPreview.onload = () => {
+        photoPlaceholder.hidden = true;
+        photoPreview.hidden = false;
+      };
+
       photoPreview.src = url;
-      photoPreview.hidden = false;
-      photoPlaceholder.hidden = true;
     }
 
     photoInput.addEventListener("change", () => {
@@ -369,37 +383,58 @@
       if (!file) return;
 
       const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
       if (!allowedTypes.includes(file.type)) {
         photoInput.value = "";
+        selectedPhoto = null;
         showMessage("Please choose a JPG, PNG or WebP image.", "error");
         return;
       }
 
       if (file.size > 3 * 1024 * 1024) {
         photoInput.value = "";
+        selectedPhoto = null;
         showMessage("The image must be 3 MB or smaller.", "error");
         return;
       }
 
       selectedPhoto = file;
-      showPhoto(URL.createObjectURL(file));
+      photoPreview.onerror = null;
+      photoPreview.onload = null;
+      photoPreview.src = URL.createObjectURL(file);
+      photoPreview.hidden = false;
+      photoPlaceholder.hidden = true;
       message.className = "";
       message.textContent = "";
     });
 
     async function initialize() {
       try {
-        const { data, error } = await supabaseClient.auth.getUser();
-        if (error) throw error;
+        if (typeof supabaseClient === "undefined") {
+          throw new Error(
+            "Supabase configuration could not be loaded. Please check supabase-config.js."
+          );
+        }
 
-        currentUser = data.user;
-        if (!currentUser) {
-          account.textContent = "Please log in to create your profile.";
+        // Check the saved login session first.
+        const {
+          data: { session },
+          error: sessionError
+        } = await supabaseClient.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        // Logged-out visitors must sign in before opening their profile.
+        if (!session || !session.user) {
+          window.location.replace("login.html?next=profile.html");
           return;
         }
 
-        account.textContent = "Signed in as: " + currentUser.email;
+        currentUser = session.user;
+
+        account.textContent = "Signed in as: " + (currentUser.email || "");
         logoutButton.hidden = false;
+        profileContent.hidden = false;
 
         const { data: profile, error: profileError } = await supabaseClient
           .from("profiles")
@@ -407,18 +442,11 @@
           .eq("id", currentUser.id)
           .maybeSingle();
 
-        if (profileError) {
-          if (profileError.message.includes("photo_url")) {
-            throw new Error("The photo_url database column is not ready yet. Please tell me this message.");
-          }
-          if (profileError.message.includes("mobile")) {
-            throw new Error("The mobile database column could not be found. Please check the profiles table.");
-          }
-          throw profileError;
-        }
+        if (profileError) throw profileError;
 
         document.getElementById("fullName").value =
           profile?.full_name || currentUser.user_metadata?.full_name || "";
+
         document.getElementById("age").value = profile?.age ?? "";
         document.getElementById("city").value = profile?.city || "";
         document.getElementById("education").value = profile?.education || "";
@@ -431,14 +459,37 @@
           "विधवा": "Widowed",
           "विधुर": "Widower"
         };
-        document.getElementById("maritalStatus").value = statusMap[status] || status;
+
+        document.getElementById("maritalStatus").value =
+          statusMap[status] || status;
 
         existingPhotoUrl = profile?.photo_url || null;
-        if (existingPhotoUrl) showPhoto(existingPhotoUrl);
 
-        form.hidden = false;
+        if (existingPhotoUrl) {
+          showPhoto(existingPhotoUrl);
+        } else {
+          showPhoto(null);
+        }
+
+        account.textContent = "Signed in as: " + (currentUser.email || "");
+
       } catch (error) {
-        showMessage("Unable to load your profile: " + error.message, "error");
+        console.error("Profile loading error:", error);
+
+        const errorText = String(error?.message || "");
+
+        if (
+          errorText.toLowerCase().includes("auth session missing") ||
+          errorText.toLowerCase().includes("session_not_found")
+        ) {
+          window.location.replace("login.html?next=profile.html");
+          return;
+        }
+
+        showMessage(
+          "Unable to load your profile: " + errorText,
+          "error"
+        );
       }
     }
 
@@ -446,7 +497,7 @@
       event.preventDefault();
 
       if (!currentUser) {
-        showMessage("Please log in before saving your profile.", "error");
+        window.location.replace("login.html?next=profile.html");
         return;
       }
 
@@ -460,14 +511,16 @@
 
         if (selectedPhoto) {
           const extension = selectedPhoto.name.split(".").pop().toLowerCase();
-          const filePath = currentUser.id + "/profile-" + Date.now() + "." + extension;
+          const filePath =
+            currentUser.id + "/profile-" + Date.now() + "." + extension;
 
-          const { data: uploadData, error: uploadError } = await supabaseClient.storage
-            .from("profile-photos")
-            .upload(filePath, selectedPhoto, {
-              upsert: true,
-              contentType: selectedPhoto.type
-            });
+          const { data: uploadData, error: uploadError } =
+            await supabaseClient.storage
+              .from("profile-photos")
+              .upload(filePath, selectedPhoto, {
+                upsert: true,
+                contentType: selectedPhoto.type
+              });
 
           if (uploadError) throw uploadError;
 
@@ -484,7 +537,8 @@
           age: Number(document.getElementById("age").value),
           city: document.getElementById("city").value.trim(),
           mobile: document.getElementById("mobile").value.trim(),
-          education: document.getElementById("education").value.trim() || null,
+          education:
+            document.getElementById("education").value.trim() || null,
           marital_status: document.getElementById("maritalStatus").value,
           photo_url: photoUrl,
           updated_at: new Date().toISOString()
@@ -499,9 +553,15 @@
         existingPhotoUrl = photoUrl;
         selectedPhoto = null;
         photoInput.value = "";
+
         showMessage("Your profile has been saved successfully!", "success");
+
       } catch (error) {
-        showMessage("Unable to save your profile: " + error.message, "error");
+        console.error("Profile save error:", error);
+        showMessage(
+          "Unable to save your profile: " + error.message,
+          "error"
+        );
       } finally {
         saveButton.disabled = false;
         saveButton.textContent = "Save Profile";
@@ -510,13 +570,19 @@
 
     logoutButton.addEventListener("click", async () => {
       logoutButton.disabled = true;
+      logoutButton.textContent = "Logging Out...";
+
       try {
         const { error } = await supabaseClient.auth.signOut();
+
         if (error) throw error;
-        window.location.href = "login.html";
+
+        window.location.replace("login.html");
+
       } catch (error) {
         showMessage("Unable to log out: " + error.message, "error");
         logoutButton.disabled = false;
+        logoutButton.textContent = "Log Out";
       }
     });
 
