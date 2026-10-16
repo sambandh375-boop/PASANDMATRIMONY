@@ -23,11 +23,11 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--cream);
       color: var(--ink);
+      background: var(--cream);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { text-decoration: none; }
 
     .container {
       width: min(1180px, 94%);
@@ -37,9 +37,6 @@
     .topbar {
       background: white;
       border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      z-index: 5;
     }
 
     .nav {
@@ -47,13 +44,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .brand {
+      color: var(--wine);
       font-size: 23px;
       font-weight: 800;
-      color: var(--wine);
     }
 
     .brand span { color: var(--rose); }
@@ -61,46 +58,46 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .button {
       display: inline-block;
+      padding: 10px 13px;
       border: 0;
-      border-radius: 7px;
+      border-radius: 8px;
       background: var(--wine);
       color: white;
-      padding: 10px 15px;
       font-size: 13px;
       font-weight: 700;
-      cursor: pointer;
       text-align: center;
+      cursor: pointer;
     }
 
     .button:hover { background: var(--dark); }
 
-    .button-outline {
-      color: var(--wine);
+    .outline {
       background: white;
+      color: var(--wine);
       border: 1px solid var(--line);
     }
 
     .heading {
-      padding: 36px 0 24px;
+      padding: 34px 0 24px;
       text-align: center;
     }
 
     .eyebrow {
-      color: var(--rose);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 800;
-      font-size: 11px;
       margin-bottom: 8px;
+      color: var(--rose);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     h1 {
-      margin: 0 0 9px;
+      margin: 0 0 10px;
       color: var(--wine);
       font-family: Georgia, serif;
       font-size: clamp(28px, 4vw, 39px);
@@ -110,6 +107,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+      line-height: 1.6;
     }
 
     .toolbar {
@@ -138,107 +136,116 @@
       border: 1px solid var(--line);
       border-radius: 7px;
       background: white;
-      font: inherit;
       color: var(--ink);
+      font: inherit;
     }
 
     .profile-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
-      padding-bottom: 45px;
+      padding-bottom: 42px;
     }
 
     .profile-card {
       min-width: 0;
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 10px;
       background: white;
+      border: 1px solid var(--line);
+      border-radius: 11px;
       box-shadow: 0 4px 15px rgba(53, 16, 31, .06);
     }
 
-    .profile-card img,
-    .photo-placeholder {
+    .profile-photo {
       display: block;
       width: 100%;
-      height: 150px;
+      height: 155px;
       object-fit: cover;
       background: #f5e8e9;
     }
 
     .photo-placeholder {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 155px;
       color: var(--wine);
-      font-size: 12px;
+      background: #f5e8e9;
+      font-size: 13px;
     }
 
-    .card-content { padding: 12px; }
+    .card-content {
+      padding: 12px;
+    }
 
     .card-content h2 {
+      margin: 0 0 8px;
       color: var(--wine);
       font-size: 16px;
-      margin: 0 0 7px;
       overflow-wrap: anywhere;
     }
 
     .card-content p {
+      margin: 4px 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
-      margin: 3px 0;
       overflow-wrap: anywhere;
     }
 
-    .card-content .button {
+    .view-button {
       display: block;
-      margin-top: 11px;
       width: 100%;
-      padding: 9px 5px;
+      margin-top: 12px;
+      padding: 10px 5px;
     }
 
     .message {
       grid-column: 1 / -1;
-      padding: 24px 15px;
-      text-align: center;
+      padding: 25px 15px;
       color: var(--muted);
+      text-align: center;
       background: white;
       border: 1px solid var(--line);
       border-radius: 10px;
       font-size: 14px;
+      line-height: 1.6;
       overflow-wrap: anywhere;
     }
 
-    .footer {
+    footer {
       padding: 20px 0;
-      background: var(--dark);
       color: #f5e7eb;
+      background: var(--dark);
       text-align: center;
       font-size: 12px;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       .profile-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
       }
 
-      .profile-card img,
-      .photo-placeholder { height: 125px; }
+      .profile-photo,
+      .photo-placeholder { height: 130px; }
     }
 
     @media (max-width: 520px) {
       .nav {
-        align-items: flex-start;
         padding: 12px 0;
+        align-items: flex-start;
         flex-direction: column;
       }
 
       .brand { font-size: 21px; }
 
-      .toolbar { grid-template-columns: 1fr 1fr; }
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+      }
+
       .toolbar .button { grid-column: 1 / -1; }
 
       .profile-grid {
@@ -246,12 +253,13 @@
         gap: 9px;
       }
 
-      .profile-card img,
+      .profile-photo,
       .photo-placeholder { height: 125px; }
 
       .card-content { padding: 9px; }
       .card-content h2 { font-size: 14px; }
       .card-content p { font-size: 11px; }
+      .view-button { font-size: 12px; }
     }
   </style>
 </head>
@@ -262,7 +270,7 @@
       <a class="brand" href="index.html">Pasand<span>Matrimony</span></a>
 
       <div class="nav-actions">
-        <a class="button button-outline" href="profile.html">My Profile</a>
+        <a class="button outline" href="profile.html">My Profile</a>
         <button class="button" id="logoutButton" type="button">Log Out</button>
       </div>
     </div>
@@ -272,10 +280,10 @@
     <section class="heading">
       <div class="eyebrow">Discover Connections</div>
       <h1>Find Your Perfect Match</h1>
-      <p id="introText">Loading your matches...</p>
+      <p id="introText">Checking your account...</p>
     </section>
 
-    <section class="toolbar" aria-label="Profile filters">
+    <section class="toolbar">
       <div class="field">
         <label for="cityFilter">City</label>
         <input id="cityFilter" type="search" placeholder="Search by city">
@@ -294,15 +302,17 @@
         </select>
       </div>
 
-      <button class="button" id="filterButton" type="button">Apply Filters</button>
+      <button class="button" id="filterButton" type="button">
+        Apply Filters
+      </button>
     </section>
 
     <section id="profileGrid" class="profile-grid" aria-live="polite">
-      <p class="message">Checking your account...</p>
+      <p class="message">Loading profiles...</p>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="container">
       &copy; <span id="year"></span> PasandMatrimony. All rights reserved.
     </div>
@@ -325,8 +335,14 @@
       new Date().getFullYear();
 
     function getClient() {
-      if (typeof supabaseClient !== "undefined") return supabaseClient;
-      if (window.supabaseClient) return window.supabaseClient;
+      if (typeof supabaseClient !== "undefined") {
+        return supabaseClient;
+      }
+
+      if (window.supabaseClient) {
+        return window.supabaseClient;
+      }
+
       return null;
     }
 
@@ -352,7 +368,8 @@
     }
 
     function showMessage(text) {
-      grid.innerHTML = "";
+      grid.replaceChildren();
+
       const p = document.createElement("p");
       p.className = "message";
       p.textContent = text;
@@ -362,24 +379,24 @@
     function ageMatches(age, range) {
       if (!range) return true;
 
-      const n = Number(age);
-      if (!Number.isFinite(n)) return false;
+      const number = Number(age);
+      if (!Number.isFinite(number)) return false;
 
-      if (range === "51+") return n >= 51;
+      if (range === "51+") return number >= 51;
 
       const parts = range.split("-").map(Number);
-      return n >= parts[0] && n <= parts[1];
+      return number >= parts[0] && number <= parts[1];
     }
 
     function renderProfiles() {
       const city = cityFilter.value.trim().toLowerCase();
-      const ageRange = ageFilter.value;
+      const range = ageFilter.value;
 
-      const matches = allProfiles.filter(function (p) {
+      const matches = allProfiles.filter(function (profile) {
         const cityMatch = !city ||
-          String(p.city || "").toLowerCase().includes(city);
+          String(profile.city || "").toLowerCase().includes(city);
 
-        return cityMatch && ageMatches(p.age, ageRange);
+        return cityMatch && ageMatches(profile.age, range);
       });
 
       if (!matches.length) {
@@ -395,8 +412,11 @@
         const status = escapeHTML(p.marital_status || "Not specified");
         const photo = safePhotoURL(p.photo_url);
 
+        const profileId = encodeURIComponent(String(p.id || ""));
+        const viewLink = "view-profile.html?id=" + profileId;
+
         const picture = photo
-          ? '<img src="' + escapeHTML(photo) +
+          ? '<img class="profile-photo" src="' + escapeHTML(photo) +
             '" alt="Profile photo" loading="lazy">'
           : '<div class="photo-placeholder">Profile Photo</div>';
 
@@ -409,7 +429,7 @@
               <p><strong>City:</strong> ${cityName}</p>
               <p><strong>Education:</strong> ${education}</p>
               <p><strong>Marital Status:</strong> ${status}</p>
-              <a class="button" href="profile.html">My Profile</a>
+              <a class="button view-button" href="${viewLink}">View Profile</a>
             </div>
           </article>
         `;
@@ -420,7 +440,7 @@
       const client = getClient();
 
       if (!client) {
-        showMessage("The website configuration could not be loaded.");
+        showMessage("Website configuration could not be loaded.");
         return;
       }
 
@@ -458,11 +478,6 @@
           return;
         }
 
-        /*
-          This RPC must enforce the opposite-gender filter in the database.
-          It must return only approved public profile fields and exclude the
-          current user's own profile.
-        */
         const { data, error } = await client.rpc(
           "get_opposite_gender_profiles"
         );
@@ -481,7 +496,7 @@
         renderProfiles();
 
       } catch (error) {
-        console.error("Could not load matching profiles:", error);
+        console.error("Profile list error:", error);
         showMessage(
           "Profiles could not be loaded. Please check your database permissions and try again."
         );
