@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment | PasandMatrimony</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 18px 12px;
+      font-family: Arial, sans-serif;
+      background: #faf6f2; color: #35242b;
+    }
+    .container {
+      max-width: 600px; margin: auto; overflow: hidden;
+      background: white; border: 1px solid #eadfe2;
+      border-radius: 16px;
+    }
+    .hero {
+      padding: 24px 16px; text-align: center;
+      color: white; background: linear-gradient(120deg,#35101f,#581b32,#874058);
+    }
+    .content { padding: 20px; }
+    .price {
+      padding: 18px; text-align: center;
+      background: #fffaf1; border: 1px solid #e8d1b0;
+      border-radius: 12px;
+    }
+    .price h2 { margin: 0; color: #8b641d; font-size: 36px; }
+    .qr {
+      display: block; width: 100%; max-width: 300px;
+      height: auto; margin: 15px auto; border-radius: 8px;
+    }
+    .upi {
+      margin-top: 20px; padding: 16px;
+      background: #fcf7f7; border: 1px solid #eadfe2;
+      border-radius: 12px; text-align: center; overflow-wrap: anywhere;
+    }
+    .upi-id { color: #581b32; font-weight: bold; }
+    label { display: block; margin: 16px 0 7px; font-weight: bold; }
+    input {
+      width: 100%; min-height: 45px; padding: 11px;
+      border: 1px solid #d9cbd1; border-radius: 8px; font: inherit;
+    }
+    button, .button {
+      display: block; width: 100%; margin-top: 12px; padding: 13px;
+      border: 0; border-radius: 8px; background: #581b32;
+      color: white; font-weight: bold; text-align: center;
+      text-decoration: none; cursor: pointer;
+    }
+    button:disabled { opacity: .6; }
+    .notice {
+      padding: 12px; margin-top: 16px; border-radius: 8px;
+      background: #fff5df; color: #725019; font-size: 13px; line-height: 1.6;
+    }
+    #message { line-height: 1.6; overflow-wrap: anywhere; }
+    .back { display: block; margin-top: 20px; text-align: center; color: #581b32; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Premium Membership Payment</h1>
+      <p>Submit your payment for administrator verification.</p>
+    </header>
+
+    <section class="content">
+      <div class="price">
+        <h2>₹999</h2>
+        <p>30 Days · Up to 10 Unique Profiles</p>
+      </div>
+
+      <section class="upi">
+        <h3>Scan &amp; Pay Using UPI</h3>
+        <img class="qr" src="payment-qr.jpg"
+             alt="UPI payment QR code">
+        <p>UPI ID</p>
+        <p class="upi-id" id="upiId">Vyapar.178760129848@hdfcbank</p>
+        <button id="copyUpi" type="button">Copy UPI ID</button>
+        <p>Pay exactly ₹999 and enter your transaction reference below.</p>
+      </section>
+
+      <form id="paymentForm">
+        <h3>Submit Payment Reference</h3>
+
+        <label for="payerName">Payer Name *</label>
+        <input id="payerName" type="text" maxlength="100"
+               autocomplete="name" required>
+
+        <label for="reference">UPI Transaction Reference / UTR *</label>
+        <input id="reference" type="text" maxlength="100"
+               autocomplete="off" required>
+
+        <button id="submitButton" type="submit">Submit for Verification</button>
+      </form>
+
+      <div class="notice">
+        Your request remains Pending until an administrator confirms
+        receipt of the payment. A transaction reference alone does not
+        activate membership.
+      </div>
+
+      <p id="message" role="status" aria-live="polite"></p>
+      <a class="back" href="profile.html">Back to My Profile</a>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    "use strict";
+
+    const client = typeof supabaseClient !== "undefined"
+      ? supabaseClient
+      : window.supabaseClient;
+
+    const form = document.getElementById("paymentForm");
+    const message = document.getElementById("message");
+    const submitButton = document.getElementById("submitButton");
+
+    function showMessage(text) {
+      message.textContent = text;
+    }
+
+    document.getElementById("copyUpi").addEventListener("click", async () => {
+      const upi = document.getElementById("upiId").textContent.trim();
+      try {
+        await navigator.clipboard.writeText(upi);
+        showMessage("UPI ID copied.");
+      } catch {
+        showMessage("UPI ID: " + upi);
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!client) {
+        showMessage("Website configuration could not be loaded.");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      showMessage("");
+
+      try {
+        const { data: sessionData, error: sessionError } =
+          await client.auth.getSession();
+
+        if (sessionError) throw sessionError;
+
+        const user = sessionData.session?.user;
+        if (!user) {
+          window.location.href = "login.html?next=payment.html";
+          return;
+        }
+
+        const payerName = document.getElementById("payerName").value.trim();
+        const reference = document.getElementById("reference").value.trim();
+
+        if (!payerName || !reference) {
+          throw new Error("Please complete all required fields.");
+        }
+
+        const { data: existing, error: existingError } = await client
+          .from("payment_requests")
+          .select("id,status")
+          .eq("user_id", user.id)
+          .eq("status", "pending")
+          .maybeSingle();
+
+        if (existingError) throw existingError;
+
+        if (existing) {
+          throw new Error(
+            "You already have a pending payment request. Please wait for its review."
+          );
+        }
+
+        const { error: insertError } = await client
+          .from("payment_requests")
+          .insert({
+            user_id: user.id,
+            amount: 999,
+            payer_name: payerName,
+            transaction_reference: reference,
+            status: "pending"
+          });
+
+        if (insertError) throw insertError;
+
+        form.reset();
+        showMessage(
+          "Payment request submitted. Status: Pending. " +
+          "Membership activates only after payment verification."
+        );
+      } catch (error) {
+        console.error("Payment request error:", error);
+        showMessage("Unable to submit request: " + error.message);
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit for Verification";
+      }
+    });
+  </script>
+</body>
+</html>
