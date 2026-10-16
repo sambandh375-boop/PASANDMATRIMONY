@@ -1,213 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Premium Membership | PasandMatrimony</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 18px 12px;
-      font-family: Arial, sans-serif;
-      background: #faf6f2; color: #35242b;
-    }
-    .container {
-      max-width: 600px; margin: auto; overflow: hidden;
-      background: white; border: 1px solid #eadfe2;
-      border-radius: 16px;
-    }
-    .hero {
-      padding: 25px 16px; text-align: center;
-      color: white; background: linear-gradient(120deg,#35101f,#581b32,#874058);
-    }
-    .content { padding: 20px; }
-    .price {
-      padding: 18px; text-align: center;
-      background: #fffaf1; border: 1px solid #e8d1b0; border-radius: 12px;
-    }
-    .price h2 { margin: 0; color: #8b641d; font-size: 36px; }
-    .qr {
-      display: block; width: 100%; max-width: 300px;
-      height: auto; margin: 15px auto; border-radius: 8px;
-    }
-    .upi {
-      margin-top: 20px; padding: 16px;
-      background: #fcf7f7; border: 1px solid #eadfe2;
-      border-radius: 12px; text-align: center; overflow-wrap: anywhere;
-    }
-    .upi-id { color: #581b32; font-weight: bold; }
-    label { display: block; margin: 16px 0 7px; font-weight: bold; }
-    input {
-      width: 100%; min-height: 45px; padding: 11px;
-      border: 1px solid #d9cbd1; border-radius: 8px; font: inherit;
-    }
-    button, .button {
-      display: block; width: 100%; margin-top: 12px; padding: 13px;
-      border: 0; border-radius: 8px; background: #581b32; color: white;
-      font-weight: bold; text-align: center; text-decoration: none; cursor: pointer;
-    }
-    button:disabled { opacity: .6; }
-    .notice {
-      padding: 12px; margin-top: 16px; border-radius: 8px;
-      background: #fff5df; color: #725019; font-size: 13px; line-height: 1.6;
-    }
-    #message { line-height: 1.6; overflow-wrap: anywhere; }
-    .back { display: block; margin-top: 20px; text-align: center; color: #581b32; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership Plans | PasandMatrimony</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:18px;font-family:Arial,sans-serif;background:#faf6f2;color:#35242b}
+header{text-align:center;background:linear-gradient(120deg,#35101f,#874058);color:white;padding:25px 15px;border-radius:14px}
+.container{max-width:850px;margin:auto}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px}
+.card{background:white;border:1px solid #eadfe2;border-radius:12px;overflow:hidden}
+.card h2{margin:0;padding:15px;background:#9f3438;color:white;font-size:20px}
+.details{padding:18px}
+.price{font-size:30px;font-weight:bold;color:#8b641d;margin:10px 0}
+button,.button{display:block;width:100%;padding:12px;border:0;border-radius:7px;background:#581b32;color:white;text-align:center;text-decoration:none;font-weight:bold;cursor:pointer}
+ul{padding-left:20px;line-height:1.8}
+.note{margin-top:20px;padding:14px;background:#fff5df;border-radius:9px;line-height:1.6}
+.back{display:block;text-align:center;margin:22px;color:#581b32}
+</style>
 </head>
 <body>
-  <main class="container">
-    <header class="hero">
-      <h1>Premium Membership</h1>
-      <p>Unlock contact details for compatible matches.</p>
-    </header>
+<main class="container">
+<header>
+<h1>Membership Plans</h1>
+<p>Choose the right plan for your matchmaking journey.</p>
+</header>
 
-    <section class="content">
-      <div class="price">
-        <h2>₹999</h2>
-        <p>30 Days · Up to 10 Unique Profiles</p>
-      </div>
+<section class="plans">
 
-      <h3>Membership Benefits</h3>
-      <ul>
-        <li>Contact access for up to 10 unique profiles.</li>
-        <li>30 days from verified activation.</li>
-        <li>Receipt after payment verification.</li>
-      </ul>
+<article class="card">
+<h2>Office Use Plan</h2>
+<div class="details">
+<p><strong>Duration:</strong> 9 Months</p>
+<p><strong>Total Contacts:</strong> 30</p>
+<div class="price">₹3,000</div>
+<p>Access to eligible member contact details according to your plan.</p>
+<a class="button" href="payment.html?plan=office">Choose Plan</a>
+</div>
+</article>
 
-      <section class="upi">
-        <h3>Scan & Pay Using UPI</h3>
-        <img class="qr" src="payment-qr.jpg"
-             alt="UPI payment QR code">
-        <p>UPI ID</p>
-        <p class="upi-id" id="upiId">Vyapar.178760129848@hdfcbank</p>
-        <button id="copyUpi" type="button">Copy UPI ID</button>
-        <p>Pay exactly ₹999 and enter the transaction reference below.</p>
-      </section>
+<article class="card">
+<h2>Gold Plan</h2>
+<div class="details">
+<p><strong>Duration:</strong> 4 Months</p>
+<p><strong>Total Contacts:</strong> 40</p>
+<div class="price">₹4,000</div>
+<ul>
+<li>Browse eligible profiles</li>
+<li>Manage your profile</li>
+<li>Contact access according to plan</li>
+</ul>
+<a class="button" href="payment.html?plan=gold">Choose Plan</a>
+</div>
+</article>
 
-      <form id="paymentForm">
-        <h3>Submit Payment Reference</h3>
+<article class="card">
+<h2>Diamond Plan</h2>
+<div class="details">
+<p><strong>Duration:</strong> 8 Months</p>
+<p><strong>Total Contacts:</strong> 90</p>
+<div class="price">₹6,500</div>
+<ul>
+<li>Browse eligible profiles</li>
+<li>Advance search facility</li>
+<li>Manage your profile</li>
+</ul>
+<a class="button" href="payment.html?plan=diamond">Choose Plan</a>
+</div>
+</article>
 
-        <label for="payerName">Payer Name *</label>
-        <input id="payerName" type="text" maxlength="100"
-               autocomplete="name" required>
+<article class="card">
+<h2>Platinum Plan</h2>
+<div class="details">
+<p><strong>Duration:</strong> 12 Months</p>
+<p><strong>Total Contacts:</strong> 150</p>
+<div class="price">₹8,500</div>
+<ul>
+<li>Browse eligible profiles</li>
+<li>Advance search facility</li>
+<li>Profile and photo management</li>
+</ul>
+<a class="button" href="payment.html?plan=platinum">Choose Plan</a>
+</div>
+</article>
 
-        <label for="reference">UPI Transaction Reference / UTR *</label>
-        <input id="reference" type="text" maxlength="100"
-               autocomplete="off" required>
+<article class="card">
+<h2>Platinum Plus Plan</h2>
+<div class="details">
+<p><strong>Duration:</strong> 15 Months</p>
+<p><strong>Total Contacts:</strong> 200</p>
+<div class="price">₹11,000</div>
+<ul>
+<li>Browse eligible profiles</li>
+<li>Advance search facility</li>
+<li>Profile management</li>
+<li>Contact access according to plan</li>
+</ul>
+<a class="button" href="payment.html?plan=platinum_plus">Choose Plan</a>
+</div>
+</article>
 
-        <button id="submitButton" type="submit">Submit for Verification</button>
-      </form>
+</section>
 
-      <div class="notice">
-        Your request will remain Pending until an administrator confirms receipt
-        of the payment. Submitting a reference does not activate membership.
-      </div>
+<div class="note">
+<strong>Important:</strong> Registration is free. Paid membership begins only after an administrator verifies the payment. Contact limits and membership duration apply after activation.
+</div>
 
-      <p id="message" role="status" aria-live="polite"></p>
-      <a class="back" href="profile.html">Back to My Profile</a>
-    </section>
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
-  <script>
-    "use strict";
-
-    const client = typeof supabaseClient !== "undefined"
-      ? supabaseClient
-      : window.supabaseClient;
-
-    const form = document.getElementById("paymentForm");
-    const message = document.getElementById("message");
-    const submitButton = document.getElementById("submitButton");
-
-    function showMessage(text) {
-      message.textContent = text;
-    }
-
-    document.getElementById("copyUpi").addEventListener("click", async function () {
-      const upi = document.getElementById("upiId").textContent.trim();
-
-      try {
-        await navigator.clipboard.writeText(upi);
-        showMessage("UPI ID copied.");
-      } catch {
-        showMessage("UPI ID: " + upi);
-      }
-    });
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      if (!client) {
-        showMessage("Website configuration could not be loaded.");
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Submitting...";
-      showMessage("");
-
-      try {
-        const { data: sessionData, error: sessionError } =
-          await client.auth.getSession();
-
-        if (sessionError) throw sessionError;
-
-        const user = sessionData.session?.user;
-        if (!user) {
-          window.location.href = "login.html?next=membership.html";
-          return;
-        }
-
-        const payerName = document.getElementById("payerName").value.trim();
-        const reference = document.getElementById("reference").value.trim();
-
-        if (!payerName || !reference) {
-          throw new Error("Please complete all required fields.");
-        }
-
-        const { data: existing, error: existingError } = await client
-          .from("payment_requests")
-          .select("id,status")
-          .eq("user_id", user.id)
-          .eq("status", "pending")
-          .maybeSingle();
-
-        if (existingError) throw existingError;
-
-        if (existing) {
-          throw new Error(
-            "You already have a pending payment request. Please wait for its review."
-          );
-        }
-
-        const { error: insertError } = await client
-          .from("payment_requests")
-          .insert({
-            user_id: user.id,
-            amount: 999,
-            payer_name: payerName,
-            transaction_reference: reference,
-            status: "pending"
-          });
-
-        if (insertError) throw insertError;
-
-        form.reset();
-        showMessage(
-          "Payment request submitted successfully. Status: Pending. " +
-          "Your membership is not active until payment is verified."
-        );
-      } catch (error) {
-        console.error("Payment request error:", error);
-        showMessage("Unable to submit request: " + error.message);
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = "Submit for Verification";
-      }
-    });
-  </script>
+<a class="back" href="index.html">Back to Home</a>
+</main>
 </body>
 </html>
