@@ -2,693 +2,523 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Profile | PasandMatrimony</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#581b32">
+  <title>Discover Profiles | PasandMatrimony</title>
 
   <style>
-    * { box-sizing: border-box; }
-
     :root {
       --wine: #581b32;
-      --wine-dark: #35101f;
+      --dark: #35101f;
       --rose: #b76e79;
       --gold: #d6b47a;
       --cream: #faf6f2;
       --ink: #35242b;
       --muted: #81727a;
       --line: #eadfe2;
-      --white: #ffffff;
     }
 
-    [hidden] { display: none !important; }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      padding: 22px 14px 45px;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
       background: var(--cream);
+      color: var(--ink);
     }
 
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, 94%);
+      margin: auto;
+    }
 
     .topbar {
-      max-width: 850px;
-      margin: 0 auto 22px;
+      background: white;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .nav {
+      min-height: 68px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 14px;
     }
 
     .brand {
-      text-decoration: none;
-      color: var(--wine);
       font-size: 23px;
       font-weight: 800;
-      letter-spacing: -.5px;
+      color: var(--wine);
     }
 
     .brand span { color: var(--rose); }
 
-    .home-link {
-      text-decoration: none;
-      color: var(--wine);
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 15px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: white;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .card {
-      max-width: 850px;
-      margin: auto;
-      overflow: hidden;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: 0 18px 50px rgba(53, 16, 31, .08);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 38px 24px 35px;
-      text-align: center;
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 7px;
+      background: var(--wine);
       color: white;
-      background: linear-gradient(125deg, var(--wine-dark), var(--wine) 65%, #8c425b);
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border: 1px solid rgba(214, 180, 122, .22);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero::before { left: -90px; top: -100px; }
-    .hero::after { right: -95px; bottom: -125px; }
-
-    .hero-icon {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 66px;
-      height: 66px;
-      margin: 0 auto 15px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      color: var(--gold);
-      font-size: 29px;
-      background: rgba(255,255,255,.06);
-    }
-
-    .hero h1 {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 10px;
-      font-family: Georgia, serif;
-      font-size: 32px;
-      font-weight: 600;
-    }
-
-    .hero p {
-      position: relative;
-      z-index: 1;
-      max-width: 470px;
-      margin: auto;
-      color: #f3e7e9;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .content { padding: 30px; }
-
-    .account {
-      margin-bottom: 28px;
-      padding: 14px 16px;
-      border: 1px solid #ead9dc;
-      border-radius: 12px;
-      background: #fcf7f7;
-      color: var(--wine);
+      padding: 10px 15px;
       font-size: 13px;
-      overflow-wrap: anywhere;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
     }
 
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .button:hover { background: var(--dark); }
+
+    .button-outline {
+      color: var(--wine);
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .heading {
+      padding: 36px 0 24px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-size: 11px;
       margin-bottom: 8px;
     }
 
-    .section-number {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 38px;
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: #f5e8e9;
-      color: var(--wine);
-      font-weight: 800;
-    }
-
-    .section-title {
-      margin: 0;
+    h1 {
+      margin: 0 0 9px;
       color: var(--wine);
       font-family: Georgia, serif;
-      font-size: 22px;
-      font-weight: 600;
+      font-size: clamp(28px, 4vw, 39px);
     }
 
-    .section-description {
-      margin: 0 0 22px 50px;
+    .heading p {
+      margin: 0;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 14px;
     }
 
-    .photo-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 28px 18px 22px;
-      margin-bottom: 32px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(145deg, #fffdfc, #fbf3f3);
-      text-align: center;
-    }
-
-    .photo-frame {
-      width: 148px;
-      height: 148px;
-      padding: 5px;
-      margin-bottom: 17px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 12px;
+      padding: 16px;
+      margin-bottom: 22px;
       background: white;
-      box-shadow: 0 8px 25px rgba(88, 27, 50, .12);
+      border: 1px solid var(--line);
+      border-radius: 12px;
     }
 
-    .photo-preview,
-    .photo-placeholder {
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select {
       width: 100%;
-      height: 100%;
-      border-radius: 50%;
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: white;
+      font: inherit;
+      color: var(--ink);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      padding-bottom: 45px;
+    }
+
+    .profile-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 4px 15px rgba(53, 16, 31, .06);
+    }
+
+    .profile-card img,
+    .photo-placeholder {
+      display: block;
+      width: 100%;
+      height: 150px;
       object-fit: cover;
+      background: #f5e8e9;
     }
 
     .photo-placeholder {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       color: var(--wine);
-      background: #f5e8e9;
-      font-size: 48px;
+      font-size: 12px;
     }
 
-    .photo-title {
-      margin: 0 0 7px;
+    .card-content { padding: 12px; }
+
+    .card-content h2 {
       color: var(--wine);
       font-size: 16px;
-      font-weight: 700;
-    }
-
-    .photo-description {
-      max-width: 320px;
-      margin: 0 0 17px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .upload-button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 45px;
-      padding: 12px 22px;
-      border-radius: 9px;
-      background: var(--wine);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s;
-    }
-
-    .upload-button:hover { background: var(--wine-dark); }
-
-    #photoInput { display: none; }
-
-    .photo-note {
-      margin: 13px 0 0;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 21px;
-    }
-
-    .field { min-width: 0; }
-    .field.full { grid-column: 1 / -1; }
-
-    label.field-label {
-      display: block;
-      margin-bottom: 9px;
-      color: #49323d;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    input, select {
-      width: 100%;
-      min-height: 50px;
-      padding: 13px 14px;
-      border: 1px solid #e5d8dd;
-      border-radius: 10px;
-      outline: none;
-      background: #fff;
-      color: var(--ink);
-      font-family: inherit;
-      font-size: 14px;
-      transition: border .2s, box-shadow .2s;
-    }
-
-    input::placeholder { color: #aa9ca3; }
-
-    input:focus, select:focus {
-      border-color: var(--rose);
-      box-shadow: 0 0 0 3px rgba(183, 110, 121, .12);
-    }
-
-    .hint {
-      margin-top: 7px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .save-button {
-      width: 100%;
-      min-height: 53px;
-      margin-top: 28px;
-      border: 0;
-      border-radius: 11px;
-      background: linear-gradient(100deg, var(--wine-dark), var(--wine), #874058);
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: .2px;
-      cursor: pointer;
-      box-shadow: 0 7px 20px rgba(88, 27, 50, .16);
-      transition: transform .2s, opacity .2s;
-    }
-
-    .save-button:hover { transform: translateY(-1px); }
-    button:disabled { opacity: .6; cursor: wait; }
-
-    #message {
-      display: none;
-      padding: 13px 15px;
-      margin: 18px 0 0;
-      border-radius: 10px;
-      font-size: 13px;
-      line-height: 1.6;
+      margin: 0 0 7px;
       overflow-wrap: anywhere;
     }
 
-    #message.visible { display: block; }
-    #message.success { color: #17633b; background: #eaf8ef; border: 1px solid #c9ebd5; }
-    #message.error { color: #9b2538; background: #fff0f1; border: 1px solid #f3cbd0; }
-
-    .footer-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-top: 28px;
-      padding-top: 22px;
-      border-top: 1px solid #eee4e7;
+    .card-content p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 3px 0;
+      overflow-wrap: anywhere;
     }
 
-    .footer-actions a {
-      text-decoration: none;
-      color: var(--wine);
-      font-size: 13px;
-      font-weight: 700;
+    .card-content .button {
+      display: block;
+      margin-top: 11px;
+      width: 100%;
+      padding: 9px 5px;
     }
 
-    .logout-button {
-      min-height: 40px;
-      padding: 10px 15px;
-      border: 1px solid #e4cdd4;
-      border-radius: 9px;
+    .message {
+      grid-column: 1 / -1;
+      padding: 24px 15px;
+      text-align: center;
+      color: var(--muted);
       background: white;
-      color: var(--wine);
-      font-weight: 700;
-      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
     }
 
-    @media (max-width: 560px) {
-      body { padding: 12px 9px 28px; }
-      .brand { font-size: 19px; }
-      .home-link { padding: 9px 12px; }
-      .hero { padding: 30px 16px; }
-      .hero h1 { font-size: 27px; }
-      .content { padding: 21px 16px; }
-      .section-title { font-size: 20px; }
-      .section-description { margin-left: 0; }
-      .form-grid { grid-template-columns: 1fr; gap: 18px; }
-      .field.full { grid-column: auto; }
-      .photo-frame { width: 136px; height: 136px; }
-      .footer-actions { flex-wrap: wrap; }
+    .footer {
+      padding: 20px 0;
+      background: var(--dark);
+      color: #f5e7eb;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .profile-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .profile-card img,
+      .photo-placeholder { height: 125px; }
+    }
+
+    @media (max-width: 520px) {
+      .nav {
+        align-items: flex-start;
+        padding: 12px 0;
+        flex-direction: column;
+      }
+
+      .brand { font-size: 21px; }
+
+      .toolbar { grid-template-columns: 1fr 1fr; }
+      .toolbar .button { grid-column: 1 / -1; }
+
+      .profile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .profile-card img,
+      .photo-placeholder { height: 125px; }
+
+      .card-content { padding: 9px; }
+      .card-content h2 { font-size: 14px; }
+      .card-content p { font-size: 11px; }
     }
   </style>
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand" href="index.html">Pasand<span>Matrimony</span></a>
-    <a class="home-link" href="index.html">Home</a>
-  </header>
+    <div class="container nav">
+      <a class="brand" href="index.html">Pasand<span>Matrimony</span></a>
 
-  <main class="card">
-    <section class="hero">
-      <div class="hero-icon">♥</div>
-      <h1>My Profile</h1>
-      <p>Every great relationship begins with a beautiful introduction. Complete your profile to begin your journey.</p>
-    </section>
-
-    <div class="content">
-      <div id="account" class="account">Checking your account...</div>
-
-      <div id="profileContent" hidden>
-        <div class="section-heading">
-          <div class="section-number">01</div>
-          <h2 class="section-title">Profile Photo</h2>
-        </div>
-        <p class="section-description">Let your profile make a memorable first impression.</p>
-
-        <div class="photo-area">
-          <div class="photo-frame">
-            <div id="photoPlaceholder" class="photo-placeholder">♥</div>
-            <img id="photoPreview" class="photo-preview" alt="Profile photo preview" hidden>
-          </div>
-          <h3 class="photo-title">Your Best Picture</h3>
-          <p class="photo-description">Choose a clear and recent photo so other members can recognize you.</p>
-          <label class="upload-button" for="photoInput">Choose Profile Photo</label>
-          <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
-          <p class="photo-note">JPG, PNG or WebP · Maximum file size: 3 MB</p>
-        </div>
-
-        <div class="section-heading">
-          <div class="section-number">02</div>
-          <h2 class="section-title">Personal Details</h2>
-        </div>
-        <p class="section-description">Share accurate details to help you find a compatible life partner.</p>
-
-        <form id="profileForm">
-          <div class="form-grid">
-            <div class="field full">
-              <label class="field-label" for="fullName">Full Name *</label>
-              <input id="fullName" type="text" maxlength="100" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="age">Age *</label>
-              <input id="age" type="number" min="18" max="100" placeholder="Enter your age" required>
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="city">City *</label>
-              <input id="city" type="text" maxlength="100" placeholder="Enter your city" required>
-            </div>
-
-            <div class="field full">
-              <label class="field-label" for="mobile">Mobile Number *</label>
-              <input id="mobile" type="tel" maxlength="20" autocomplete="tel" placeholder="Enter your mobile number" required>
-              <div class="hint">Include your country code if needed.</div>
-            </div>
-
-            <div class="field full">
-              <label class="field-label" for="education">Education</label>
-              <input id="education" type="text" maxlength="150" placeholder="Enter your education">
-            </div>
-
-            <div class="field full">
-              <label class="field-label" for="maritalStatus">Marital Status *</label>
-              <select id="maritalStatus" required>
-                <option value="">Select marital status</option>
-                <option value="Never Married">Never Married</option>
-                <option value="Divorced">Divorced</option>
-                <option value="Widowed">Widowed</option>
-                <option value="Widower">Widower</option>
-              </select>
-            </div>
-          </div>
-
-          <button id="saveButton" class="save-button" type="submit">Save Profile</button>
-        </form>
-      </div>
-
-      <p id="message" role="status" aria-live="polite"></p>
-
-      <div class="footer-actions">
-        <a href="index.html">← Back to Home</a>
-        <button id="logoutButton" class="logout-button" type="button" hidden>Log Out</button>
+      <div class="nav-actions">
+        <a class="button button-outline" href="profile.html">My Profile</a>
+        <button class="button" id="logoutButton" type="button">Log Out</button>
       </div>
     </div>
+  </header>
+
+  <main class="container">
+    <section class="heading">
+      <div class="eyebrow">Discover Connections</div>
+      <h1>Find Your Perfect Match</h1>
+      <p id="introText">Loading your matches...</p>
+    </section>
+
+    <section class="toolbar" aria-label="Profile filters">
+      <div class="field">
+        <label for="cityFilter">City</label>
+        <input id="cityFilter" type="search" placeholder="Search by city">
+      </div>
+
+      <div class="field">
+        <label for="ageFilter">Age Range</label>
+        <select id="ageFilter">
+          <option value="">Any Age</option>
+          <option value="18-25">18–25 Years</option>
+          <option value="26-30">26–30 Years</option>
+          <option value="31-35">31–35 Years</option>
+          <option value="36-40">36–40 Years</option>
+          <option value="41-50">41–50 Years</option>
+          <option value="51+">51+ Years</option>
+        </select>
+      </div>
+
+      <button class="button" id="filterButton" type="button">Apply Filters</button>
+    </section>
+
+    <section id="profileGrid" class="profile-grid" aria-live="polite">
+      <p class="message">Checking your account...</p>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      &copy; <span id="year"></span> PasandMatrimony. All rights reserved.
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
 
   <script>
-    const form = document.getElementById("profileForm");
-    const message = document.getElementById("message");
-    const account = document.getElementById("account");
-    const saveButton = document.getElementById("saveButton");
-    const logoutButton = document.getElementById("logoutButton");
-    const photoInput = document.getElementById("photoInput");
-    const photoPreview = document.getElementById("photoPreview");
-    const photoPlaceholder = document.getElementById("photoPlaceholder");
-    const profileContent = document.getElementById("profileContent");
+    "use strict";
 
-    let currentUser = null;
-    let selectedPhoto = null;
-    let existingPhotoUrl = null;
+    const grid = document.getElementById("profileGrid");
+    const introText = document.getElementById("introText");
+    const cityFilter = document.getElementById("cityFilter");
+    const ageFilter = document.getElementById("ageFilter");
 
-    function showMessage(text, type) {
-      message.textContent = text;
-      message.className = "visible " + type;
+    let allProfiles = [];
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function getClient() {
+      if (typeof supabaseClient !== "undefined") return supabaseClient;
+      if (window.supabaseClient) return window.supabaseClient;
+      return null;
     }
 
-    function showPhoto(url) {
-      if (!url) {
-        photoPreview.hidden = true;
-        photoPreview.removeAttribute("src");
-        photoPlaceholder.hidden = false;
-        return;
-      }
-
-      photoPreview.onload = () => {
-        photoPreview.hidden = false;
-        photoPlaceholder.hidden = true;
-      };
-
-      photoPreview.onerror = () => {
-        photoPreview.hidden = true;
-        photoPlaceholder.hidden = false;
-        showMessage("Your profile photo could not be loaded. Please upload it again.", "error");
-      };
-
-      photoPreview.src = url;
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function (c) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[c];
+      });
     }
 
-    photoInput.addEventListener("change", () => {
-      const file = photoInput.files[0];
-      if (!file) return;
+    function safePhotoURL(value) {
+      try {
+        const url = new URL(String(value || ""));
+        return url.protocol === "https:" ? url.href : "";
+      } catch {
+        return "";
+      }
+    }
 
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-        photoInput.value = "";
-        selectedPhoto = null;
-        showMessage("Please choose a JPG, PNG or WebP image.", "error");
+    function showMessage(text) {
+      grid.innerHTML = "";
+      const p = document.createElement("p");
+      p.className = "message";
+      p.textContent = text;
+      grid.appendChild(p);
+    }
+
+    function ageMatches(age, range) {
+      if (!range) return true;
+
+      const n = Number(age);
+      if (!Number.isFinite(n)) return false;
+
+      if (range === "51+") return n >= 51;
+
+      const parts = range.split("-").map(Number);
+      return n >= parts[0] && n <= parts[1];
+    }
+
+    function renderProfiles() {
+      const city = cityFilter.value.trim().toLowerCase();
+      const ageRange = ageFilter.value;
+
+      const matches = allProfiles.filter(function (p) {
+        const cityMatch = !city ||
+          String(p.city || "").toLowerCase().includes(city);
+
+        return cityMatch && ageMatches(p.age, ageRange);
+      });
+
+      if (!matches.length) {
+        showMessage("No matching profiles found. Try changing your filters.");
         return;
       }
 
-      if (file.size > 3 * 1024 * 1024) {
-        photoInput.value = "";
-        selectedPhoto = null;
-        showMessage("The image must be 3 MB or smaller.", "error");
-        return;
-      }
+      grid.innerHTML = matches.map(function (p) {
+        const name = escapeHTML(p.full_name || "Member");
+        const age = p.age ? escapeHTML(p.age) + " years" : "Not specified";
+        const cityName = escapeHTML(p.city || "Not specified");
+        const education = escapeHTML(p.education || "Not specified");
+        const status = escapeHTML(p.marital_status || "Not specified");
+        const photo = safePhotoURL(p.photo_url);
 
-      selectedPhoto = file;
-      photoPreview.onload = null;
-      photoPreview.onerror = null;
-      photoPreview.src = URL.createObjectURL(file);
-      photoPreview.hidden = false;
-      photoPlaceholder.hidden = true;
-      message.className = "";
-      message.textContent = "";
-    });
+        const picture = photo
+          ? '<img src="' + escapeHTML(photo) +
+            '" alt="Profile photo" loading="lazy">'
+          : '<div class="photo-placeholder">Profile Photo</div>';
+
+        return `
+          <article class="profile-card">
+            ${picture}
+            <div class="card-content">
+              <h2>${name}</h2>
+              <p><strong>Age:</strong> ${age}</p>
+              <p><strong>City:</strong> ${cityName}</p>
+              <p><strong>Education:</strong> ${education}</p>
+              <p><strong>Marital Status:</strong> ${status}</p>
+              <a class="button" href="profile.html">My Profile</a>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
 
     async function initialize() {
-      try {
-        if (typeof supabaseClient === "undefined") {
-          throw new Error("Supabase configuration could not be loaded. Please check supabase-config.js.");
-        }
+      const client = getClient();
 
-        const { data, error } = await supabaseClient.auth.getSession();
-        if (error) throw error;
-
-        if (!data.session || !data.session.user) {
-          window.location.replace("login.html?next=profile.html");
-          return;
-        }
-
-        currentUser = data.session.user;
-        account.textContent = "Signed in as: " + (currentUser.email || "");
-        logoutButton.hidden = false;
-        profileContent.hidden = false;
-
-        const { data: profile, error: profileError } = await supabaseClient
-          .from("profiles")
-          .select("full_name, age, city, education, marital_status, mobile, photo_url")
-          .eq("id", currentUser.id)
-          .maybeSingle();
-
-        if (profileError) throw profileError;
-
-        document.getElementById("fullName").value =
-          profile?.full_name || currentUser.user_metadata?.full_name || "";
-        document.getElementById("age").value = profile?.age ?? "";
-        document.getElementById("city").value = profile?.city || "";
-        document.getElementById("education").value = profile?.education || "";
-        document.getElementById("mobile").value = profile?.mobile || "";
-
-        const status = profile?.marital_status || "";
-        const statusMap = {
-          "अविवाहित": "Never Married",
-          "तलाकशुदा": "Divorced",
-          "विधवा": "Widowed",
-          "विधुर": "Widower"
-        };
-        document.getElementById("maritalStatus").value = statusMap[status] || status;
-
-        existingPhotoUrl = profile?.photo_url || null;
-        showPhoto(existingPhotoUrl);
-
-      } catch (error) {
-        console.error("Profile loading error:", error);
-        const text = String(error?.message || "");
-
-        if (text.toLowerCase().includes("auth session missing") ||
-            text.toLowerCase().includes("session_not_found")) {
-          window.location.replace("login.html?next=profile.html");
-          return;
-        }
-
-        showMessage("Unable to load your profile: " + text, "error");
-      }
-    }
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      if (!currentUser) {
-        window.location.replace("login.html?next=profile.html");
+      if (!client) {
+        showMessage("The website configuration could not be loaded.");
         return;
       }
 
-      saveButton.disabled = true;
-      saveButton.textContent = "Saving...";
-      message.className = "";
-      message.textContent = "";
-
       try {
-        let photoUrl = existingPhotoUrl;
+        const { data: sessionData, error: sessionError } =
+          await client.auth.getSession();
 
-        if (selectedPhoto) {
-          const extension = selectedPhoto.name.split(".").pop().toLowerCase();
-          const filePath = currentUser.id + "/profile-" + Date.now() + "." + extension;
+        if (sessionError) throw sessionError;
 
-          const { data: uploadData, error: uploadError } = await supabaseClient.storage
-            .from("profile-photos")
-            .upload(filePath, selectedPhoto, {
-              upsert: true,
-              contentType: selectedPhoto.type
-            });
+        const user = sessionData.session?.user;
 
-          if (uploadError) throw uploadError;
-
-          const { data: publicData } = supabaseClient.storage
-            .from("profile-photos")
-            .getPublicUrl(uploadData.path);
-
-          photoUrl = publicData.publicUrl;
+        if (!user) {
+          window.location.replace("login.html?next=profiles.html");
+          return;
         }
 
-        const profile = {
-          id: currentUser.id,
-          full_name: document.getElementById("fullName").value.trim(),
-          age: Number(document.getElementById("age").value),
-          city: document.getElementById("city").value.trim(),
-          mobile: document.getElementById("mobile").value.trim(),
-          education: document.getElementById("education").value.trim() || null,
-          marital_status: document.getElementById("maritalStatus").value,
-          photo_url: photoUrl,
-          updated_at: new Date().toISOString()
-        };
-
-        const { error } = await supabaseClient
+        const { data: ownProfile, error: ownError } = await client
           .from("profiles")
-          .upsert(profile, { onConflict: "id" });
+          .select("gender")
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (ownError) throw ownError;
+
+        if (!ownProfile || !ownProfile.gender) {
+          introText.textContent = "Complete your profile to discover matches.";
+          showMessage("Please complete and save your Gender in My Profile first.");
+          return;
+        }
+
+        const gender = String(ownProfile.gender).toLowerCase();
+
+        if (gender !== "male" && gender !== "female") {
+          showMessage("Your Gender is incomplete. Please update My Profile.");
+          return;
+        }
+
+        /*
+          This RPC must enforce the opposite-gender filter in the database.
+          It must return only approved public profile fields and exclude the
+          current user's own profile.
+        */
+        const { data, error } = await client.rpc(
+          "get_opposite_gender_profiles"
+        );
 
         if (error) throw error;
 
-        existingPhotoUrl = photoUrl;
-        selectedPhoto = null;
-        photoInput.value = "";
-        showMessage("Your profile has been saved successfully!", "success");
+        allProfiles = (data || []).filter(function (p) {
+          return p.id !== user.id &&
+            String(p.gender || "").toLowerCase() !== gender;
+        });
+
+        introText.textContent = gender === "male"
+          ? "Explore women's profiles and discover your compatible match."
+          : "Explore men's profiles and discover your compatible match.";
+
+        renderProfiles();
 
       } catch (error) {
-        console.error("Profile save error:", error);
-        showMessage("Unable to save your profile: " + error.message, "error");
-      } finally {
-        saveButton.disabled = false;
-        saveButton.textContent = "Save Profile";
+        console.error("Could not load matching profiles:", error);
+        showMessage(
+          "Profiles could not be loaded. Please check your database permissions and try again."
+        );
       }
+    }
+
+    document.getElementById("filterButton").addEventListener(
+      "click",
+      renderProfiles
+    );
+
+    cityFilter.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") renderProfiles();
     });
 
-    logoutButton.addEventListener("click", async () => {
-      logoutButton.disabled = true;
-      logoutButton.textContent = "Logging Out...";
+    document.getElementById("logoutButton").addEventListener(
+      "click",
+      async function () {
+        const client = getClient();
+        if (!client) return;
 
-      try {
-        const { error } = await supabaseClient.auth.signOut();
-        if (error) throw error;
-        window.location.replace("login.html");
-      } catch (error) {
-        showMessage("Unable to log out: " + error.message, "error");
-        logoutButton.disabled = false;
-        logoutButton.textContent = "Log Out";
+        const button = this;
+        button.disabled = true;
+        button.textContent = "Logging Out...";
+
+        try {
+          const { error } = await client.auth.signOut();
+          if (error) throw error;
+          window.location.replace("login.html");
+        } catch (error) {
+          console.error("Logout error:", error);
+          button.disabled = false;
+          button.textContent = "Log Out";
+          showMessage("Could not log out. Please try again.");
+        }
       }
-    });
+    );
 
     initialize();
   </script>
