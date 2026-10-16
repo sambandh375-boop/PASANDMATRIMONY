@@ -48,6 +48,17 @@
       border: 1px solid #eadfe2;
       border-radius: 12px;
       overflow-wrap: anywhere;
+      text-align: center;
+    }
+    .qr {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 14px auto;
+      border: 1px solid #eadfe2;
+      border-radius: 8px;
+      background: white;
     }
     .upi-id { font-weight: bold; color: #581b32; }
     .button {
@@ -109,7 +120,7 @@
   <main class="container">
     <header class="hero">
       <h1>Premium Membership</h1>
-      <p>Unlock contact details and discover compatible matches.</p>
+      <p>Discover compatible matches with contact access.</p>
     </header>
 
     <section class="content">
@@ -120,25 +131,30 @@
 
       <h3>Membership Benefits</h3>
       <ul class="benefits">
-        <li>View contact details of up to 10 unique profiles.</li>
-        <li>Membership valid for 30 days after verification.</li>
-        <li>Track profiles viewed and remaining.</li>
+        <li>Contact access for up to 10 unique profiles.</li>
+        <li>Membership lasts 30 days after payment verification.</li>
+        <li>View your usage and remaining profile limit.</li>
       </ul>
 
       <section class="upi">
-        <h3>Pay Using UPI</h3>
+        <h3>Scan & Pay Using UPI</h3>
+        <img
+          class="qr"
+          src="payment-qr.jpg"
+          alt="UPI payment QR code"
+          onerror="this.alt='QR image not found. Check the filename in GitHub.'; this.style.display='none';"
+        >
         <p>UPI ID</p>
         <p class="upi-id" id="upiId">Vyapar.178760129848@hdfcbank</p>
         <button class="button" id="copyUpi" type="button">Copy UPI ID</button>
-        <p>Open your UPI app, pay ₹999, and save your payment reference number.</p>
-        <p><strong>QR Code:</strong> Please use the official QR code supplied by the website owner. The QR image will be added to this page in the next step.</p>
+        <p>Pay exactly ₹999 using your UPI app. Save your transaction reference number.</p>
       </section>
 
       <form id="paymentForm">
         <h3>Submit Payment Reference</h3>
         <label for="reference">UPI Transaction Reference / UTR *</label>
         <input id="reference" type="text" maxlength="100"
-          placeholder="Enter your transaction reference" required>
+          placeholder="Enter transaction reference" required>
 
         <label for="payerName">Payer Name *</label>
         <input id="payerName" type="text" maxlength="100"
@@ -148,8 +164,9 @@
       </form>
 
       <div class="notice">
-        Your membership will remain pending until the payment is verified.
-        Submitting a reference number does not activate membership automatically.
+        Payment details have not yet been connected to the membership system.
+        This form does not submit a payment or activate membership.
+        Membership will remain pending until the payment is verified.
       </div>
 
       <p id="message" role="status" aria-live="polite"></p>
@@ -173,7 +190,7 @@
     document.getElementById("paymentForm").addEventListener("submit", function (event) {
       event.preventDefault();
       document.getElementById("message").textContent =
-        "The form is ready, but payment submission is not connected yet. Please wait for the secure submission feature before relying on this form.";
+        "Payment submission is not connected yet. Your membership has not been activated.";
     });
   </script>
 </body>
