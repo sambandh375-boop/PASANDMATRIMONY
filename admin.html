@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel | PasandMatrimony</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px 12px;
+      font-family: Arial, sans-serif;
+      background: #faf6f2;
+      color: #35242b;
+    }
+    .container { max-width: 1000px; margin: auto; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    h1, h2 { color: #581b32; }
+    .brand { font-size: 22px; font-weight: bold; color: #581b32; }
+    .brand span { color: #b76e79; }
+    .panel {
+      padding: 18px;
+      margin-bottom: 18px;
+      background: white;
+      border: 1px solid #eadfe2;
+      border-radius: 12px;
+    }
+    button, .button {
+      display: inline-block;
+      padding: 10px 13px;
+      border: 0;
+      border-radius: 7px;
+      background: #581b32;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:disabled { opacity: .55; cursor: wait; }
+    .reject { background: #a12c3e; }
+    .secondary { background: #77666e; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eadfe2;
+      text-align: left;
+      font-size: 13px;
+      vertical-align: top;
+    }
+    th { color: #581b32; background: #fcf7f7; }
+    td { overflow-wrap: anywhere; }
+    .actions { display: flex; gap: 7px; flex-wrap: wrap; }
+    #message { line-height: 1.6; overflow-wrap: anywhere; }
+    .note {
+      padding: 12px;
+      background: #fff5df;
+      color: #725019;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .status { font-weight: bold; }
+    @media (max-width: 600px) {
+      body { padding: 12px 8px; }
+      .panel { padding: 12px; }
+      th, td { padding: 9px 7px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="brand">Pasand<span>Matrimony</span> Admin</div>
+      <div>
+        <a class="button" href="index.html">Home</a>
+        <button id="logoutButton" class="secondary" type="button">Log Out</button>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h1>Payment Requests</h1>
+      <p>Review UPI payments and verify receipt of ₹999 before activating membership.</p>
+      <p class="note">
+        Verify a request only after confirming the payment in your own bank or UPI account.
+        A transaction reference or screenshot alone is not proof of payment.
+      </p>
+      <p id="message" role="status">Checking administrator access...</p>
+      <button id="refreshButton" type="button">Refresh Requests</button>
+    </section>
+
+    <section class="panel">
+      <h2>Pending Payments</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Submitted</th>
+              <th>Payer</th>
+              <th>Amount</th>
+              <th>Transaction Reference</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="requestsBody">
+            <tr><td colspan="5">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Recent Reviewed Payments</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Submitted</th>
+              <th>Amount</th>
+              <th>Transaction Reference</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="reviewedBody">
+            <tr><td colspan="4">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    "use strict";
+
+    const client = typeof supabaseClient !== "undefined"
+      ? supabaseClient
+      : window.supabaseClient;
+
+    const message = document.getElementById("message");
+    const requestsBody = document.getElementById("requestsBody");
+    const reviewedBody = document.getElementById("reviewedBody");
+
+    function showMessage(text) {
+      message.textContent = text;
+    }
+
+    function cell(row, value) {
+      const td = document.createElement("td");
+      td.textContent = value == null ? "" : String(value);
+      row.appendChild(td);
+      return td;
+    }
+
+    function formatDate(value) {
+      if (!value) return "—";
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? "—" : date.toLocaleString();
+    }
+
+    function makeActionButton(label, className, callback) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = label;
+      if (className) button.className = className;
+      button.addEventListener("click", callback);
+      return button;
+    }
+
+    async function loadRequests() {
+      requestsBody.replaceChildren();
+      reviewedBody.replaceChildren();
+
+      const { data: pending, error: pendingError } = await client
+        .from("payment_requests")
+        .select("id, submitted_at, payer_name, amount, transaction_reference")
+        .eq("status", "pending")
+        .order("submitted_at", { ascending: true });
+
+      if (pendingError) throw pendingError;
+
+      if (!pending || pending.length === 0) {
+        const row = document.createElement("tr");
+        cell(row, "No pending payment requests.");
+        const td = row.firstChild;
+        td.colSpan = 5;
+        requestsBody.appendChild(row);
+      } else {
+        pending.forEach(function (request) {
+          const row = document.createElement("tr");
+          cell(row, formatDate(request.submitted_at));
+          cell(row, request.payer_name);
+          cell(row, "₹" + request.amount);
+          cell(row, request.transaction_reference);
+
+          const actionCell = cell(row, "");
+          actionCell.className = "actions";
+
+          const verify = makeActionButton(
+            "Verify Payment", "",
+            function () { reviewPayment(request, "verify"); }
+          );
+
+          const reject = makeActionButton(
+            "Reject", "reject",
+            function () { reviewPayment(request, "reject"); }
+          );
+
+          actionCell.appendChild(verify);
+          actionCell.appendChild(reject);
+          requestsBody.appendChild(row);
+        });
+      }
+
+      const { data: reviewed, error: reviewedError } = await client
+        .from("payment_requests")
+        .select("id, submitted_at, amount, transaction_reference, status")
+        .in("status", ["verified", "rejected"])
+        .order("reviewed_at", { ascending: false })
+        .limit(20);
+
+      if (reviewedError) throw reviewedError;
+
+      if (!reviewed || reviewed.length === 0) {
+        const row = document.createElement("tr");
+        cell(row, "No reviewed payments yet.");
+        row.firstChild.colSpan = 4;
+        reviewedBody.appendChild(row);
+      } else {
+        reviewed.forEach(function (request) {
+          const row = document.createElement("tr");
+          cell(row, formatDate(request.submitted_at));
+          cell(row, "₹" + request.amount);
+          cell(row, request.transaction_reference);
+          cell(row, request.status);
+          reviewedBody.appendChild(row);
+        });
+      }
+    }
+
+    async function reviewPayment(request, action) {
+      if (action === "verify") {
+        const confirmed = confirm(
+          "Have you confirmed receipt of ₹999 in your bank/UPI account? " +
+          "Only continue if the payment is actually received."
+        );
+        if (!confirmed) return;
+      } else {
+        if (!confirm("Reject this payment request?")) return;
+      }
+
+      const buttons = document.querySelectorAll("button");
+      buttons.forEach(button => button.disabled = true);
+
+      try {
+        const { data, error } = await client.rpc(
+          "review_membership_payment",
+          {
+            p_request_id: request.id,
+            p_action: action
+          }
+        );
+
+        if (error) throw error;
+
+        if (action === "verify") {
+          showMessage(
+            "Payment verified. Receipt: " +
+            (data?.receipt_number || "created") +
+            ". Expiry: " +
+            formatDate(data?.membership_expires_at) +
+            "."
+          );
+        } else {
+          showMessage("Payment request rejected.");
+        }
+
+        await loadRequests();
+      } catch (error) {
+        console.error(error);
+        showMessage("Unable to review payment: " + error.message);
+      } finally {
+        buttons.forEach(button => button.disabled = false);
+      }
+    }
+
+    async function initialize() {
+      if (!client) {
+        showMessage("Supabase configuration could not be loaded.");
+        return;
+      }
+
+      try {
+        const { data, error } = await client.auth.getSession();
+        if (error) throw error;
+
+        if (!data.session) {
+          window.location.replace("login.html?next=admin.html");
+          return;
+        }
+
+        const { data: isAdmin, error: adminError } =
+          await client.rpc("is_site_admin");
+
+        if (adminError) throw adminError;
+
+        if (isAdmin !== true) {
+          showMessage("Access denied. This account is not an administrator.");
+          document.getElementById("refreshButton").disabled = true;
+          return;
+        }
+
+        showMessage("Administrator access confirmed.");
+        await loadRequests();
+      } catch (error) {
+        console.error(error);
+        showMessage("Unable to load admin panel: " + error.message);
+      }
+    }
+
+    document.getElementById("refreshButton").addEventListener("click", async function () {
+      try {
+        await loadRequests();
+        showMessage("Payment requests refreshed.");
+      } catch (error) {
+        showMessage("Unable to refresh: " + error.message);
+      }
+    });
+
+    document.getElementById("logoutButton").addEventListener("click", async function () {
+      const { error } = await client.auth.signOut();
+      if (error) {
+        showMessage("Unable to log out: " + error.message);
+        return;
+      }
+      window.location.replace("login.html");
+    });
+
+    initialize();
+  </script>
+</body>
+</html>
