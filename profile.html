@@ -30,13 +30,18 @@
 
     [hidden] { display: none !important; }
 
-    .topbar {
+    .topbar, .card {
       width: min(850px, 100%);
-      margin: 0 auto 18px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
+      margin-bottom: 18px;
     }
 
     .brand {
@@ -62,13 +67,11 @@
     }
 
     .card {
-      width: min(850px, 100%);
-      margin: auto;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: white;
-      box-shadow: 0 12px 40px rgba(53,16,31,.08);
+      box-shadow: 0 12px 40px #35101f14;
     }
 
     .hero {
@@ -94,7 +97,7 @@
     .content { padding: 25px; }
 
     .account {
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       padding: 13px 15px;
       border: 1px solid var(--line);
       border-radius: 10px;
@@ -117,16 +120,15 @@
     }
 
     .member-id-label {
+      margin-bottom: 5px;
       color: var(--muted);
       font-size: 12px;
-      margin-bottom: 5px;
     }
 
     .member-id-value {
       color: var(--wine);
       font-size: 22px;
       font-weight: 800;
-      letter-spacing: .5px;
       overflow-wrap: anywhere;
     }
 
@@ -301,7 +303,6 @@
       .content { padding: 18px 14px; }
       .form-grid { grid-template-columns: 1fr; }
       .field.full { grid-column: auto; }
-      .member-id-value { font-size: 20px; }
     }
   </style>
 </head>
@@ -338,7 +339,6 @@
             <div id="photoPlaceholder" class="photo-placeholder">♥</div>
             <img id="photoPreview" class="photo-preview" alt="Profile photo" hidden>
           </div>
-
           <label for="photoInput" class="upload-label">Choose Profile Photo</label>
           <input id="photoInput" type="file" accept="image/jpeg,image/png,image/webp">
           <p class="hint">JPG, PNG or WebP. Maximum size: 3 MB.</p>
@@ -391,6 +391,7 @@
                 <option value="Divorced">Divorced</option>
                 <option value="Widowed">Widowed</option>
                 <option value="Widower">Widower</option>
+                <option value="Separated">Separated</option>
               </select>
             </div>
           </div>
@@ -441,6 +442,33 @@
       message.className = "visible " + type;
     }
 
+    function metadataValue(...keys) {
+      const metadata = currentUser?.user_metadata || {};
+      for (const key of keys) {
+        const value = metadata[key];
+        if (value !== undefined && value !== null && String(value).trim()) {
+          return String(value).trim();
+        }
+      }
+      return "";
+    }
+
+    function normalizeStatus(value) {
+      const map = {
+        "अविवाहित": "Never Married",
+        "तलाकशुदा": "Divorced",
+        "विधवा": "Widowed",
+        "विधुर": "Widower",
+        "never married": "Never Married",
+        "divorced": "Divorced",
+        "widowed": "Widowed",
+        "widower": "Widower",
+        "separated": "Separated"
+      };
+      const text = String(value || "").trim();
+      return map[text.toLowerCase()] || map[text] || text;
+    }
+
     function showPhoto(url) {
       if (!url) {
         photoPreview.hidden = true;
@@ -464,6 +492,11 @@
 
     document.getElementById("copyIdButton").addEventListener("click", async function () {
       const id = memberIdElement.textContent.trim();
+
+      if (!id || id === "Not assigned" || id === "Loading...") {
+        showMessage("Save your profile first to check your Membership ID.", "error");
+        return;
+      }
 
       try {
         await navigator.clipboard.writeText(id);
@@ -492,6 +525,8 @@
       }
 
       selectedPhoto = file;
+      photoPreview.onload = null;
+      photoPreview.onerror = null;
       photoPreview.src = URL.createObjectURL(file);
       photoPreview.hidden = false;
       photoPlaceholder.hidden = true;
@@ -502,7 +537,7 @@
       const client = getClient();
 
       if (!client) {
-        account.textContent = "Website configuration could not be loaded.";
+        account.textContent = "Website configuration could not be loaded. Check supabase-config.js.";
         return;
       }
 
@@ -531,41 +566,41 @@
 
         if (error) throw error;
 
-        if (profile && profile.member_id) {
-          memberIdElement.textContent = profile.member_id;
-          memberIdBox.hidden = false;
-        } else {
-          memberIdElement.textContent = "Not assigned";
-          memberIdBox.hidden = false;
-        }
-
         document.getElementById("fullName").value =
-          profile?.full_name || currentUser.user_metadata?.full_name || "";
+          profile?.full_name || metadataValue("full_name", "name");
 
-        document.getElementById("age").value = profile?.age ?? "";
-        document.getElementById("gender").value = profile?.gender || "";
-        document.getElementById("city").value = profile?.city || "";
-        document.getElementById("education").value = profile?.education || "";
+        document.getElementById("age").value =
+          profile?.age ?? metadataValue("age");
+
+        document.getElementById("gender").value =
+          profile?.gender || metadataValue("gender");
+
+        document.getElementById("city").value =
+          profile?.city || metadataValue("city", "city_name");
+
         document.getElementById("mobile").value =
-          profile?.mobile || currentUser.user_metadata?.mobile || "";
+          profile?.mobile || metadataValue("mobile", "phone", "phone_number");
 
-        const statusMap = {
-          "अविवाहित": "Never Married",
-          "तलाकशुदा": "Divorced",
-          "विधवा": "Widowed",
-          "विधुर": "Widower"
-        };
+        document.getElementById("education").value =
+          profile?.education || metadataValue("education", "qualification");
 
-        const status = profile?.marital_status || "";
-        document.getElementById("maritalStatus").value =
-          statusMap[status] || status;
+        document.getElementById("maritalStatus").value = normalizeStatus(
+          profile?.marital_status ||
+          metadataValue("marital_status", "maritalStatus")
+        );
 
         existingPhotoUrl = profile?.photo_url || null;
         showPhoto(existingPhotoUrl);
 
+        memberIdElement.textContent = profile?.member_id || "Not assigned";
+        memberIdBox.hidden = false;
+
       } catch (error) {
         console.error("Profile loading error:", error);
-        showMessage("Unable to load your profile. " + error.message, "error");
+        showMessage(
+          "Unable to load your profile. " + (error.message || "Please try again."),
+          "error"
+        );
       }
     }
 
@@ -591,8 +626,8 @@
             ? "png"
             : selectedPhoto.type === "image/webp" ? "webp" : "jpg";
 
-          const filePath = currentUser.id + "/profile-" +
-            Date.now() + "." + extension;
+          const filePath =
+            currentUser.id + "/profile-" + Date.now() + "." + extension;
 
           const { data: uploadData, error: uploadError } = await client.storage
             .from("profile-photos")
@@ -631,20 +666,26 @@
 
         if (error) throw error;
 
-        if (data?.member_id) {
-          memberIdElement.textContent = data.member_id;
-          memberIdBox.hidden = false;
-        }
-
         existingPhotoUrl = photoUrl;
         selectedPhoto = null;
         photoInput.value = "";
 
-        showMessage("Your profile has been saved successfully.", "success");
+        memberIdElement.textContent = data?.member_id || "Not assigned";
+        memberIdBox.hidden = false;
+
+        showMessage(
+          data?.member_id
+            ? "Your profile has been saved successfully. Membership ID: " + data.member_id
+            : "Your profile was saved, but no Membership ID was returned. Please contact support.",
+          data?.member_id ? "success" : "error"
+        );
 
       } catch (error) {
         console.error("Profile save error:", error);
-        showMessage("Unable to save your profile. " + error.message, "error");
+        showMessage(
+          "Unable to save your profile. " + (error.message || "Please try again."),
+          "error"
+        );
       } finally {
         saveButton.disabled = false;
         saveButton.textContent = "Save Profile";
@@ -663,7 +704,10 @@
         window.location.replace("login.html");
       } catch (error) {
         logoutButton.disabled = false;
-        showMessage("Unable to log out. " + error.message, "error");
+        showMessage(
+          "Unable to log out. " + (error.message || "Please try again."),
+          "error"
+        );
       }
     });
 
