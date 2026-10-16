@@ -1,75 +1,277 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>लॉगिन | PasandMatrimony</title>
+  <meta name="theme-color" content="#151515">
+  <title>Member Login | PasandMatrimony</title>
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      padding: 20px;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: #fff5f7;
-      color: #35212b;
+      background: #151515;
+      color: #fff;
     }
-    .card {
-      max-width: 450px;
-      margin: 35px auto;
-      padding: 28px;
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 8px 28px #761c4018;
+
+    header {
+      min-height: 105px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #303030;
     }
-    h1 { text-align: center; color: #761c40; }
-    label { display: block; margin: 17px 0 6px; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-icon {
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      background: #a90000;
+      border-radius: 12px;
+      font-size: 32px;
+    }
+
+    .brand-name {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .brand-tagline {
+      margin-top: 5px;
+      color: #ccc;
+      font-size: 12px;
+    }
+
+    .menu {
+      color: #f04450;
+      font-size: 30px;
+      text-decoration: none;
+    }
+
+    main {
+      width: 100%;
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 24px 45px;
+    }
+
+    .heading {
+      text-align: center;
+      margin: 0 0 55px;
+    }
+
+    .heading h1 {
+      margin: 0;
+      color: #ccc;
+      font-size: 42px;
+      font-weight: 300;
+    }
+
+    .heading h2 {
+      display: inline-block;
+      margin: 12px 0 0;
+      padding: 0 25px 22px;
+      border-bottom: 4px solid #c71925;
+      color: #f49ba4;
+      font-size: 38px;
+      font-weight: 400;
+    }
+
+    .intro {
+      margin-bottom: 26px;
+      font-size: 19px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 8px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
     input {
       width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
+      min-height: 62px;
+      padding: 15px;
+      border: 1px solid #555;
+      border-radius: 0;
+      background: #292929;
+      color: #fff;
+      font-size: 17px;
     }
-    button {
+
+    input:focus {
+      outline: 2px solid #f49ba4;
+      outline-offset: 2px;
+    }
+
+    .button {
+      display: inline-block;
       width: 100%;
-      margin-top: 20px;
-      padding: 14px;
+      min-height: 60px;
+      padding: 16px;
       border: 0;
-      border-radius: 8px;
-      background: #761c40;
-      color: white;
-      font-size: 16px;
+      border-radius: 0;
+      background: #b90000;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 19px;
       cursor: pointer;
     }
-    button:disabled { opacity: .6; }
-    p { text-align: center; overflow-wrap: anywhere; }
-    a { color: #761c40; }
+
+    .button:hover { background: #d00000; }
+    .button:disabled { opacity: .6; cursor: wait; }
+
+    .forgot-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .forgot-row .button {
+      width: 52%;
+      min-height: 60px;
+    }
+
+    a { color: #f49ba4; }
+
+    .forgot-link {
+      font-size: 16px;
+      text-align: right;
+    }
+
+    .join {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid #555;
+    }
+
+    .join p {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+
+    #message {
+      min-height: 24px;
+      overflow-wrap: anywhere;
+      line-height: 1.5;
+      color: #f49ba4;
+    }
+
+    footer {
+      margin-top: 45px;
+      padding: 28px 20px;
+      border-top: 1px solid #303030;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    footer a { margin: 0 8px; }
+
+    @media (max-width: 400px) {
+      header { padding: 14px; }
+      .brand-name { font-size: 18px; }
+      main { padding: 12px 18px 35px; }
+      .heading h1 { font-size: 36px; }
+      .heading h2 { font-size: 34px; }
+      .intro { font-size: 17px; }
+      .forgot-row { align-items: stretch; }
+      .forgot-row .button { width: 55%; }
+      .forgot-link { font-size: 14px; }
+    }
   </style>
 </head>
+
 <body>
-  <main class="card">
-    <h1>❤️ PasandMatrimony</h1>
-    <p>अपने अकाउंट में लॉगिन करें</p>
+  <header>
+    <a class="brand" href="index.html">
+      <span class="brand-icon" aria-hidden="true">♥</span>
+      <span>
+        <span class="brand-name">PasandMatrimony</span>
+        <span class="brand-tagline" style="display:block">
+          Find Your Perfect Match
+        </span>
+      </span>
+    </a>
+    <a class="menu" href="index.html" aria-label="Home">☰</a>
+  </header>
+
+  <main>
+    <section class="heading">
+      <h1>Member</h1>
+      <h2>Login</h2>
+    </section>
+
+    <p class="intro">Please login with your Email and Password</p>
 
     <form id="loginForm">
-      <label for="email">ईमेल</label>
-      <input id="email" type="email"
-             autocomplete="email" required>
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        placeholder="Enter your email"
+        required
+      >
 
-      <label for="password">पासवर्ड</label>
-      <input id="password" type="password"
-             autocomplete="current-password" required>
+      <label for="password">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Enter your password"
+        required
+      >
 
-      <button id="loginButton" type="submit">लॉगिन करें</button>
+      <div class="forgot-row">
+        <button class="button" id="loginButton" type="submit">
+          Login
+        </button>
+        <a class="forgot-link" href="forgot-password.html">
+          Forgot password?
+        </a>
+      </div>
+
       <p id="message" role="status" aria-live="polite"></p>
     </form>
 
-    <p>नया अकाउंट? <a href="register.html">रजिस्ट्रेशन करें</a></p>
-    <p><a href="index.html">होम पेज</a></p>
+    <section class="join">
+      <p>Not Yet a Member? Join Now</p>
+      <a class="button" href="register.html">Register Free</a>
+    </section>
   </main>
+
+  <footer>
+    <p>PasandMatrimony — Find Your Perfect Match</p>
+    <a href="index.html">Home</a>
+    <a href="register.html">Register</a>
+    <a href="forgot-password.html">Forgot Password</a>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
+
   <script>
     const form = document.getElementById("loginForm");
     const message = document.getElementById("message");
@@ -78,9 +280,13 @@
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       button.disabled = true;
-      message.textContent = "लॉगिन जाँच रहे हैं...";
+      message.textContent = "Checking login details...";
 
       try {
+        if (typeof supabaseClient === "undefined") {
+          throw new Error("Connection configuration is unavailable. Please check supabase-config.js.");
+        }
+
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
@@ -93,13 +299,13 @@
         if (error) throw error;
 
         if (!data.session) {
-          throw new Error("लॉगिन सत्र नहीं मिला। दोबारा प्रयास करें।");
+          throw new Error("Login session not found. Please try again.");
         }
 
-        message.textContent = "लॉगिन सफल! प्रोफाइल पेज खोला जा रहा है...";
+        message.textContent = "Login successful. Opening your profile...";
         window.location.href = "profile.html";
       } catch (error) {
-        message.textContent = "लॉगिन नहीं हुआ: " + error.message;
+        message.textContent = "Login failed: " + error.message;
       } finally {
         button.disabled = false;
       }
