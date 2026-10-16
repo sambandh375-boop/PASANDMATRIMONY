@@ -9,347 +9,271 @@
 
 <style>
 :root {
-  --wine: #581b32;
-  --dark: #35101f;
-  --gold: #c99a78;
-  --cream: #fffaf6;
-  --muted: #786b71;
-  --border: #eadde1;
+  --wine:#581b32;
+  --dark:#35101f;
+  --gold:#c99a78;
+  --cream:#fffaf6;
+  --muted:#786b71;
+  --border:#eadde1;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: Arial, sans-serif;
-  background: var(--cream);
-  color: #34232b;
-  line-height: 1.55;
+  font-family:Arial,sans-serif;
+  background:var(--cream);
+  color:#34232b;
+  line-height:1.55;
 }
-
-a { color: inherit; text-decoration: none; }
-
-.container { width: min(1150px, 94%); margin: auto; }
-
+a { color:inherit; text-decoration:none; }
+.container { width:min(1150px,94%); margin:auto; }
 .navbar {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
-
 .nav-inner {
-  min-height: 68px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
+  min-height:68px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
-
 .logo {
-  color: var(--wine);
-  font-size: 24px;
-  font-weight: 800;
-  white-space: nowrap;
+  color:var(--wine);
+  font-size:24px;
+  font-weight:800;
+  white-space:nowrap;
 }
-
-.logo span { color: var(--gold); }
-
+.logo span { color:var(--gold); }
 .nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  font-weight: 700;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+  font-weight:700;
 }
-
-.nav-links a:hover { color: var(--gold); }
-
+.nav-links a:hover { color:var(--gold); }
 .btn {
-  display: inline-block;
-  padding: 10px 17px;
-  border: 1px solid var(--wine);
-  border-radius: 6px;
-  background: var(--wine);
-  color: #fff;
-  text-align: center;
-  font-weight: 700;
-  cursor: pointer;
+  display:inline-block;
+  padding:10px 16px;
+  border:1px solid var(--wine);
+  border-radius:7px;
+  background:var(--wine);
+  color:#fff;
+  text-align:center;
+  font-weight:700;
+  cursor:pointer;
 }
-
-.btn:hover { background: var(--dark); }
-
-.btn-outline { background: transparent; color: var(--wine); }
-
+.btn:hover { background:var(--dark); }
+.btn-outline { background:transparent; color:var(--wine); }
+.btn-gold { background:var(--gold); border-color:var(--gold); color:var(--dark); }
 .hero {
-  min-height: 440px;
-  display: flex;
-  align-items: center;
-  background-color: var(--dark);
+  min-height:440px;
+  display:flex;
+  align-items:center;
+  background-color:var(--dark);
   background-image:
-    linear-gradient(90deg, rgba(35,7,19,.88), rgba(45,9,24,.30)),
+    linear-gradient(90deg,rgba(35,7,19,.88),rgba(45,9,24,.30)),
     url("wedding-hero.png");
-  background-size: cover;
-  background-position: center;
-  color: #fff;
+  background-size:cover;
+  background-position:center;
+  color:#fff;
 }
-
-.hero-content { max-width: 620px; padding: 65px 0; }
-
+.hero-content { max-width:680px; padding:65px 0; }
 .eyebrow {
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
+  color:var(--gold);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:12px;
 }
-
 .hero h1 {
-  font-family: Georgia, serif;
-  font-size: clamp(36px, 5vw, 60px);
-  line-height: 1.12;
-  margin-bottom: 18px;
+  font-family:Georgia,serif;
+  font-size:clamp(36px,5vw,60px);
+  line-height:1.12;
+  margin-bottom:18px;
 }
-
-.hero p { max-width: 540px; margin-bottom: 24px; color: #fff0f3; }
-
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-.hero .btn { background: var(--gold); border-color: var(--gold); color: var(--dark); }
-.hero .btn-outline { background: transparent; color: #fff; border-color: #fff; }
-
-.section { padding: 55px 0; }
-
+.hero p { max-width:540px; margin-bottom:24px; color:#fff0f3; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+.hero .btn-outline { background:transparent; color:#fff; border-color:#fff; }
+.section { padding:55px 0; }
 .section-heading {
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto 28px;
+  text-align:center;
+  max-width:650px;
+  margin:0 auto 28px;
 }
-
 .section-heading h2 {
-  font-family: Georgia, serif;
-  color: var(--wine);
-  font-size: clamp(27px, 3.5vw, 36px);
-  margin-bottom: 8px;
+  font-family:Georgia,serif;
+  color:var(--wine);
+  font-size:clamp(27px,3.5vw,36px);
+  margin-bottom:8px;
 }
-
-.section-heading p { color: var(--muted); font-size: 14px; }
-
-.search-area {
-  position: relative;
-  margin-top: -25px;
-}
-
+.section-heading p { color:var(--muted); font-size:14px; }
+.search-area { position:relative; margin-top:-25px; }
 .search-box {
-  padding: 20px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow: 0 8px 25px rgba(65,20,39,.09);
+  padding:20px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(65,20,39,.09);
 }
-
-.search-box h2 { color: var(--wine); font-size: 19px; margin-bottom: 12px; }
-
+.search-box h2 { color:var(--wine); font-size:19px; margin-bottom:12px; }
 .search-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 12px;
-  align-items: end;
+  display:grid;
+  grid-template-columns:1fr 1fr auto;
+  gap:12px;
+  align-items:end;
 }
-
-.field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-
-.field input, .field select {
-  width: 100%;
-  min-height: 43px;
-  padding: 9px 11px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  color: #34232b;
-  font: inherit;
+.field label { display:block; font-size:13px; font-weight:700; margin-bottom:6px; }
+.field input,.field select {
+  width:100%;
+  min-height:43px;
+  padding:9px 11px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background:#fff;
+  color:#34232b;
+  font:inherit;
 }
-
-.section-soft { background: #f8eef1; }
-
-/* Compact profile cards */
+.section-soft { background:#f8eef1; }
 .profile-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
 }
-
 .profile-card {
-  min-width: 0;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  box-shadow: 0 3px 12px rgba(65,20,39,.06);
+  min-width:0;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:9px;
+  box-shadow:0 3px 12px rgba(65,20,39,.06);
 }
-
-.profile-card img, .profile-photo-placeholder {
-  display: block;
-  width: 100%;
-  height: 145px;
-  object-fit: cover;
-  background: #f1e3e8;
+.profile-card img,.profile-photo-placeholder {
+  display:block;
+  width:100%;
+  height:145px;
+  object-fit:cover;
+  background:#f1e3e8;
 }
-
 .profile-photo-placeholder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--wine);
-  font-size: 12px;
-  font-weight: 700;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:var(--wine);
+  font-size:12px;
+  font-weight:700;
 }
-
-.profile-card-content { padding: 12px; }
-
+.profile-card-content { padding:12px; }
 .profile-card h3 {
-  color: var(--wine);
-  font-size: 16px;
-  margin-bottom: 6px;
-  overflow-wrap: anywhere;
+  color:var(--wine);
+  font-size:16px;
+  margin-bottom:6px;
+  overflow-wrap:anywhere;
 }
-
 .profile-card p {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  margin-bottom: 3px;
-  overflow-wrap: anywhere;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:3px;
+  overflow-wrap:anywhere;
 }
-
-.profile-card .btn {
-  display: block;
-  width: 100%;
-  padding: 8px 4px;
-  margin-top: 10px;
-  font-size: 12px;
-}
-
+.profile-card .btn { display:block; width:100%; padding:8px 4px; margin-top:10px; font-size:12px; }
 .status-message {
-  grid-column: 1 / -1;
-  text-align: center;
-  background: #fff;
-  color: var(--muted);
-  padding: 22px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  grid-column:1/-1;
+  text-align:center;
+  background:#fff;
+  color:var(--muted);
+  padding:22px;
+  border:1px solid var(--border);
+  border-radius:8px;
 }
-
-.about-grid, .join-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: center;
+.about-grid,.join-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  align-items:center;
 }
-
-.about-copy h2, .join-copy h2 {
-  color: var(--wine);
-  font-family: Georgia, serif;
-  font-size: 34px;
-  line-height: 1.2;
-  margin-bottom: 14px;
+.about-copy h2,.join-copy h2 {
+  color:var(--wine);
+  font-family:Georgia,serif;
+  font-size:34px;
+  line-height:1.2;
+  margin-bottom:14px;
 }
-
-.about-copy p, .join-copy p { color: var(--muted); margin-bottom: 14px; }
-
-.about-panel {
-  padding: 28px;
-  border-radius: 10px;
-  background: var(--wine);
-  color: #fff;
-}
-
-.about-panel h3 { color: var(--gold); font-size: 23px; margin-bottom: 12px; }
-.about-panel p { margin-bottom: 10px; color: #f8eaf0; }
-
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
+.about-copy p,.join-copy p { color:var(--muted); margin-bottom:14px; }
+.about-panel { padding:28px; border-radius:10px; background:var(--wine); color:#fff; }
+.about-panel h3 { color:var(--gold); font-size:23px; margin-bottom:12px; }
+.about-panel p { margin-bottom:10px; color:#f8eaf0; }
+.steps-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .step-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 22px 16px;
-  text-align: center;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:22px 16px;
+  text-align:center;
 }
-
 .step-number {
-  display: grid;
-  place-items: center;
-  width: 43px;
-  height: 43px;
-  margin: 0 auto 12px;
-  border-radius: 50%;
-  background: var(--wine);
-  color: #fff;
-  font-weight: 800;
-  font-size: 19px;
+  display:grid;
+  place-items:center;
+  width:43px;
+  height:43px;
+  margin:0 auto 12px;
+  border-radius:50%;
+  background:var(--wine);
+  color:#fff;
+  font-weight:800;
+  font-size:19px;
 }
-
-.step-card h3 { color: var(--wine); margin-bottom: 7px; font-size: 17px; }
-.step-card p { color: var(--muted); font-size: 13px; }
-
-.join-section { background: var(--dark); color: #fff; }
-.join-copy h2 { color: #fff; }
-.join-copy p { color: #f2dfe6; }
-.join-copy .eyebrow { color: var(--gold); }
-
-.register-card { background: #fff; color: #34232b; padding: 24px; border-radius: 10px; }
-.register-card h3 { color: var(--wine); font-size: 22px; margin-bottom: 15px; }
-.register-form { display: grid; gap: 12px; }
-.register-form .btn { width: 100%; min-height: 44px; }
-.form-message { font-size: 13px; overflow-wrap: anywhere; }
-.login-note { text-align: center; font-size: 13px; color: var(--muted); }
-.login-note a { color: var(--wine); text-decoration: underline; font-weight: 700; }
-
-.footer { background: #250b16; color: #f8eaf0; padding: 28px 0 16px; }
-.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; padding-bottom: 18px; }
-.footer .logo { color: #fff; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 15px; font-size: 13px; }
-.copyright { border-top: 1px solid #63404d; padding-top: 15px; text-align: center; color: #d9c2cb; font-size: 12px; }
-
-@media (max-width: 800px) {
-  .nav-inner { align-items: flex-start; flex-direction: column; padding: 12px 0; }
-  .nav-links { gap: 12px; }
-  .hero { min-height: 400px; }
-  .search-form { grid-template-columns: 1fr 1fr; }
-  .search-form button { grid-column: 1 / -1; }
-  .profile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-  .profile-card img, .profile-photo-placeholder { height: 125px; }
-  .about-grid, .join-grid { grid-template-columns: 1fr; }
-  .steps-grid { grid-template-columns: 1fr; }
+.step-card h3 { color:var(--wine); margin-bottom:7px; font-size:17px; }
+.step-card p { color:var(--muted); font-size:13px; }
+.join-section { background:var(--dark); color:#fff; }
+.join-copy h2 { color:#fff; }
+.join-copy p { color:#f2dfe6; }
+.register-card { background:#fff; color:#34232b; padding:24px; border-radius:10px; }
+.register-card h3 { color:var(--wine); font-size:22px; margin-bottom:15px; }
+.register-form { display:grid; gap:12px; }
+.register-form .btn { width:100%; min-height:44px; }
+.form-message { font-size:13px; overflow-wrap:anywhere; }
+.login-note { text-align:center; font-size:13px; color:var(--muted); }
+.login-note a { color:var(--wine); text-decoration:underline; font-weight:700; }
+.footer { background:#250b16; color:#f8eaf0; padding:28px 0 16px; }
+.footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px; padding-bottom:18px; }
+.footer .logo { color:#fff; }
+.footer-links { display:flex; flex-wrap:wrap; gap:15px; font-size:13px; }
+.copyright { border-top:1px solid #63404d; padding-top:15px; text-align:center; color:#d9c2cb; font-size:12px; }
+@media(max-width:800px) {
+  .nav-inner { align-items:flex-start; flex-direction:column; padding:12px 0; }
+  .nav-links { gap:10px; }
+  .hero { min-height:400px; }
+  .search-form { grid-template-columns:1fr 1fr; }
+  .search-form button { grid-column:1/-1; }
+  .profile-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .profile-card img,.profile-photo-placeholder { height:125px; }
+  .about-grid,.join-grid { grid-template-columns:1fr; }
+  .steps-grid { grid-template-columns:1fr; }
 }
-
-@media (max-width: 520px) {
-  .logo { font-size: 22px; }
-  .nav-links { font-size: 12px; gap: 10px; }
-  .hero { min-height: 390px; }
-  .hero-content { padding: 48px 0; }
-  .section { padding: 42px 0; }
-  .profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
-  .profile-card img, .profile-photo-placeholder { height: 125px; }
-  .profile-card-content { padding: 9px; }
-  .profile-card h3 { font-size: 14px; }
-  .profile-card p { font-size: 11px; }
-  .search-form { grid-template-columns: 1fr; }
-  .search-form button { grid-column: auto; }
-  .register-card, .about-panel { padding: 20px; }
+@media(max-width:520px) {
+  .logo { font-size:22px; }
+  .nav-links { font-size:12px; gap:8px; }
+  .hero { min-height:390px; }
+  .hero-content { padding:48px 0; }
+  .section { padding:42px 0; }
+  .profile-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .profile-card img,.profile-photo-placeholder { height:125px; }
+  .profile-card-content { padding:9px; }
+  .profile-card h3 { font-size:14px; }
+  .profile-card p { font-size:11px; }
+  .search-form { grid-template-columns:1fr; }
+  .search-form button { grid-column:auto; }
+  .register-card,.about-panel { padding:20px; }
 }
 </style>
 </head>
-
 <body>
 <header class="navbar">
   <div class="container nav-inner">
@@ -360,6 +284,7 @@ a { color: inherit; text-decoration: none; }
       <a href="#about">About Us</a>
       <a href="#steps">How It Works</a>
       <a href="login.html">Login</a>
+      <a href="membership.html" class="btn">Premium Membership ₹999</a>
       <a href="register.html" class="btn">Register</a>
     </nav>
   </div>
@@ -373,8 +298,9 @@ a { color: inherit; text-decoration: none; }
       <h1>Find Your Perfect Life Partner</h1>
       <p>Discover meaningful connections, meet compatible people, and take the first step toward a beautiful future together.</p>
       <div class="hero-actions">
-        <a href="#join" class="btn">Create Free Account</a>
+        <a href="#join" class="btn btn-gold">Create Free Account</a>
         <a href="#featuredProfiles" class="btn btn-outline">Explore Profiles</a>
+        <a href="membership.html" class="btn btn-gold">Premium Membership ₹999</a>
       </div>
     </div>
   </div>
@@ -471,7 +397,9 @@ a { color: inherit; text-decoration: none; }
       <div class="eyebrow">Take the First Step</div>
       <h2>Your New Beginning Could Start Today</h2>
       <p>Join PasandMatrimony and start building your matrimonial profile.</p>
-      <a href="login.html" class="btn btn-outline">Already a Member? Login</a>
+      <a href="membership.html" class="btn btn-gold">Explore Premium Membership</a>
+      <p style="margin-top:14px">Already a member?</p>
+      <a href="login.html" class="btn btn-outline">Login</a>
     </div>
     <div class="register-card">
       <h3>Create Your Account</h3>
@@ -511,6 +439,7 @@ a { color: inherit; text-decoration: none; }
         <a href="#steps">How It Works</a>
         <a href="login.html">Login</a>
         <a href="register.html">Register</a>
+        <a href="membership.html">Premium Membership</a>
       </nav>
     </div>
     <div class="copyright">
@@ -521,7 +450,6 @@ a { color: inherit; text-decoration: none; }
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
-
 <script>
 "use strict";
 
@@ -534,14 +462,8 @@ function getClient() {
 }
 
 function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, function (c) {
-    return {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[c];
+  return String(value ?? "").replace(/[&<>"']/g, function(c) {
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
   });
 }
 
@@ -565,7 +487,7 @@ async function loadProfiles() {
   }
 
   try {
-    const { data, error } = await client.rpc("get_public_profiles");
+    const {data,error} = await client.rpc("get_public_profiles");
     if (error) throw error;
 
     if (!data || data.length === 0) {
@@ -573,14 +495,13 @@ async function loadProfiles() {
       return;
     }
 
-    grid.innerHTML = data.map(function (p) {
+    grid.innerHTML = data.map(function(p) {
       const name = escapeHTML(p.full_name || "Member");
       const age = p.age ? escapeHTML(p.age) + " years" : "Not specified";
       const city = escapeHTML(p.city || "Not specified");
       const education = escapeHTML(p.education || "Not specified");
       const status = escapeHTML(p.marital_status || "Not specified");
       const image = photoURL(p.photo_url);
-
       const picture = image
         ? '<img src="' + escapeHTML(image) + '" alt="Profile photo" loading="lazy">'
         : '<div class="profile-photo-placeholder">Profile Photo</div>';
@@ -594,31 +515,28 @@ async function loadProfiles() {
             <p><strong>City:</strong> ${city}</p>
             <p><strong>Education:</strong> ${education}</p>
             <p><strong>Marital Status:</strong> ${status}</p>
-            <a class="btn" href="login.html?next=profile.html">View Profile</a>
+            <a class="btn" href="login.html?next=profiles.html">View Profile</a>
           </div>
         </article>`;
     }).join("");
-  } catch (error) {
+  } catch(error) {
     console.error("Profile loading error:", error);
     grid.innerHTML = '<p class="status-message">Profiles are temporarily unavailable. Please try again later.</p>';
   }
 }
 
-document.getElementById("searchForm").addEventListener("submit", function (event) {
+document.getElementById("searchForm").addEventListener("submit", function(event) {
   event.preventDefault();
-
   const params = new URLSearchParams();
   const age = document.getElementById("searchAge").value;
   const city = document.getElementById("searchCity").value.trim();
-
   if (age) params.set("age", age);
   if (city) params.set("city", city);
-
   const query = params.toString();
-  window.location.href = "login.html?next=profile.html" + (query ? "&" + query : "");
+  window.location.href = "login.html?next=profiles.html" + (query ? "&" + query : "");
 });
 
-document.getElementById("homeRegisterForm").addEventListener("submit", async function (event) {
+document.getElementById("homeRegisterForm").addEventListener("submit", async function(event) {
   event.preventDefault();
 
   const form = event.currentTarget;
@@ -641,11 +559,11 @@ document.getElementById("homeRegisterForm").addEventListener("submit", async fun
   message.textContent = "";
 
   try {
-    const { data, error } = await client.auth.signUp({
+    const {data,error} = await client.auth.signUp({
       email,
       password,
       options: {
-        data: { full_name: fullName, mobile },
+        data: {full_name:fullName,mobile},
         emailRedirectTo: window.location.origin + "/profile.html"
       }
     });
@@ -655,15 +573,15 @@ document.getElementById("homeRegisterForm").addEventListener("submit", async fun
     if (data.user && data.session) {
       message.textContent = "Account created. Opening your profile...";
       form.reset();
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         window.location.href = "profile.html";
-      }, 1000);
+      },1000);
     } else {
       message.textContent = "Registration submitted. Please check your email for a confirmation link.";
       form.reset();
     }
-  } catch (error) {
-    console.error("Registration error:", error);
+  } catch(error) {
+    console.error("Registration error:",error);
     message.textContent = error.message || "Registration failed. Please try again.";
   } finally {
     button.disabled = false;
