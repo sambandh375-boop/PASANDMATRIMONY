@@ -6,176 +6,173 @@
 <title>Create Account | PasandMatrimony</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;padding:22px 12px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff6f4,#f2e1e8);color:#35101f}
-.card{max-width:600px;margin:auto;background:white;border:1px solid #f0dce2;border-radius:18px;padding:25px;box-shadow:0 12px 35px #46102618}
-.brand{text-align:center;color:#651b35;font-size:27px;font-weight:800}
+body{margin:0;padding:20px 12px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff6f4,#f2e1e8);color:#35101f}
+.card{max-width:620px;margin:auto;padding:24px;background:white;border:1px solid #f0dce2;border-radius:18px;box-shadow:0 12px 35px #46102618}
+.brand{text-align:center;font-size:27px;font-weight:800;color:#651b35}
 .brand span{color:#b76e79}
-.subtitle{text-align:center;color:#786b70;margin:8px 0 24px}
-h2{font-size:18px;border-bottom:1px solid #f0dce2;padding-bottom:9px;margin-top:25px}
+.subtitle{text-align:center;color:#786b70;margin:8px 0 22px}
+h2{font-size:18px;margin-top:24px;padding-bottom:8px;border-bottom:1px solid #f0dce2}
 .field{margin:15px 0}
 label{display:block;font-size:14px;font-weight:bold;margin-bottom:7px}
 input,select{width:100%;padding:12px;border:1px solid #e5d2d9;border-radius:8px;background:white;font-size:15px}
-button{width:100%;border:0;border-radius:8px;background:#651b35;color:white;padding:14px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:12px}
+button{width:100%;padding:14px;margin-top:12px;border:0;border-radius:8px;background:#651b35;color:white;font-size:16px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.6}
-.message{display:none;padding:12px;border-radius:8px;margin:14px 0;overflow-wrap:anywhere;line-height:1.5}
+.message{display:none;padding:12px;border-radius:8px;margin:12px 0;line-height:1.5;overflow-wrap:anywhere}
 .error{display:block;background:#fff0f0;color:#a21d2d}
 .success{display:block;background:#eefaf1;color:#176534}
-.links{text-align:center;margin-top:18px;font-size:14px;color:#786b70}
+.links{text-align:center;margin-top:20px;font-size:14px;line-height:1.8}
 a{color:#651b35;font-weight:bold}
 small{color:#786b70;line-height:1.5}
-@media(max-width:480px){.card{padding:20px 16px}.brand{font-size:24px}}
 </style>
 </head>
 <body>
 <main class="card">
-  <div class="brand">♥ Pasand<span>Matrimony</span></div>
-  <p class="subtitle">Create your new account</p>
+<div class="brand">♥ Pasand<span>Matrimony</span></div>
+<p class="subtitle">Create your new account</p>
+<div id="message" class="message" role="status" aria-live="polite"></div>
 
-  <div id="registerMessage" class="message" role="status" aria-live="polite"></div>
+<form id="registerForm">
+<h2>Account Details</h2>
 
-  <form id="registerForm">
-    <h2>Account Details</h2>
+<div class="field">
+<label for="fullName">Full Name *</label>
+<input id="fullName" type="text" maxlength="100" autocomplete="name" required>
+</div>
 
-    <div class="field">
-      <label for="fullName">Full Name *</label>
-      <input id="fullName" type="text" autocomplete="name" placeholder="Enter full name" required maxlength="100">
-    </div>
+<div class="field">
+<label for="email">Email Address *</label>
+<input id="email" type="email" autocomplete="email" required>
+</div>
 
-    <div class="field">
-      <label for="email">Email Address *</label>
-      <input id="email" type="email" autocomplete="email" placeholder="Enter email address" required>
-    </div>
+<div class="field">
+<label for="password">Password (Minimum 8 Characters) *</label>
+<input id="password" type="password" minlength="8" autocomplete="new-password" required>
+</div>
 
-    <div class="field">
-      <label for="password">Password (Minimum 8 Characters) *</label>
-      <input id="password" type="password" minlength="8" autocomplete="new-password" placeholder="Create password" required>
-    </div>
+<div class="field">
+<label for="mobile">Mobile Number *</label>
+<input id="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" required>
+</div>
 
-    <div class="field">
-      <label for="mobile">Mobile Number *</label>
-      <input id="mobile" type="tel" inputmode="numeric" autocomplete="tel" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" required>
-    </div>
+<h2>Profile Information</h2>
 
-    <h2>Profile Information</h2>
+<div class="field">
+<label for="createdBy">Profile Created By *</label>
+<select id="createdBy" required>
+<option value="">Select option</option>
+<option>Self</option>
+<option>Parent</option>
+<option>Brother</option>
+<option>Sister</option>
+<option>Guardian</option>
+<option>Relative</option>
+<option>Friend</option>
+<option>Other</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="createdBy">Profile Created By *</label>
-      <select id="createdBy" required>
-        <option value="">Select who is creating the profile</option>
-        <option>Self</option>
-        <option>Parent</option>
-        <option>Brother</option>
-        <option>Sister</option>
-        <option>Guardian</option>
-        <option>Relative</option>
-        <option>Friend</option>
-        <option>Other</option>
-      </select>
-    </div>
+<div class="field">
+<label for="profileFor">Profile For *</label>
+<select id="profileFor" required>
+<option value="">Select profile type</option>
+<option value="Bride">Bride</option>
+<option value="Groom">Groom</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="profileFor">Profile For *</label>
-      <select id="profileFor" required>
-        <option value="">Select profile type</option>
-        <option value="Bride">Bride</option>
-        <option value="Groom">Groom</option>
-      </select>
-    </div>
+<div class="field">
+<label for="gender">Gender *</label>
+<select id="gender" required>
+<option value="">Select gender</option>
+<option value="Female">Female</option>
+<option value="Male">Male</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="gender">Gender *</label>
-      <select id="gender" required>
-        <option value="">Select gender</option>
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
-      </select>
-    </div>
+<div class="field">
+<label for="maritalStatus">Marital Status *</label>
+<select id="maritalStatus" required>
+<option value="">Select marital status</option>
+<option>Never Married</option>
+<option>Divorced</option>
+<option>Widowed</option>
+<option>Separated</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="maritalStatus">Marital Status *</label>
-      <select id="maritalStatus" required>
-        <option value="">Select marital status</option>
-        <option>Never Married</option>
-        <option>Divorced</option>
-        <option>Widowed</option>
-        <option>Separated</option>
-      </select>
-    </div>
+<div class="field">
+<label for="religion">Religion *</label>
+<select id="religion" required>
+<option value="">Select religion</option>
+<option>Hindu</option>
+<option>Muslim</option>
+<option>Christian</option>
+<option>Sikh</option>
+<option>Jain</option>
+<option>Buddhist</option>
+<option>Other</option>
+<option>Prefer Not to Say</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="religion">Religion *</label>
-      <select id="religion" required>
-        <option value="">Select religion</option>
-        <option>Hindu</option>
-        <option>Muslim</option>
-        <option>Christian</option>
-        <option>Sikh</option>
-        <option>Jain</option>
-        <option>Buddhist</option>
-        <option>Other</option>
-        <option>Prefer Not to Say</option>
-      </select>
-    </div>
+<div class="field">
+<label for="state">State / Union Territory *</label>
+<select id="state" required>
+<option value="">Select state or union territory</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="state">State / Union Territory *</label>
-      <select id="state" required>
-        <option value="">Select state or union territory</option>
-      </select>
-    </div>
+<div class="field">
+<label for="city">City *</label>
+<select id="city" required disabled>
+<option value="">Select state first</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="city">City *</label>
-      <select id="city" required disabled>
-        <option value="">Select state first</option>
-      </select>
-    </div>
+<div class="field">
+<label for="education">Highest Education *</label>
+<select id="education" required>
+<option value="">Select education</option>
+<option>Below 10th</option>
+<option>10th Pass</option>
+<option>12th Pass</option>
+<option>Diploma</option>
+<option>Graduate</option>
+<option>Postgraduate</option>
+<option>Doctorate</option>
+<option>Professional Degree</option>
+<option>Other</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="education">Highest Education *</label>
-      <select id="education" required>
-        <option value="">Select education</option>
-        <option>Below 10th</option>
-        <option>10th Pass</option>
-        <option>12th Pass</option>
-        <option>Diploma</option>
-        <option>Graduate</option>
-        <option>Postgraduate</option>
-        <option>Doctorate</option>
-        <option>Professional Degree</option>
-        <option>Other</option>
-      </select>
-    </div>
+<div class="field">
+<label for="occupation">Occupation *</label>
+<select id="occupation" required>
+<option value="">Select occupation</option>
+<option>Government Job</option>
+<option>Private Job</option>
+<option>Business</option>
+<option>Self-employed</option>
+<option>Teacher</option>
+<option>Doctor</option>
+<option>Engineer</option>
+<option>Farmer</option>
+<option>Student</option>
+<option>Homemaker</option>
+<option>Retired</option>
+<option>Not Working</option>
+<option>Other</option>
+</select>
+</div>
 
-    <div class="field">
-      <label for="occupation">Occupation *</label>
-      <select id="occupation" required>
-        <option value="">Select occupation</option>
-        <option>Government Job</option>
-        <option>Private Job</option>
-        <option>Business</option>
-        <option>Self-employed</option>
-        <option>Teacher</option>
-        <option>Doctor</option>
-        <option>Engineer</option>
-        <option>Farmer</option>
-        <option>Student</option>
-        <option>Homemaker</option>
-        <option>Retired</option>
-        <option>Not Working</option>
-        <option>Other</option>
-      </select>
-    </div>
+<p><small>Registration is free. You can add more profile details after creating your account.</small></p>
+<button id="registerButton" type="submit">Create Account</button>
+</form>
 
-    <p><small>Your registration is free. You can complete additional profile details after creating your account.</small></p>
-
-    <button id="registerButton" type="submit">Create Account</button>
-  </form>
-
-  <div class="links">
-    Already have an account? <a id="loginLink" href="login.html">Login Here</a>
-    <br><br><a href="index.html">Back to Home</a>
-  </div>
+<div class="links">
+Already have an account? <a id="loginLink" href="login.html">Login Here</a>
+<br><a href="index.html">Back to Home</a>
+</div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -184,48 +181,48 @@ small{color:#786b70;line-height:1.5}
 "use strict";
 
 const form = document.getElementById("registerForm");
-const message = document.getElementById("registerMessage");
+const message = document.getElementById("message");
 const button = document.getElementById("registerButton");
 const stateSelect = document.getElementById("state");
 const citySelect = document.getElementById("city");
 
 const states = {
-  "Andhra Pradesh":["Amaravati","Visakhapatnam","Vijayawada","Guntur","Tirupati","Kurnool"],
-  "Arunachal Pradesh":["Itanagar","Naharlagun","Tawang","Pasighat"],
-  "Assam":["Guwahati","Dibrugarh","Silchar","Jorhat","Tezpur"],
-  "Bihar":["Patna","Gaya","Muzaffarpur","Bhagalpur","Darbhanga","Purnia","Bihar Sharif"],
-  "Chhattisgarh":["Raipur","Bilaspur","Durg","Bhilai","Korba"],
-  "Goa":["Panaji","Margao","Vasco da Gama","Mapusa"],
-  "Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Gandhinagar","Bhavnagar"],
-  "Haryana":["Gurugram","Faridabad","Panipat","Hisar","Karnal","Ambala"],
-  "Himachal Pradesh":["Shimla","Dharamshala","Mandi","Solan","Kullu"],
-  "Jharkhand":["Ranchi","Jamshedpur","Dhanbad","Bokaro","Deoghar","Hazaribagh"],
-  "Karnataka":["Bengaluru","Mysuru","Mangaluru","Hubballi","Belagavi","Kalaburagi"],
-  "Kerala":["Thiruvananthapuram","Kochi","Kozhikode","Thrissur","Kollam","Kannur"],
-  "Madhya Pradesh":["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Rewa","Sagar"],
-  "Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Thane","Chhatrapati Sambhajinagar","Kolhapur"],
-  "Manipur":["Imphal","Thoubal","Bishnupur","Churachandpur"],
-  "Meghalaya":["Shillong","Tura","Jowai","Nongpoh"],
-  "Mizoram":["Aizawl","Lunglei","Champhai","Kolasib"],
-  "Nagaland":["Kohima","Dimapur","Mokokchung","Wokha"],
-  "Odisha":["Bhubaneswar","Cuttack","Rourkela","Puri","Sambalpur","Berhampur"],
-  "Punjab":["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],
-  "Rajasthan":["Jaipur","Jodhpur","Udaipur","Kota","Ajmer","Bikaner","Alwar"],
-  "Sikkim":["Gangtok","Namchi","Gyalshing","Mangan"],
-  "Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Tirunelveli"],
-  "Telangana":["Hyderabad","Warangal","Karimnagar","Nizamabad","Khammam"],
-  "Tripura":["Agartala","Udaipur","Dharmanagar","Belonia"],
-  "Uttar Pradesh":["Lucknow","Kanpur","Varanasi","Prayagraj","Agra","Meerut","Noida","Ghaziabad","Gorakhpur","Ayodhya","Bareilly","Gomti Nagar"],
-  "Uttarakhand":["Dehradun","Haridwar","Rishikesh","Haldwani","Roorkee","Nainital"],
-  "West Bengal":["Kolkata","Howrah","Durgapur","Siliguri","Asansol","Darjeeling"],
-  "Andaman and Nicobar Islands":["Port Blair","Diglipur","Car Nicobar"],
-  "Chandigarh":["Chandigarh"],
-  "Dadra and Nagar Haveli and Daman and Diu":["Daman","Diu","Silvassa"],
-  "Delhi":["New Delhi","Delhi","Dwarka","Rohini"],
-  "Jammu and Kashmir":["Srinagar","Jammu","Anantnag","Baramulla"],
-  "Ladakh":["Leh","Kargil"],
-  "Lakshadweep":["Kavaratti","Agatti","Minicoy"],
-  "Puducherry":["Puducherry","Karaikal","Mahe","Yanam"]
+"Andhra Pradesh":["Amaravati","Visakhapatnam","Vijayawada","Guntur","Tirupati","Kurnool"],
+"Arunachal Pradesh":["Itanagar","Naharlagun","Tawang","Pasighat"],
+"Assam":["Guwahati","Dibrugarh","Silchar","Jorhat","Tezpur"],
+"Bihar":["Patna","Gaya","Muzaffarpur","Bhagalpur","Darbhanga","Purnia","Bihar Sharif"],
+"Chhattisgarh":["Raipur","Bilaspur","Durg","Bhilai","Korba"],
+"Goa":["Panaji","Margao","Vasco da Gama","Mapusa"],
+"Gujarat":["Ahmedabad","Surat","Vadodara","Rajkot","Gandhinagar","Bhavnagar"],
+"Haryana":["Gurugram","Faridabad","Panipat","Hisar","Karnal","Ambala"],
+"Himachal Pradesh":["Shimla","Dharamshala","Mandi","Solan","Kullu"],
+"Jharkhand":["Ranchi","Jamshedpur","Dhanbad","Bokaro","Deoghar","Hazaribagh"],
+"Karnataka":["Bengaluru","Mysuru","Mangaluru","Hubballi","Belagavi","Kalaburagi"],
+"Kerala":["Thiruvananthapuram","Kochi","Kozhikode","Thrissur","Kollam","Kannur"],
+"Madhya Pradesh":["Bhopal","Indore","Jabalpur","Gwalior","Ujjain","Rewa","Sagar"],
+"Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Thane","Chhatrapati Sambhajinagar","Kolhapur"],
+"Manipur":["Imphal","Thoubal","Bishnupur","Churachandpur"],
+"Meghalaya":["Shillong","Tura","Jowai","Nongpoh"],
+"Mizoram":["Aizawl","Lunglei","Champhai","Kolasib"],
+"Nagaland":["Kohima","Dimapur","Mokokchung","Wokha"],
+"Odisha":["Bhubaneswar","Cuttack","Rourkela","Puri","Sambalpur","Berhampur"],
+"Punjab":["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],
+"Rajasthan":["Jaipur","Jodhpur","Udaipur","Kota","Ajmer","Bikaner","Alwar"],
+"Sikkim":["Gangtok","Namchi","Gyalshing","Mangan"],
+"Tamil Nadu":["Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Tirunelveli"],
+"Telangana":["Hyderabad","Warangal","Karimnagar","Nizamabad","Khammam"],
+"Tripura":["Agartala","Udaipur","Dharmanagar","Belonia"],
+"Uttar Pradesh":["Lucknow","Kanpur","Varanasi","Prayagraj","Agra","Meerut","Noida","Ghaziabad","Gorakhpur","Ayodhya","Bareilly","Jhansi","Mathura","Gomti Nagar"],
+"Uttarakhand":["Dehradun","Haridwar","Rishikesh","Haldwani","Roorkee","Nainital"],
+"West Bengal":["Kolkata","Howrah","Durgapur","Siliguri","Asansol","Darjeeling"],
+"Andaman and Nicobar Islands":["Port Blair","Diglipur","Car Nicobar"],
+"Chandigarh":["Chandigarh"],
+"Dadra and Nagar Haveli and Daman and Diu":["Daman","Diu","Silvassa"],
+"Delhi":["New Delhi","Delhi","Dwarka","Rohini"],
+"Jammu and Kashmir":["Srinagar","Jammu","Anantnag","Baramulla"],
+"Ladakh":["Leh","Kargil"],
+"Lakshadweep":["Kavaratti","Agatti","Minicoy"],
+"Puducherry":["Puducherry","Karaikal","Mahe","Yanam"]
 };
 
 Object.keys(states).sort().forEach(state => {
@@ -235,22 +232,14 @@ Object.keys(states).sort().forEach(state => {
   stateSelect.appendChild(option);
 });
 
-stateSelect.addEventListener("change", function() {
+stateSelect.addEventListener("change", () => {
   citySelect.innerHTML = '<option value="">Select city</option>';
-  const cities = states[stateSelect.value] || [];
-
-  cities.forEach(city => {
+  (states[stateSelect.value] || []).forEach(city => {
     const option = document.createElement("option");
     option.value = city;
     option.textContent = city;
     citySelect.appendChild(option);
   });
-
-  const other = document.createElement("option");
-  other.value = "Other";
-  other.textContent = "Other City";
-  citySelect.appendChild(other);
-
   citySelect.disabled = false;
 });
 
@@ -259,23 +248,29 @@ function showMessage(text, type) {
   message.className = "message " + type;
 }
 
-const params = new URLSearchParams(window.location.search);
-const selectedPlan = params.get("plan") || "";
-const validPlans = ["office","gold","diamond","platinum","platinum_plus"];
-const plan = validPlans.includes(selectedPlan) ? selectedPlan : "";
+const params = new URLSearchParams(location.search);
+const allowedPlans = ["office","gold","diamond","platinum","platinum_plus"];
+const requestedPlan = params.get("plan") || "";
+const selectedPlan = allowedPlans.includes(requestedPlan) ? requestedPlan : "";
 
-if (plan) {
+if (selectedPlan) {
   document.getElementById("loginLink").href =
-    "login.html?plan=" + encodeURIComponent(plan);
+    "login.html?plan=" + encodeURIComponent(selectedPlan);
 }
 
-form.addEventListener("submit", async function(event) {
+form.addEventListener("submit", async event => {
   event.preventDefault();
 
-  const client = window.supabaseClient;
+  // The config file declares `const supabaseClient` at top level.
+  const client = typeof supabaseClient !== "undefined"
+    ? supabaseClient
+    : window.supabaseClient;
 
-  if (!client) {
-    showMessage("Connection could not be initialized. Please check Supabase configuration.", "error");
+  if (!client || !client.auth) {
+    showMessage(
+      "Supabase connection is unavailable. Check that supabase-config.js loads correctly and contains the correct Project URL and Publishable Key.",
+      "error"
+    );
     return;
   }
 
@@ -323,7 +318,7 @@ form.addEventListener("submit", async function(event) {
           city,
           education,
           occupation,
-          selected_plan: plan || null
+          selected_plan: selectedPlan || null
         }
       }
     });
@@ -332,13 +327,13 @@ form.addEventListener("submit", async function(event) {
 
     if (data.session) {
       showMessage("Account created successfully. Redirecting...", "success");
-      const destination = plan
-        ? "payment.html?plan=" + encodeURIComponent(plan)
+      const destination = selectedPlan
+        ? "payment.html?plan=" + encodeURIComponent(selectedPlan)
         : "profile.html";
-      setTimeout(() => window.location.href = destination, 1000);
+      setTimeout(() => location.href = destination, 1200);
     } else {
       showMessage(
-        "Registration submitted. Check your email if confirmation is required. Then log in to continue.",
+        "Registration submitted. Please check your email if confirmation is required, then log in.",
         "success"
       );
       button.disabled = false;
