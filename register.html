@@ -1,1 +1,28 @@
-
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+</head>
+<body>
+<h1>Register</h1>
+<input id="email" type="email" placeholder="Email">
+<input id="pw" type="password" placeholder="Password (6+ characters)">
+<button id="btn">Account banayein</button>
+<p id="msg"></p>
+<a href="login.html">Account hai? Login karein</a>
+<script>
+document.getElementById('btn').onclick = async () => {
+  const { error } = await supabaseClient.auth.signUp({
+    email: document.getElementById('email').value,
+    password: document.getElementById('pw').value
+  });
+  document.getElementById('msg').textContent =
+    error ? error.message : 'Account ban gaya. Ab login karein.';
+};
+</script>
+</body>
+</html>
